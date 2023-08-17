@@ -3,14 +3,8 @@
 >
     <img
     class="relative w-[815px] h-[1028px] object-cover"
-    alt="pexelssamuelcrosland2557232-1"
-    src="../../../src/public/pexelssamuelcrosland2557232-1@2x.png"
-    />
-
-    <img
-    class="w-0 h-[417px] object-cover"
     alt=""
-    src="/public/placeholder--picture1@2x.png"
+    [src]="loginImage"
     />
 
     <div
@@ -101,27 +95,27 @@
             <div class="self-stretch relative leading-[140%]">
             Email Address
             </div>
-            <div
+            <input
+            type="email"
             class="self-stretch bg-coolgray-10 box-border h-12 flex flex-row py-3 px-4 items-center justify-start gap-[8px] text-base text-coolgray-60 border-b-[1px] border-solid border-coolgray-30 md:flex-row md:gap-[8px] md:items-center md:justify-start"
             >
-            <img
-                class="relative w-6 h-6 overflow-hidden shrink-0 hidden"
-                alt=""
-                src="/public/icon--jamicons--outline--logos--search3.svg"
-            />
+                <img
+                    class="relative w-6 h-6 overflow-hidden shrink-0 hidden"
+                    alt=""
+                    src="assets/icon--jamicons--outline--logos--search3.svg"
+                />
 
-            <div class="flex-1 relative leading-[140%]">Placeholder</div>
-            <img
-                class="relative w-6 h-6 overflow-hidden shrink-0 hidden"
-                alt=""
-                src="/public/icon--jamicons--outline--logos--chevrondown4.svg"
-            />
-            </div>
+                <!-- <div class="flex-1 relative leading-[140%]">Placeholder</div> -->
+                <img
+                    class="relative w-6 h-6 overflow-hidden shrink-0 hidden"
+                    alt=""
+                    src="assets/icon--jamicons--outline--logos--chevrondown4.svg"
+                />
         </div>
         <div
             class="self-stretch relative text-xs leading-[140%] text-coolgray-60 hidden"
         >
-            Helper text goes here
+            Helper or Error text goes here
         </div>
         </div>
         <div
@@ -131,22 +125,21 @@
             class="self-stretch flex flex-col items-start justify-start gap-[8px]"
         >
             <div class="self-stretch relative leading-[140%]">Password</div>
-            <div
+            <input
             class="self-stretch bg-coolgray-10 box-border h-12 flex flex-row py-3 px-4 items-center justify-start gap-[8px] text-base text-coolgray-60 border-b-[1px] border-solid border-coolgray-30"
             >
             <img
                 class="relative w-6 h-6 overflow-hidden shrink-0 hidden"
                 alt=""
-                src="/public/icon--jamicons--outline--logos--search3.svg"
+                src="assets/icon--jamicons--outline--logos--search3.svg"
             />
 
-            <div class="flex-1 relative leading-[140%]">Placeholder</div>
+            <!-- <div class="flex-1 relative leading-[140%]">Placeholder</div> -->
             <img
                 class="relative w-6 h-6 overflow-hidden shrink-0"
                 alt=""
-                src="/public/icon--jamicons--outline--logos--eye1.svg"
+                src="assets/icon--jamicons--outline--logos--eye1.svg"
             />
-            </div>
         </div>
         <div
             class="self-stretch relative text-xs leading-[140%] text-coolgray-60"
@@ -204,36 +197,36 @@
         <div
         class="self-stretch bg-darkolivegreen flex flex-row py-4 px-3 items-center justify-center text-base text-default-white border-[2px] border-solid border-darkslategray"
         >
-        <img
-            class="flex-1 relative max-w-full overflow-hidden h-6 hidden"
-            alt=""
-            src="/public/icon--jamicons--outline--logos--plus3.svg"
-        />
+            <img
+                class="flex-1 relative max-w-full overflow-hidden h-6 hidden"
+                alt=""
+                src="assets/icon--jamicons--outline--logos--plus3.svg"
+            />
 
-        <div
-            class="flex-1 hidden border-r-[1px] border-solid border-gray"
-        ></div>
-        <div
-            class="flex-1 flex flex-row py-0 px-4 items-center justify-center"
-        >
-            <div class="relative tracking-[0.5px] leading-[100%] font-medium">
-            Log In
+            <div
+                class="flex-1 hidden border-r-[1px] border-solid border-gray"
+            ></div>
+            <div
+                class="flex-1 flex flex-row py-0 px-4 items-center justify-center"
+            >
+                <div class="relative tracking-[0.5px] leading-[100%] font-medium">
+                Log In
+                </div>
+            </div>
+            <div
+                class="flex-1 hidden border-l-[1px] border-solid border-gray"
+            ></div>
+            <img
+                class="flex-1 relative max-w-full overflow-hidden h-6 hidden"
+                alt=""
+                src="/public/icon--jamicons--outline--logos--arrowright2.svg"
+            />
+            </div>
+            <div class="self-stretch relative leading-[140%] text-center hidden">
+            Vestibulum faucibus odio vitae arcu auctor lectus.
             </div>
         </div>
-        <div
-            class="flex-1 hidden border-l-[1px] border-solid border-gray"
-        ></div>
-        <img
-            class="flex-1 relative max-w-full overflow-hidden h-6 hidden"
-            alt=""
-            src="/public/icon--jamicons--outline--logos--arrowright2.svg"
-        />
-        </div>
-        <div class="self-stretch relative leading-[140%] text-center hidden">
-        Vestibulum faucibus odio vitae arcu auctor lectus.
-        </div>
-    </div>
-    <div
+    <!-- <div
         class="self-stretch flex flex-row items-start justify-start gap-[16px] text-base sm:flex-row sm:gap-[16px] sm:items-start sm:justify-start"
     >
         <div
@@ -276,7 +269,7 @@
             src="/public/icon--jamicons--outline--logos--arrowright4.svg"
         />
         </div>
-    </div>
+    </div> -->
     <div
         class="self-stretch relative box-border h-px border-t-[1px] border-solid border-coolgray-20"
     ></div>
