@@ -16,6 +16,9 @@ def create_app():
     from .api.auth import auth
     app.register_blueprint(auth, url_prefix='/')
     
+    from .api.views import views
+    app.register_blueprint(views, url_prefix='/')
+    
     
     #*load the models from db
     from .models import User, UserPlants
