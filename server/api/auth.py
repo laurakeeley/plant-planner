@@ -1,7 +1,6 @@
 from flask import Blueprint, render_template, request, flash, redirect, url_for, jsonify, Flask
 from ..models import User
-# from werkzeug.security import generate_password_hash, check_password_hash
-from flask_bcrypt import Bcrypt, generate_password_hash, check_password_hash
+from flask_bcrypt import generate_password_hash, check_password_hash
 
 from .. import db
 from flask_login import login_user, login_required, logout_user, current_user
@@ -42,6 +41,13 @@ def sign_up():
             response = {'message': 'User registered successfully', 'status': 200}
             print(f"jsonify: {jsonify(response)}")
         return jsonify(response)
-        
+     
             
-    return jsonify({'message': 'Invalid request', 'status': 400})
+    return jsonify({'message': 'get method is not available', 'status': 400})
+
+
+@auth.route('/login', methods=["GET", "POST"])
+def login():
+    #* user will be redirect to /login route and send FE message below to indicate user to login
+    if request.method == "GET":
+        return jsonify({'message': 'Please login', 'status': 400})
