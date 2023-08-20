@@ -7,4 +7,8 @@ import { Component } from '@angular/core';
 })
 export class SignupComponent {
 
+  signup() {
+    console.log("signup() clicked!");
+  }
+
 }
