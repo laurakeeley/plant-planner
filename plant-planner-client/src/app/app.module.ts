@@ -7,6 +7,7 @@ import { HomeComponent } from './home/home.component';
 import { SearchComponent } from './search/search.component';
 import { LoginComponent } from './login/login.component';
 import { SignupComponent } from './signup/signup.component';
+import { AuthService } from './services/auth.service';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,7 @@ import { SignupComponent } from './signup/signup.component';
     BrowserModule,
     AppRoutingModule
   ],
-  providers: [],
+  providers: [AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
