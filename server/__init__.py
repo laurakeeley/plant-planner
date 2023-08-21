@@ -4,20 +4,23 @@ from flask_bcrypt import Bcrypt
 from flask_login import LoginManager
 from dotenv import load_dotenv
 import os
+from .secrets import secrets
 
-db = SQLAlchemy()
 
 # Load environment variables from .env
 load_dotenv()
 secret_key = os.environ.get("SECRETE_KEY")
 databse_uri = os.environ.get("DATABASE_URI")
 
+db = SQLAlchemy()
 #*initialze application
 def create_app():
     app = Flask(__name__)
     bcrypt = Bcrypt(app)
     app.config['SECRET_KEY'] = secret_key
-    app.config['SQLALCHEMY_DATABASE_URI'] = databse_uri
+    db_uri = secrets.get('postgre_db')
+    app.config['SQLALCHEMY_DATABASE_URI'] = db_uri
+
     db.init_app(app)
     
     from .api.auth import auth
