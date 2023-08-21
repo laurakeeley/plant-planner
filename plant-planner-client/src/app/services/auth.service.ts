@@ -8,7 +8,11 @@ export class AuthService {
   private BASE_URL: string = 'http://127.0.0.1:5000';
   private headers: HttpHeaders = new HttpHeaders({'Content-Type': 'application/json'});
 
-  constructor(private http:HttpClient) { }
+  constructor(private http: HttpClient) {}
+
+  signup(user: any) {
+    return this.http.post(`${this.BASE_URL}/sign-up`, user);
+  }
 
   // register(user): Promise<any> {
   //   let url: string = `${this.BASE_URL}/sign-up`;

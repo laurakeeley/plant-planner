@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { AuthService } from '../services/auth.service';
 // import { User } from '../models/user'
 
@@ -7,16 +7,29 @@ import { AuthService } from '../services/auth.service';
   templateUrl: './signup.component.html',
   styleUrls: ['./signup.component.css']
 })
-export class SignupComponent implements OnInit { 
-  // user: User = new User();
+export class SignupComponent { 
+  // newUser = {};
 
-  constructor(private auth:AuthService) {}
-  ngOnInit(): void {
-    console.log(this.auth.test());
-  }
+  // constructor(private auth:AuthService) {}
+
   // signup() {
-  //   console.log("signup() clicked!")
+  //   this.auth.signup(this.newUser).subscribe(
+  //     response => {
+  //       console.log(response);
+  //       // Handle success
+  //     },
+  //     error => {
+  //       console.error(error);
+  //       // Handle error
+  //     }
+  //   );
   // }
+  // ngOnInit(): void {
+  //   console.log(this.auth.test());
+  // }
+  signup() {
+    console.log("signup button clicked!")
+  }
   // signup(): void {
   //   this.auth.register(this.user)
   //   .then((user) => {
