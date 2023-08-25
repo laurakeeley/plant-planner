@@ -10,10 +10,10 @@ import { AuthService } from '../services/auth.service';
 })
 export class SignupComponent { 
   newUser = {
-    first_name: "test",
-    last_name: "test",
-    email: "test@test.com",
-    password: "test123"
+    first_name: "",
+    last_name: "",
+    email: "",
+    password: ""
   };
 
   constructor(private auth:AuthService) {}
@@ -30,20 +30,5 @@ export class SignupComponent { 
       }
     );
   }
-  // ngOnInit(): void {
-  //   console.log(this.auth.test());
-  // }
-  // signup() {
-  //   console.log("signup button clicked!")
-  // }
-  // signup(): void {
-  //   this.auth.register(this.user)
-  //   .then((user) => {
-  //     console.log(user.json());
-  //   })
-  //   .catch((err) => {
-  //     console.log(err);
-  //   });
-  // }
 
 }
