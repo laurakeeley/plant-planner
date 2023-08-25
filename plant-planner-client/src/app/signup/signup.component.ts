@@ -1,7 +1,5 @@
-import { Component } from '@angular/core';
+import { Component } from '@angular/core'; 
 import { AuthService } from '../services/auth.service';
-// import { Observable } from 'rxjs';
-// import { User } from '../models/user'
 
 @Component({
   selector: 'app-signup',

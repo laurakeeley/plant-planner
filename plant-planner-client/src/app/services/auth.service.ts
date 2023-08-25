@@ -14,13 +14,9 @@ export class AuthService {
   signup(user: any): Observable<any> {
     return this.http.post(`${this.BASE_URL}/sign-up`, user);
   }
-
-  // register(user): Promise<any> {
-  //   let url: string = `${this.BASE_URL}/sign-up`;
-  //   return this.http.post(url, user, {headers: this.headers}).toPromise();
-  // }
-
-  test(): string {
-    return 'the auth test is workinggggg';
+  
+  login(email: string, password: string): Observable<any> {
+    const data = {email, password};
+    return this.http.post(`${this.BASE_URL}/login`, data);
   }
 }
