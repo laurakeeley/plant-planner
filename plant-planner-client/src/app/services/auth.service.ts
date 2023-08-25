@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpHeaders, HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -10,7 +11,7 @@ export class AuthService {
 
   constructor(private http: HttpClient) {}
 
-  signup(user: any) {
+  signup(user: any): Observable<any> {
     return this.http.post(`${this.BASE_URL}/sign-up`, user);
   }
 
