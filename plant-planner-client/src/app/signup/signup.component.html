@@ -59,7 +59,7 @@
                 type="text"
                 required
                 id="signupFirstName"
-                [(ngModel)]="newUser.firstName"
+                [(ngModel)]="newUser.first_name"
               />
             </div>
             <div
@@ -82,7 +82,7 @@
                 type="text"
                 required
                 id="signupLastName"
-                [(ngModel)]="newUser.lastName"
+                [(ngModel)]="newUser.last_name"
               />
             </div>
             <div
@@ -255,10 +255,10 @@
           test data
         </p>
         <p>
-          {{newUser.firstName}}
+          {{newUser.first_name}}
         </p>
         <p>
-          {{newUser.lastName}}
+          {{newUser.last_name}}
         </p>
         <p>
           {{newUser.email}}
