@@ -98,6 +98,7 @@
             <input
             type="email"
             class="self-stretch bg-coolgray-10 box-border h-12 flex flex-row py-3 px-4 items-center justify-start gap-[8px] text-base text-coolgray-60 border-b-[1px] border-solid border-coolgray-30 md:flex-row md:gap-[8px] md:items-center md:justify-start"
+            [(ngModel)]="email"
             >
                 <img
                     class="relative w-6 h-6 overflow-hidden shrink-0 hidden"
@@ -133,7 +134,10 @@
                     alt=""
                     src="assets/icon--jamicons--outline--logos--search3.svg"
                 />
-                <input type="password" class="flex-1 h-11 bg-coolgray-10 px-4 relative leading-[140%]">
+                <input
+                    type="password" 
+                    class="flex-1 h-11 bg-coolgray-10 px-4 relative leading-[140%]"
+                    [(ngModel)]="password">
                 <img
                     class="relative w-6 h-6 overflow-hidden shrink-0"
                     alt=""
@@ -191,8 +195,9 @@
             Forgot Password?
         </div>
         </div>
-        <div
+        <button
         class="self-stretch bg-darkolivegreen flex flex-row py-4 px-3 items-center justify-center text-base text-default-white border-[2px] border-solid border-darkslategray"
+        (click)="login()"
         >
             <img
                 class="flex-1 relative max-w-full overflow-hidden h-6 hidden"
@@ -218,7 +223,7 @@
                 alt=""
                 src="/public/icon--jamicons--outline--logos--arrowright2.svg"
             />
-            </div>
+        </button>
             <div class="self-stretch relative leading-[140%] text-center hidden">
             Vestibulum faucibus odio vitae arcu auctor lectus.
             </div>
