@@ -54,3 +54,4 @@ def create_app():
         return User.query.get(int(id))
     
     return app
+

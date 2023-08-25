@@ -5,6 +5,10 @@ from flask_bcrypt import generate_password_hash, check_password_hash
 from .. import db
 from flask_login import login_user, login_required, logout_user, current_user
 
+import jwt
+import datetime
+from server import create_app
+
 
 #! initialize blueprint, always need to pass in __name__, and the name of the blueprint
 auth = Blueprint("auth", __name__)
@@ -62,14 +66,17 @@ def login():
                 flash("Logged in successfully!", category="success")
                 #*flask remember tht user has logged in
                 result = login_user(user, remember=True)
-                print(f"login user: {result}")
-                response = {'message': 'login successfully', 'user_id': user.id, 'status': 200}
+                app = create_app()
+                expiration = datetime.datetime.utcnow() + datetime.timedelta(hours=1)
+                token = jwt.encode({'user_id': user.id, 'expiration': expiration.strftime('%Y-%m-%d %H:%M:%S')}, app.config['SECRET_KEY'])
+                print(f"token: {token}")
+                response = {'message': 'login successfully', 'user_id': user.id, 'status': 200, 'token': token}
                 print(f"response: {response}")
                 return jsonify(response)
             else:
                 #*login password do not match
                 flash('Incorrect password, try again!', category='error')
-                response = {'message': 'Password does not match','user_id': None, 'status': 401}
+                response = {'message': 'Invalid credentials','user_id': None, 'status': 401}
         else:
             response = {'message': 'No such user','user_id': None, 'status': 401}     
             flash('Email does not exist.', category='error') 
