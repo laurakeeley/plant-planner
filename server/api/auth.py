@@ -39,7 +39,6 @@ def sign_up():
             login_user(new_user, remember=True)
             flash('Account created!', category='success')
             response = {'message': 'User registered successfully', 'status': 200}
-            print(f"jsonify: {jsonify(response)}")
         return jsonify(response)
      
             
@@ -51,3 +50,28 @@ def login():
     #* user will be redirect to /login route and send FE message below to indicate user to login
     if request.method == "GET":
         return jsonify({'message': 'Please login', 'status': 400})
+    elif request.method == "POST":
+        data = request.json
+        email = data.get('email')
+        password = data.get('password')
+        
+        #*check if the email is valid in the db and return the first result
+        user = User.query.filter_by(email=email).first()
+        if user:
+            if check_password_hash(user.password, password):
+                flash("Logged in successfully!", category="success")
+                #*flask remember tht user has logged in
+                result = login_user(user, remember=True)
+                print(f"login user: {result}")
+                response = {'message': 'login successfully', 'user_id': user.id, 'status': 200}
+                print(f"response: {response}")
+                return jsonify(response)
+            else:
+                #*login password do not match
+                flash('Incorrect password, try again!', category='error')
+                response = {'message': 'Password does not match','user_id': None, 'status': 401}
+        else:
+            response = {'message': 'No such user','user_id': None, 'status': 401}     
+            flash('Email does not exist.', category='error') 
+        return jsonify(response)
+        
