@@ -10,6 +10,8 @@ import { AuthService } from '../services/auth.service';
 })
 export class SignupComponent { 
   newUser = {
+    firstName: "first name",
+    lastName: "last name",
     email: "test@test.com",
     password: "test123"
   };
