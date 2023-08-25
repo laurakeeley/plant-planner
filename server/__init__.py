@@ -8,6 +8,7 @@ import os
 from .secrets import secrets
 
 
+
 # Load environment variables from .env
 load_dotenv()
 secret_key = os.environ.get("SECRETE_KEY")
@@ -54,4 +55,5 @@ def create_app():
         return User.query.get(int(id))
     
     return app
+
 

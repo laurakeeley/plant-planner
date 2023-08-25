@@ -7,6 +7,8 @@ from flask_login import login_user, login_required, logout_user, current_user
 
 import jwt
 import datetime
+from functools import wraps
+
 from server import create_app
 
 
@@ -68,7 +70,7 @@ def login():
                 result = login_user(user, remember=True)
                 app = create_app()
                 expiration = datetime.datetime.utcnow() + datetime.timedelta(hours=1)
-                token = jwt.encode({'user_id': user.id, 'expiration': expiration.strftime('%Y-%m-%d %H:%M:%S')}, app.config['SECRET_KEY'])
+                token = jwt.encode({'user_id': user.id, 'expiration': expiration.strftime('%Y-%m-%d %H:%M:%S')}, app.config['SECRET_KEY'], algorithm='HS256')
                 print(f"token: {token}")
                 response = {'message': 'login successfully', 'user_id': user.id, 'status': 200, 'token': token}
                 print(f"response: {response}")
@@ -81,4 +83,37 @@ def login():
             response = {'message': 'No such user','user_id': None, 'status': 401}     
             flash('Email does not exist.', category='error') 
         return jsonify(response)
+    
+    
+def token_required(f):
+    @wraps(f)
+    def decorated(*args, **kwargs):
+        token = None
+        app = create_app()
+        auth_header = request.headers.get('Authorization')
+
+        if auth_header:
+            print(f"auth_header format: {auth_header}, secrete key: {app.config['SECRET_KEY']}")
+          
+            auth_parts = auth_header.split()
+            if len(auth_parts) == 2 and auth_parts[0] == 'Bearer':
+                token = auth_parts[1]
+                print(f"token => {token}")
+            else:
+                return jsonify({'message': 'Invalid Authorization header format', 'status': 401})
+          
+        if not token:
+            return jsonify({'message': 'Token is missing', 'status': 401})
         
+        try:
+            data = jwt.decode(token, app.config['SECRET_KEY'], algorithms=['HS256'])
+            print(f"data in try block: {data}")
+        except jwt.ExpiredSignatureError:
+            return jsonify({'message': 'Token has experied', 'status':401})
+        except jwt.InvalidTokenError:
+            print(f"invalid:")
+            return jsonify({'message': 'Token is invalid', 'status':401})
+        
+        return f(*args, **kwargs)
+    print(f"inside token_required, decorated is {decorated}")
+    return decorated
