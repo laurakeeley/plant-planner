@@ -1,4 +1,5 @@
 from flask import Flask
+from flask_cors import CORS
 from flask_sqlalchemy import SQLAlchemy
 from flask_bcrypt import Bcrypt
 from flask_login import LoginManager
@@ -16,6 +17,8 @@ db = SQLAlchemy()
 #*initialze application
 def create_app():
     app = Flask(__name__)
+    # Configure CORS for all routes
+    CORS(app)
     bcrypt = Bcrypt(app)
     app.config['SECRET_KEY'] = secret_key
     db_uri = secrets.get('postgre_db')
