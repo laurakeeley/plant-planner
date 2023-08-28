@@ -1,4 +1,5 @@
 from server import create_app
+import jwt
 
 app = create_app()
 
