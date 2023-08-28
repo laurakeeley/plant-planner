@@ -72,7 +72,7 @@ def login():
                 expiration = datetime.datetime.utcnow() + datetime.timedelta(hours=1)
                 token = jwt.encode({'user_id': user.id, 'expiration': expiration.strftime('%Y-%m-%d %H:%M:%S')}, app.config['SECRET_KEY'], algorithm='HS256')
                 print(f"token: {token}")
-                response = {'message': 'login successfully', 'user_id': user.id, 'status': 200, 'token': token}
+                response = {'message': 'login successfully', 'user_id': user.id, 'status': 200, 'token': token, 'expiration': expiration}
                 print(f"response: {response}")
                 return jsonify(response)
             else:
