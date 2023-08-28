@@ -12,7 +12,7 @@ from .secrets import secrets
 # Load environment variables from .env
 load_dotenv()
 secret_key = os.environ.get("SECRETE_KEY")
-databse_uri = os.environ.get("DATABASE_URI")
+# databse_uri = os.environ.get("DATABASE_URI")
 
 db = SQLAlchemy()
 #*initialze application

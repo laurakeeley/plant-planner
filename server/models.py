@@ -3,11 +3,16 @@ from . import db
 from flask_login import UserMixin
 
 
-
 class UserPlants(db.Model):
     id = db.Column(db.Integer, primary_key = True)
-    plant_details = db.Column(db.JSON)
-    user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
+    plant_id = db.Column(db.Integer, db.ForeignKey('plant.id'), nullable=False)
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
+    
+class Plant(db.Model):
+    id = db.Column(db.Integer, primary_key = True)
+    plant_name = db.Column(db.String(150), nullable= False)
+    details = db.Column(db.JSON)
+    users = db.relationship('UserPlants')
 
 class User(db.Model, UserMixin):
     id = db.Column(db.Integer, primary_key=True) 
