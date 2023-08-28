@@ -3,11 +3,6 @@ from . import db
 from flask_login import UserMixin
 
 
-
-# class UserPlants(db.Model):
-#     id = db.Column(db.Integer, primary_key = True)
-#     plant_details = db.Column(db.JSON)
-#     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
 class UserPlants(db.Model):
     id = db.Column(db.Integer, primary_key = True)
     plant_id = db.Column(db.Integer, db.ForeignKey('plant.id'), nullable=False)
