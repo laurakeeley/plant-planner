@@ -1,5 +1,6 @@
 import { Component } from '@angular/core'; 
 import { AuthService } from '../services/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-signup',
@@ -14,19 +15,20 @@ export class SignupComponent { 
     password: ""
   };
 
-  constructor(private auth:AuthService) {}
+  constructor(
+    private auth:AuthService,
+    private router:Router
+  ) {}
 
   signup() {
-    this.auth.signup(this.newUser).subscribe (
-      response => {
+    this.auth.signup(this.newUser).subscribe({
+      next: response => {
         console.log(response);
-        // Handle success
+        this.router.navigate(['/login']);
       },
-      error => {
-        console.error(error);
-        // Handle error
+      error: error => {
+        console.log(error);
       }
-    );
+    });
   }
-
 }
