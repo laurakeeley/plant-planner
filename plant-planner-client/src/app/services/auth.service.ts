@@ -15,7 +15,7 @@ import { HttpHeaders, HttpClient } from '@angular/common/http';
 export class LoginResponse {
   constructor(
     public message:string,
-    public userId:number,
+    public user_id:number,
     public status:number,
     public token:any,
     public expiration:any
