@@ -84,6 +84,8 @@ def login():
             flash('Email does not exist.', category='error') 
         return jsonify(response)
     
+# Set to store revoked tokens
+revoked_tokens = set()
     
 def token_required(f):
     @wraps(f)
@@ -114,6 +116,24 @@ def token_required(f):
             print(f"invalid:")
             return jsonify({'message': 'Token is invalid', 'status':401})
         
+         # Check if the token is in the set of revoked tokens
+        if token in revoked_tokens:
+            return jsonify({'message': 'Token has been revoked', 'status': 401})
+        
         return f(*args, **kwargs)
     print(f"inside token_required, decorated is {decorated}")
     return decorated
+
+@auth.route('/logout', methods=["POST"])
+@token_required
+def logout():
+    try:
+        # Extract token from the Authorization header
+        token = request.headers.get('Authorization').split()[1]
+        app = create_app()
+        
+        #add token to the list of revoked tokens
+        revoked_tokens.add(token)
+        return jsonify({'message': 'User loggedd out successfully', 'status': 200})
+    except Exception as e:
+        return jsonify({'message': 'Error occurred', 'err': str(e), 'status': 500})
