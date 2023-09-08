@@ -1,1 +1,59 @@
+<nav class="bg-gray-800">
+  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <div class="flex items-center justify-between h-16">
+      <!-- Logo or Site Name -->
+      <div class="logo-site flex items-center">
+
+          <div class="mr-2">
+            <img src="https://img.icons8.com/?size=512&id=19190&format=png" alt="Logo" class="h-12 w-12 object-contain">
+          </div>
+          <a href="/" class="text-darkolivegreen text-xl font-sans font-bold no-underline">PLANT PLANNER</a>
+      </div>
+
+      <!-- Hamburger Menu Button (Visible on Small Screens) -->
+      <div class="hidden sm:block ml-auto">
+        <button (click)="toggleMobileMenu()" id="mobile-menu-button" class=" text-gray-300 hover:text-white focus:outline-none">
+          <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+          </svg>
+        </button>
+      </div>
+
+      <!-- Navigation Links (Currently showing on medium and larger Screens) -->
+      <div class="md:flex items-center space-x-4 ">
+        <div class="ml-4 flex items-center space-x-4 sm:hidden">
+          <!-- Profile Tab -->
+          <a href="/" class="text-darkslategray hover:text-darkolivegreen px-3 py-2 rounded-md text-xl font-semibold no-underline">Profile</a>
+          <!-- Search Tab -->
+          <a href="/search" class="text-darkslategray hover:text-darkolivegreen px-3 py-2 rounded-md text-xl font-semibold no-underline">Search</a>
+          <!-- Sign In Tab -->
+          <a href="/signup" class="text-darkslategray hover:text-darkolivegreen px-3 py-2 rounded-md text-xl font-semibold no-underline">Sign Up</a>
+          <!-- Log In Tab -->
+          <a href="/login" class="text-darkslategray hover:text-darkolivegreen px-3 py-2 rounded-md text-xl font-semibold no-underline">Login</a>
+          <!-- Sign Out Tab -->
+          <a href="/logout" class="text-darkslategray hover:text-darkolivegreen px-3 py-2 rounded-md text-xl font-semibold no-underline">Logout</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Mobile Menu (not yet: Hidden by Default) -->
+  <div *ngIf="mobileMenuVisible" class="sm:block ml-auto" id="mobile-menu">
+    <div class="px-2 pt-2 pb-3 space-y-1">
+      <!-- Profile Tab -->
+      <a href="/" class="text-darkslategray hover:text-darkolivegreen hover:text-white block px-3 py-2 rounded-md text-base font-semibold no-underline">Profile</a>
+      <!-- Search Tab -->
+      <a href="/search" class="text-darkslategray hover:text-darkolivegreen hover:text-white block px-3 py-2 rounded-md text-base font-semibold no-underline">Search</a>
+      <!-- Sign In Tab -->
+      <a href="/signup" class="text-darkslategray hover:text-darkolivegreen hover:text-white block px-3 py-2 rounded-md text-base font-semibold no-underline">Sign In</a>
+      <!-- Log In Tab -->
+      <a href="/login" class="text-darkslategray hover:text-darkolivegreen hover:text-white block px-3 py-2 rounded-md text-base font-semibold no-underline">Login</a>
+      <!-- Sign Out Tab -->
+      <a href="/logout" class="text-darkslategray hover:text-darkolivegreen hover:text-white block px-3 py-2 rounded-md text-base font-semibold no-underline">Logout</a>
+    </div>
+  </div>
+</nav>
+  
+  
+
 <router-outlet></router-outlet>
