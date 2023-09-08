@@ -7,4 +7,9 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'plant-planner-client';
+  mobileMenuVisible: boolean = false;
+
+  toggleMobileMenu(){
+    this.mobileMenuVisible = !this.mobileMenuVisible
+  }
 }
