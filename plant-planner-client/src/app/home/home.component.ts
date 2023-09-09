@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, Injectable } from '@angular/core';
 import { PlantDataService } from '../services/plant-data.service';
+import { userId } from '../services/auth.service';
 
 @Component({
   selector: 'app-home',
@@ -7,13 +8,26 @@ import { PlantDataService } from '../services/plant-data.service';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent {
+  userPlants = {};
+  
+  constructor(
+    private plants:PlantDataService
+  ) {}
+    
+    
+  ngOnInit() {
+    debugger;
+    this.getUserPlants();
+  }
 
-  // constructor(
-  //   private plants:PlantDataService
-  // ) {}
-
-  // ngOnInit() {
-  //   // this.plants.getUserPlants(this.user);
-  // }
+  getUserPlants() {
+    debugger;
+    this.plants.getUserPlants(userId).subscribe(
+      response => {
+        console.log(response);
+        this.userPlants = response;
+      }
+    )
+  }
 
 }

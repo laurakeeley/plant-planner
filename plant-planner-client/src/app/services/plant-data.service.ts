@@ -10,7 +10,7 @@ export class PlantDataService {
 
   constructor(private http: HttpClient) {}
 
-  getUserPlants(userId: number) {
-    return this.http.get(`${BASE_URL}/getPlants/${userId}`);
+  getUserPlants(userId: any) {
+    return this.http.get(`${BASE_URL}/getPlants`);
   }
 }
