@@ -19,7 +19,7 @@ db = SQLAlchemy()
 def create_app():
     app = Flask(__name__)
     # Configure CORS for all routes
-    CORS(app)
+    cors = CORS(app, resources={r"/*": {"origins": "http://localhost:4200"}})
     bcrypt = Bcrypt(app)
     app.config['SECRET_KEY'] = secret_key
     db_uri = secrets.get('postgre_db')
