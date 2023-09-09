@@ -18,13 +18,11 @@ export class LoginComponent {
   ) {
     this.loginImage = "assets/pexelssamuelcrosland2557232-1@2x.png"
   }
-
+  
   login() {
     this.auth.login(this.email, this.password).subscribe({ 
       next: response => {
         console.log(response);
-        sessionStorage.setItem('userId', JSON.stringify(response.user_id)); //setItem requires type string so we have to stringify the userId
-        sessionStorage.setItem('jwtToken', response.token);
         this.router.navigate(['/home']);
       }, 
       error: error => {

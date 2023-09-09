@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { PlantDataService } from '../services/plant-data.service';
 
 @Component({
   selector: 'app-home',
@@ -7,8 +8,12 @@ import { Component } from '@angular/core';
 })
 export class HomeComponent {
 
-  getWelcomeMessage() {
-    console.log("Get Welcome Message!")
-  }
+  // constructor(
+  //   private plants:PlantDataService
+  // ) {}
+
+  // ngOnInit() {
+  //   // this.plants.getUserPlants(this.user);
+  // }
 
 }
