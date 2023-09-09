@@ -18,7 +18,7 @@ export class LoginComponent {
   ) {
     this.loginImage = "assets/pexelssamuelcrosland2557232-1@2x.png"
   }
-
+  
   login() {
     this.auth.login(this.email, this.password).subscribe({ 
       next: response => {

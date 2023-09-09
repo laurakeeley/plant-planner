@@ -1,43 +1,51 @@
 import { Injectable } from '@angular/core';
 import { HttpHeaders, HttpClient } from '@angular/common/http';
-// import { Observable, catchError, tap, throwError } from 'rxjs';
+import { BASE_URL } from '../app.constants';
+import { map } from 'rxjs/operators';
 
-// export class SignupResponse {
-//   constructor(
-//     public message:string,
-//     public userId:number,
-//     public status:number,
-//     public token:any,
-//     public expiration:any
-//     ) {}
-// }
-
-export class LoginResponse {
-  constructor(
-    public message:string,
-    public userId:number,
-    public status:number,
-    public token:any,
-    public expiration:any
-    ) {}
-}
+export const jwtToken = 'jwtToken';
+export const userId = 'userId';
 
 @Injectable({
   providedIn: 'root'
 })
+
 export class AuthService {
-  private BASE_URL: string = 'http://127.0.0.1:5000';
-  private headers: HttpHeaders = new HttpHeaders({'Content-Type': 'application/json'});
-  private tokenKey: string = "";
 
   constructor(private http: HttpClient) {}
 
   signup(user: any) {
-    return this.http.post(`${this.BASE_URL}/sign-up`, user);
+    return this.http.post(`${BASE_URL}/sign-up`, user);
   }
-  
+
   login(email: string, password: string) {
     const data = {email, password};
-    return this.http.post<LoginResponse>(`${this.BASE_URL}/login`, data);
+    return this.http.post<any>(
+      `${BASE_URL}/login`, data).pipe(
+      map(
+        data => {
+          console.log(data);
+          sessionStorage.setItem(userId, data.user_id);
+          sessionStorage.setItem(jwtToken, `Bearer ${data.token}`);
+          return data;
+        }
+      )
+    );
   }
+
+  getAuthenticatedUser() {
+    return sessionStorage.getItem(userId);
+  }
+
+  getAuthToken() {
+    if (this.getAuthenticatedUser())
+      return sessionStorage.getItem(jwtToken)
+    return null
+  }
+
+  isUserLoggedIn() {
+    let user = sessionStorage.getItem(userId);
+    return !(user === null)
+  }
+
 }

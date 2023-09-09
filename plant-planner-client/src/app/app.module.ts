@@ -9,7 +9,9 @@ import { SearchComponent } from './search/search.component';
 import { LoginComponent } from './login/login.component';
 import { SignupComponent } from './signup/signup.component';
 import { AuthService } from './services/auth.service';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
+import { HttpService } from './services/http.service';
+import { PlantDataService } from './services/plant-data.service';
 
 @NgModule({
   declarations: [
@@ -25,7 +27,9 @@ import { HttpClientModule } from '@angular/common/http';
     HttpClientModule,
     FormsModule
   ],
-  providers: [AuthService],
+  providers: [
+    {provide: HTTP_INTERCEPTORS, useClass: HttpService, multi: true }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

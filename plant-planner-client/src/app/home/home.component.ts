@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, Injectable } from '@angular/core';
+import { PlantDataService } from '../services/plant-data.service';
+import { userId } from '../services/auth.service';
 
 @Component({
   selector: 'app-home',
@@ -6,9 +8,29 @@ import { Component } from '@angular/core';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent {
+  message = "";
+  userPlants = {};
+  
+  constructor(
+    private plants:PlantDataService
+  ) {}
+    
+    
+  ngOnInit() {
+    this.getUserPlants();
+  }
 
-  getWelcomeMessage() {
-    console.log("Get Welcome Message!")
+  getUserPlants() {
+    this.plants.getUserPlants(userId).subscribe({
+      next: response => {
+        console.log(response);
+        this.userPlants = response;
+        this.message = response.message;
+      },
+      error: error => {
+        console.log(error);
+      }
+    })
   }
 
 }
