@@ -8,6 +8,7 @@ import { userId } from '../services/auth.service';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent {
+  message = "";
   userPlants = {};
   
   constructor(
@@ -16,18 +17,20 @@ export class HomeComponent {
     
     
   ngOnInit() {
-    debugger;
     this.getUserPlants();
   }
 
   getUserPlants() {
-    debugger;
-    this.plants.getUserPlants(userId).subscribe(
-      response => {
+    this.plants.getUserPlants(userId).subscribe({
+      next: response => {
         console.log(response);
         this.userPlants = response;
+        this.message = response.message;
+      },
+      error: error => {
+        console.log(error);
       }
-    )
+    })
   }
 
 }

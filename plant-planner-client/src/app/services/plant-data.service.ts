@@ -11,6 +11,6 @@ export class PlantDataService {
   constructor(private http: HttpClient) {}
 
   getUserPlants(userId: any) {
-    return this.http.get(`${BASE_URL}/getPlants`);
+    return this.http.get<any>(`${BASE_URL}/getPlants`);
   }
 }

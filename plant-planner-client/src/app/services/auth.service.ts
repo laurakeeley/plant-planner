@@ -3,12 +3,13 @@ import { HttpHeaders, HttpClient } from '@angular/common/http';
 import { BASE_URL } from '../app.constants';
 import { map } from 'rxjs/operators';
 
-export const jwtToken = '';
-export const userId = '';
+export const jwtToken = 'jwtToken';
+export const userId = 'userId';
 
 @Injectable({
   providedIn: 'root'
 })
+
 export class AuthService {
 
   constructor(private http: HttpClient) {}
@@ -38,7 +39,6 @@ export class AuthService {
 
   getAuthToken() {
     if (this.getAuthenticatedUser())
-    debugger;
       return sessionStorage.getItem(jwtToken)
     return null
   }
