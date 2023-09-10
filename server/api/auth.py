@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, request, flash, redirect, url_for, jsonify, Flask
+from flask import Blueprint, request, jsonify, Flask
 from ..models import User
 from flask_bcrypt import generate_password_hash, check_password_hash
 
@@ -30,20 +30,18 @@ def sign_up():
         #*check to see if the email has been registered
         user = User.query.filter_by(email=email).first()
         if user:
-            flash("Email has been registered", category='error')
             response = {'message': 'Email has been registered', 'status': 404}
         elif len(email) < 4:
-            flash('Email must be greater than 3 characters', category='error')
+            response = {'message': 'Email must be greater than 3 characters', 'status': 404}
         elif len(first_name) < 2:
-            flash('First name must be greater than 1 character', category='error')
+            response = {'message': 'First name must be greater than 1 character', 'status': 404}
         elif len(password) < 4:
-            flash('Password must be at least 4 characters', category='error')
+            response = {'message': 'Password must be at least 4 characters', 'status': 404}
         else:
             new_user = User(first_name=first_name, last_name= last_name, email=email, password=generate_password_hash(password).decode('utf-8'))
             db.session.add(new_user)
             db.session.commit()
             login_user(new_user, remember=True)
-            flash('Account created!', category='success')
             response = {'message': 'User registered successfully', 'status': 200}
         return jsonify(response)
      
@@ -65,7 +63,6 @@ def login():
         user = User.query.filter_by(email=email).first()
         if user:
             if check_password_hash(user.password, password):
-                flash("Logged in successfully!", category="success")
                 #*flask remember tht user has logged in
                 result = login_user(user, remember=True)
                 app = create_app()
@@ -77,11 +74,9 @@ def login():
                 return jsonify(response)
             else:
                 #*login password do not match
-                flash('Incorrect password, try again!', category='error')
                 response = {'message': 'Invalid credentials','user_id': None, 'status': 401}
         else:
             response = {'message': 'No such user','user_id': None, 'status': 401}     
-            flash('Email does not exist.', category='error') 
         return jsonify(response)
     
 # Set to store revoked tokens
@@ -110,6 +105,14 @@ def token_required(f):
         try:
             data = jwt.decode(token, app.config['SECRET_KEY'], algorithms=['HS256'])
             print(f"data in try block: {data}")
+            #check if current token has expired
+            token_expiration_date = data.get('expiration')
+            current_datetime = datetime.datetime.utcnow().strftime('%Y-%m-%d %H:%M:%S')
+            print(f"current datetime: {current_datetime}, token_expiration_date: {token_expiration_date}")
+            if current_datetime > token_expiration_date:
+                print(f"token has expired")
+                return jsonify({'message': 'Token has experied', 'status':401})
+            
         except jwt.ExpiredSignatureError:
             return jsonify({'message': 'Token has experied', 'status':401})
         except jwt.InvalidTokenError:
