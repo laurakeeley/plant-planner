@@ -42,4 +42,4 @@ testem.log
 Thumbs.db
 
 #API KEYS
-../src/app/env.ts
+plant-planner-client/src/app/env.ts
