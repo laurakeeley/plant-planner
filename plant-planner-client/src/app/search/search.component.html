@@ -24,4 +24,73 @@
               
         </div>
     </div>
+    <hr class="border-t border-darkolivegreen mt-12 ml-5 mr-5">
+    <div class="filter-card">
+        <div class="filter-sidebar p-4 ml-4">
+            <h2 class="text-2xl font-semibold mb-4">Filters</h2>
+        
+            <!-- Sunlight Filter -->
+            <div class="mb-4 w-60">
+              <h3 class="text-lg font-semibold mb-2 flex justify-between" (click)="toggleSunlight()">
+                Sunlight
+                <img width="20" height="20" src="https://img.icons8.com/dotty/80/expand-arrow.png" alt="expand-arrow" style="vertical-align: middle; margin-right: 8px;"/>
+               </h3>
+              <div *ngIf="showSunlight">
+                <label class="flex items-center space-x-2">
+                    <input type="checkbox" [(ngModel)]="sunlight.full_shade" class="form-checkbox" />
+                    Full Shade
+                </label>
+                <label class="flex items-center space-x-2">
+                    <input type="checkbox" [(ngModel)]="sunlight.part_shade" class="form-checkbox" />
+                    Part Shade
+                </label>
+                <label class="flex items-center space-x-2">
+                    <input type="checkbox" [(ngModel)]="sunlight.sun_part_shade" class="form-checkbox" />
+                    Sun-Part Shade
+                </label>
+                <label class="flex items-center space-x-2">
+                    <input type="checkbox" [(ngModel)]="sunlight.full_sun" class="form-checkbox" />
+                    Full Sun
+                </label>
+              </div>
+            </div>
+          
+            <!-- Indoor Filter -->
+            <div class="mb-4 w-60">
+              <h3 class="text-lg font-semibold mb-2 flex justify-between" (click)="toggleIndoor()">
+                Indoor 
+                <img width="20" height="20" src="https://img.icons8.com/dotty/80/expand-arrow.png" alt="expand-arrow" style="vertical-align: middle; margin-right: 8px;"/>
+              </h3>
+              <div *ngIf="showIndoor">
+                <label class="flex items-center space-x-2">
+                    <input type="checkbox" [(ngModel)]="indoor" class="form-checkbox" />
+                    Indoor
+                </label>
+              </div>
+            </div>
+          
+            <!-- Hardiness Zone Filter -->
+            <div class="mb-4 w-60">
+              <h3 class="text-lg font-semibold mb-2 flex justify-between" (click)="toggleHardinessZone()">
+                Hardiness Zone
+                <img width="20" height="20" src="https://img.icons8.com/dotty/80/expand-arrow.png" alt="expand-arrow" style="vertical-align: middle; margin-right: 8px;"/>
+              </h3>
+              <div *ngIf="showHardinessZone">
+                <input
+                    type="text"
+                    [(ngModel)]="hardinessZone"
+                    class="border rounded-md p-2"
+                    placeholder="Enter Your Zip Code"
+                />
+              </div>
+            </div>
+
+            <button class="bg-darkolivegreen hover:bg-darkslategray active:bg-darkslategray focus:outline-none focus:ring focus:bg-darkolivegreen text-white rounded-full h-5">
+                Apply
+            </button>
+          </div>
+
+        
+         
+    </div>
 </div>
