@@ -1,1 +1,27 @@
-<p>search works!</p>
+<div class="main">
+    <div class="banner-container">
+        <div class="word-banner">
+            <ng-container *ngFor="let word of words">
+                <div class="word">{{ word }}</div>
+            </ng-container>
+        </div>
+    </div>
+    <div class="searchBar flex flex-col items-center justify-center mt-5 text-23xl">
+        <div class="text-darkslategray font-bold mb-3">
+            Shop Your Ideal Plants
+        </div>
+        <div class="input-field flex space-x-3 mt-3">
+            <label class="relative block">
+                <span class="sr-only">Search</span>
+                <span class="absolute inset-y-0 left-0 flex items-center pl-2">
+                  <svg xmlns="http://www.w3.org/2000/svg" height="1rem" class="h-5 w-5 fill-slate-300" viewBox="0 0 512 512"><!-- ... --><path d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208zM208 352a144 144 0 1 0 0-288 144 144 0 1 0 0 288z"/></svg>
+                </span>
+                <input class="w-96 placeholder:italic placeholder:text-slate-400 block bg-white w-full border border-slate-300 rounded-md py-2 pl-9 pr-3 shadow-sm focus:outline-none focus:border-sky-500 focus:ring-sky-500 focus:ring-1 sm:text-sm rounded-full mr-4" placeholder="Type Your Plant Name" type="text" name="search"/>
+              </label>
+              <button class="bg-darkolivegreen hover:bg-darkslategray active:bg-darkslategray focus:outline-none focus:ring focus:bg-darkolivegreen text-white rounded-full ml-4">
+                Search
+              </button>
+              
+        </div>
+    </div>
+</div>

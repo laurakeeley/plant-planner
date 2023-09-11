@@ -15,6 +15,9 @@ export class SearchComponent {
     this.getSearchData();
   }
 
+  //banner words
+  words: string[] = ['Easy care', 'Help native wildlife', 'Best plants for you'];
+
   getSearchData() {
     // this.searchData.getSearchData().subscribe({
     //   next: response => {
