@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { SearchDataService } from '../services/search-data.service';
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-search',
@@ -7,23 +8,29 @@ import { SearchDataService } from '../services/search-data.service';
   styleUrls: ['./search.component.css']
 })
 export class SearchComponent {
-  searchResults = {};
+  searchResults: any = [];
+  auth: AuthService;
 
-  constructor (private searchData:SearchDataService) {}
+  constructor (
+    private searchData:SearchDataService,
+    private authService:AuthService
+  ) {
+    this.auth = authService;
+  }
 
   ngOnInit() {
     this.getSearchData();
   }
 
   getSearchData() {
-    // this.searchData.getSearchData().subscribe({
-    //   next: response => {
-    //     console.log(response);
-    //     this.searchResults = response;
-    //   },
-    //   error: error => {
-    //     console.log(error);
-    //   }
-    // })
+    this.searchData.getSearchData().subscribe({
+      next: response => {
+        console.log(response.data);
+        this.searchResults = response.data;
+      },
+      error: error => {
+        console.log(error);
+      }
+    })
   }
 }
