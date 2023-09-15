@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpHeaders, HttpClient } from '@angular/common/http';
-import { BASE_URL } from '../app.constants';
+import { BASE_URL } from '../env';
 import { map } from 'rxjs/operators';
 
 export const jwtToken = 'jwtToken';
