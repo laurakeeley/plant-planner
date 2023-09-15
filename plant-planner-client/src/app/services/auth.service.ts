@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpHeaders, HttpClient } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { BASE_URL } from '../env';
 import { map } from 'rxjs/operators';
 
@@ -31,6 +31,20 @@ export class AuthService {
         }
       )
     );
+  }
+
+  logout() {
+    // return this.http.post<any>(
+    //   `${BASE_URL}/logout`).pipe(
+    //   map(
+    //     data => {
+    //       console.log(data);
+    //       sessionStorage.setItem(userId, data.user_id);
+    //       sessionStorage.setItem(jwtToken, `Bearer ${data.token}`);
+    //       return data;
+    //     }
+    //   )
+    // );
   }
 
   getAuthenticatedUser() {
