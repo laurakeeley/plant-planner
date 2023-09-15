@@ -12,6 +12,7 @@ import { AuthService } from './services/auth.service';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { HttpService } from './services/http.service';
 import { PlantDataService } from './services/plant-data.service';
+import { LogoutComponent } from './logout/logout.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { PlantDataService } from './services/plant-data.service';
     HomeComponent,
     SearchComponent,
     LoginComponent,
-    SignupComponent
+    SignupComponent,
+    LogoutComponent
   ],
   imports: [
     BrowserModule,

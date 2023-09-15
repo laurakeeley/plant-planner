@@ -2,9 +2,10 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { BASE_URL } from '../env';
 import { map } from 'rxjs/operators';
+import { Router } from '@angular/router';
 
-export const jwtToken = 'jwtToken';
-export const userId = 'userId';
+export let jwtToken = 'jwtToken';
+export let userId = 'userId';
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +13,10 @@ export const userId = 'userId';
 
 export class AuthService {
 
-  constructor(private http: HttpClient) {}
+  constructor(
+    private http: HttpClient,
+    private router:Router  
+  ) {}
 
   signup(user: any) {
     return this.http.post(`${BASE_URL}/sign-up`, user);
@@ -34,17 +38,9 @@ export class AuthService {
   }
 
   logout() {
-    // return this.http.post<any>(
-    //   `${BASE_URL}/logout`).pipe(
-    //   map(
-    //     data => {
-    //       console.log(data);
-    //       sessionStorage.setItem(userId, data.user_id);
-    //       sessionStorage.setItem(jwtToken, `Bearer ${data.token}`);
-    //       return data;
-    //     }
-    //   )
-    // );
+    localStorage.removeItem('jwtToken');
+    jwtToken = "";
+    this.router.navigate(['/login']);
   }
 
   getAuthenticatedUser() {

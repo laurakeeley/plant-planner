@@ -16,15 +16,5 @@ export class AppComponent {
     this.mobileMenuVisible = !this.mobileMenuVisible
   }
 
-  // logout() {
-  //   this.auth.logout().subscribe({ 
-  //     next: response => {
-  //       console.log(response);
-  //       this.router.navigate(['/login']);
-  //     }, 
-  //     error: error => {
-  //       console.log(error);
-  //     }
-  //   });
-  // }
+ 
 }
