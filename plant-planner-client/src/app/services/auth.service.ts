@@ -38,8 +38,10 @@ export class AuthService {
   }
 
   logout() {
-    localStorage.removeItem('jwtToken');
+    sessionStorage.removeItem(jwtToken);
+    sessionStorage.removeItem(userId);
     jwtToken = "";
+    userId = "";
     this.router.navigate(['/login']);
   }
 
