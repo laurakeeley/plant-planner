@@ -1,4 +1,98 @@
 <div *ngIf="auth.isUserLoggedIn()">
+  <div class="main">
+    <div class="banner-container">
+        <div class="word-banner">
+            <ng-container *ngFor="let word of words">
+                <div class="word font-sans">{{ word }}</div>
+            </ng-container>
+        </div>
+    </div>
+    <div class="searchBar flex flex-col items-center justify-center mt-5 text-23xl">
+        <div class="text-darkslategray font-bold font-sans mb-3">
+            Shop Your Ideal Plants
+        </div>
+        <div class="input-field flex space-x-3 mt-3 flex-wrap">
+            <label class="relative block">
+                <span class="sr-only">Search</span>
+                <span class="absolute inset-y-0 left-0 flex items-center pl-2">
+                  <svg xmlns="http://www.w3.org/2000/svg" height="1rem" class="h-5 w-5 fill-slate-300" viewBox="0 0 512 512"><!-- ... --><path d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208zM208 352a144 144 0 1 0 0-288 144 144 0 1 0 0 288z"/></svg>
+                </span>
+                <input class="w-96 placeholder:italic placeholder:text-slate-400 block bg-white w-full border border-slate-300 rounded-md py-2 pl-9 pr-3 shadow-sm focus:outline-none focus:border-sky-500 focus:ring-sky-500 focus:ring-1 sm:text-sm rounded-full mr-4" placeholder="Type Your Plant Name" type="text" name="search"/>
+              </label>
+              <button class="bg-darkolivegreen hover:bg-darkslategray active:bg-darkslategray focus:outline-none focus:ring focus:bg-darkolivegreen text-white rounded-full ml-4 font-sans">
+                Search
+              </button>
+              
+        </div>
+    </div>
+
+    <div class="filter-card">
+        <div class="filter-sidebar p-4 ml-4 flex justify-center flex-wrap">
+            <!-- <h2 class="text-2xl font-semibold mb-4 w-60">Filters</h2> -->
+        
+            <!-- Sunlight Filter -->
+            <div class="mb-4 w-60 mr-4 ml-4">
+              <h3 class="text-lg font-sans mb-2 flex justify-between" (click)="toggleSunlight()">
+                Sunlight
+                <img width="20" height="20" src="https://img.icons8.com/dotty/80/expand-arrow.png" alt="expand-arrow" style="vertical-align: middle; margin-right: 8px;"/>
+               </h3>
+              <div *ngIf="showSunlight">
+                <label class="flex items-center space-x-2">
+                    <input type="checkbox" [(ngModel)]="sunlight.full_shade" class="form-checkbox" />
+                    Full Shade
+                </label>
+                <label class="flex items-center space-x-2">
+                    <input type="checkbox" [(ngModel)]="sunlight.part_shade" class="form-checkbox" />
+                    Part Shade
+                </label>
+                <label class="flex items-center space-x-2">
+                    <input type="checkbox" [(ngModel)]="sunlight.sun_part_shade" class="form-checkbox" />
+                    Sun-Part Shade
+                </label>
+                <label class="flex items-center space-x-2">
+                    <input type="checkbox" [(ngModel)]="sunlight.full_sun" class="form-checkbox" />
+                    Full Sun
+                </label>
+              </div>
+            </div>
+          
+            <!-- Indoor Filter -->
+            <div class="mb-4 mr-4 ml-4 w-60">
+              <h3 class="text-lg font-sans mb-2 flex justify-between" (click)="toggleIndoor()">
+                Indoor Plants Only
+                <img width="20" height="20" src="https://img.icons8.com/dotty/80/expand-arrow.png" alt="expand-arrow" style="vertical-align: middle; margin-right: 8px;"/>
+              </h3>
+              <div *ngIf="showIndoor">
+                <label class="flex items-center space-x-2">
+                    <input type="checkbox" [(ngModel)]="indoor" class="form-checkbox" />
+                    Yes
+                </label>
+              </div>
+            </div>
+          
+            <!-- Hardiness Zone Filter -->
+            <div class="mb-4 mr-4 ml-4 w-60">
+              <h3 class="text-lg font-sans mb-2 flex justify-between" (click)="toggleHardinessZone()">
+                Hardiness Zone
+                <img width="20" height="20" src="https://img.icons8.com/dotty/80/expand-arrow.png" alt="expand-arrow" style="vertical-align: middle; margin-right: 8px;"/>
+              </h3>
+              <div *ngIf="showHardinessZone">
+                <input
+                    type="text"
+                    [(ngModel)]="hardinessZone"
+                    class="border rounded-md p-2"
+                    placeholder="Enter Your Zip Code"
+                />
+              </div>
+            </div>
+
+            <button class="bg-darkolivegreen hover:bg-darkslategray active:bg-darkslategray focus:outline-none focus:ring focus:bg-darkolivegreen text-white rounded-full h-5 font-sans w-20 ml-5 mt-4">
+                Apply
+            </button>
+        </div>   
+    </div>
+    <hr class="border-t border-darkolivegreen mt-12 ml-5 mr-5">
+  
     <div *ngFor="let result of searchResults">
         Name: {{result.common_name}}
         <br>
@@ -6,4 +100,5 @@
         <br>
         Sunlight: {{result.sunlight}}
     </div>
+
 </div>

@@ -1,0 +1,33 @@
+.banner-container {
+    width: 100%;
+    height: 5vh;
+    overflow: hidden;
+    position: relative;
+    background-color: #606c38;
+    color: #fff;
+    display: flex; /* Use flexbox for centering vertically */
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+  }
+  
+  .word-banner {
+    display: flex;
+    white-space: nowrap;
+    animation: scrollBanner 30s linear infinite;
+  }
+  
+  .word {
+    padding: 0 10px;
+    font-size: 20px;
+    margin-right: 20rem; /* Add space between words */
+  }
+  
+  @keyframes scrollBanner {
+    0% {
+      transform: translateX(100%);
+    }
+    100% {
+      transform: translateX(-100%);
+    }
+  }
+  
