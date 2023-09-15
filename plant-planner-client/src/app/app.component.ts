@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { AuthService } from './services/auth.service';
 
 @Component({
   selector: 'app-root',
@@ -9,7 +10,11 @@ export class AppComponent {
   title = 'plant-planner-client';
   mobileMenuVisible: boolean = false;
 
+  constructor (private auth:AuthService) {}
+
   toggleMobileMenu(){
     this.mobileMenuVisible = !this.mobileMenuVisible
   }
+
+ 
 }
