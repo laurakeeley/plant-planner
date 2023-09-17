@@ -2,6 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { PLANT_SEARCH_KEY } from '../env';
 import { HARDINESS_ZONE_KEY } from '../env';
+import { HARDINESS_ZONE_OBJECT } from '../env';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -19,12 +20,13 @@ export class SearchDataService {
     return this.http.get<any>(`https://perenual.com/api/species-list?key=${PLANT_SEARCH_KEY}`);
   }
   //define hardiness zone function call
-  getHardinessZoneData(zipCode: string): Observable<string>{
+  getHardinessZoneData(zipCode: string): Observable<any>{
     
-    console.log(`${this.hardinessZoneApiUrl}${zipCode}`)
-    let api = `${this.hardinessZoneApiUrl}${zipCode}`
+    // console.log(`${this.hardinessZoneApiUrl}${zipCode}/?rapidapi-key=${HARDINESS_ZONE_KEY}`)
+    // let api = `${this.hardinessZoneApiUrl}${zipCode}`
     // return this.http.get<any>(`https://plant-hardiness-zone.p.rapidapi.com/zipcodes/${zipCode}/?rapidapi-key=${HARDINESS_ZONE_KEY}`)
     
-    return this.http.get<string>(api, {headers: this.headers});
+    
+    return this.http.get(`https://plant-hardiness-zone.p.rapidapi.com/zipcodes/`+zipCode, { headers: HARDINESS_ZONE_OBJECT})
   }
 }

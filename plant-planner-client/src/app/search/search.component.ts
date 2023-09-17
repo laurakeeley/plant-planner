@@ -11,7 +11,9 @@ import { HARDINESS_ZONE_KEY } from '../env';
 export class SearchComponent {
   searchResults: any = [];
   auth: AuthService;
-  zipCodeResults: any = []
+  zipCodeResult: any = ''
+  isZipCodeValid: boolean=false
+  raiseZipCodeError: boolean=false
 
   constructor (
     private searchData:SearchDataService,
@@ -40,20 +42,67 @@ export class SearchComponent {
 
   //fetch hardiness zone based on zip code
   getHardinessZone(){
+    // validate zipcode
+    const zipCodePattern = /^\d{5}(-\d{4})?$/;
+    this.isZipCodeValid = zipCodePattern.test(this.hardinessZone)
+    console.log()
     console.log(this.hardinessZone)
     
-    this.searchData.getHardinessZoneData(this.hardinessZone).subscribe(
-      (result: string) => {
-        console.log(result);
+    // const fetchHardiness = async () => {
+    //   const url = `https://plant-hardiness-zone.p.rapidapi.com/zipcodes/${this.hardinessZone}`;
+    //   const options = {
+    //     method: 'GET',
+    //     headers: {
+    //       'X-RapidAPI-Key': HARDINESS_ZONE_KEY,
+    //       'X-RapidAPI-Host': 'plant-hardiness-zone.p.rapidapi.com'
+    //     }
+    //   };
+    //   try {
+    //     const response = await fetch(url, options)
+    //     const result = await response.json()
+    //     console.log(result)
+    //     this.zipCodeResult = result.hardiness_zone
+    //     console.log(this.zipCodeResult)
+    //   } catch (error) {
+    //     console.log(error)
+    //   }
+    // }
+
+    // if(this.isZipCodeValid){
+    //   fetchHardiness()
+    // }else{
+    //   //send error to user, enter a valid zip code
+    //   if(this.zipCodeResult !== ""){
+    //     this.raiseZipCodeError = true
+    //     console.log(this.raiseZipCodeError)
+    //   }else{
+    //     console.log(this.raiseZipCodeError)
+    //   }
+    // }
+    // console.log(this.raiseZipCodeError)
+    
+    // this.searchData.getHardinessZoneData(this.hardinessZone).subscribe(
+    //   (result: string) => {
+    //     console.log(result);
+    //   },
+    //   (error: any) => {
+    //     console.error(error);
+    //   })
+    this.searchData.getHardinessZoneData(this.hardinessZone).subscribe({
+      next:response => {
+        console.log(response)
+        
       },
-      (error: any) => {
-        console.error(error);
-      })
+      error: error =>{
+        console.log(error)
+      }
+    })
+
   }
 
 
   
-  saveCheckboxValues(){
+  async saveCheckboxValues(){
   
     if(this.sunlight.full_shade){
       this.query += '&sunlight=full_sun'
@@ -70,7 +119,10 @@ export class SearchComponent {
     if(this.indoor){
       this.query += '&indoor=1'
     }
-    this.getHardinessZone()
+    await this.getHardinessZone()
+    if(this.zipCodeResult){
+      this.query += `&hardiness=${this.zipCodeResult}`
+    }
     console.log(this.query)
   }
   
