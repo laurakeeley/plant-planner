@@ -23,7 +23,11 @@ export class LoginComponent {
     this.auth.login(this.email, this.password).subscribe({ 
       next: response => {
         console.log(response);
-        this.router.navigate(['/home']);
+        if (response.status = 200) {
+          this.router.navigate(['/']);
+        } else {
+          this.router.navigate(['/login']);
+        }
       }, 
       error: error => {
         console.log(error);
