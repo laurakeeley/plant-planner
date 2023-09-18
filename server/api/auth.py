@@ -55,6 +55,7 @@ def login():
     if request.method == "GET":
         return jsonify({'message': 'Please login', 'status': 400})
     elif request.method == "POST":
+        print(f"data: {request.json}")
         data = request.json
         email = data.get('email')
         password = data.get('password')
