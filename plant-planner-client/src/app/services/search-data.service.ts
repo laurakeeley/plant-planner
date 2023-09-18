@@ -16,12 +16,13 @@ export class SearchDataService {
   });
   constructor(private http:HttpClient) { }
 
-  getSearchData() {
-    return this.http.get<any>(`https://perenual.com/api/species-list?key=${PLANT_SEARCH_KEY}`);
+  getSearchData(query: string) {
+
+    return this.http.get<any>(`https://perenual.com/api/species-list?key=${PLANT_SEARCH_KEY}` + query);
   }
   //define hardiness zone function call
   getHardinessZoneData(zipCode: string): Observable<any>{
-    
+ 
     // console.log(`${this.hardinessZoneApiUrl}${zipCode}/?rapidapi-key=${HARDINESS_ZONE_KEY}`)
     // let api = `${this.hardinessZoneApiUrl}${zipCode}`
     // return this.http.get<any>(`https://plant-hardiness-zone.p.rapidapi.com/zipcodes/${zipCode}/?rapidapi-key=${HARDINESS_ZONE_KEY}`)

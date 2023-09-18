@@ -11,9 +11,7 @@ import { HARDINESS_ZONE_KEY } from '../env';
 export class SearchComponent {
   searchResults: any = [];
   auth: AuthService;
-  zipCodeResult: any = ''
-  isZipCodeValid: boolean=false
-  raiseZipCodeError: boolean=false
+  
 
   constructor (
     private searchData:SearchDataService,
@@ -23,13 +21,14 @@ export class SearchComponent {
     this.auth = authService;
   }
 
-  ngOnInit() {
-    // this.getSearchData();
-  }
+
 
   //banner words
   words: string[] = ['Easy care', 'Help native wildlife', 'Best plants for you'];
   query: string = ''
+  zipCodeResult: any = ''
+  isZipCodeValid: boolean=false
+  raiseZipCodeError: boolean=false
   //filter section
   sunlight = {
     full_shade: false,
@@ -39,47 +38,47 @@ export class SearchComponent {
   };
   indoor = false;
   hardinessZone = '';
+  plant_name = ''
 
   //fetch hardiness zone based on zip code
   getHardinessZone(){
     // validate zipcode
     const zipCodePattern = /^\d{5}(-\d{4})?$/;
     this.isZipCodeValid = zipCodePattern.test(this.hardinessZone)
-    console.log()
     console.log(this.hardinessZone)
     
-    // const fetchHardiness = async () => {
-    //   const url = `https://plant-hardiness-zone.p.rapidapi.com/zipcodes/${this.hardinessZone}`;
-    //   const options = {
-    //     method: 'GET',
-    //     headers: {
-    //       'X-RapidAPI-Key': HARDINESS_ZONE_KEY,
-    //       'X-RapidAPI-Host': 'plant-hardiness-zone.p.rapidapi.com'
-    //     }
-    //   };
-    //   try {
-    //     const response = await fetch(url, options)
-    //     const result = await response.json()
-    //     console.log(result)
-    //     this.zipCodeResult = result.hardiness_zone
-    //     console.log(this.zipCodeResult)
-    //   } catch (error) {
-    //     console.log(error)
-    //   }
-    // }
+    const fetchHardiness = async () => {
+      const url = `https://plant-hardiness-zone.p.rapidapi.com/zipcodes/${this.hardinessZone}`;
+      const options = {
+        method: 'GET',
+        headers: {
+          'X-RapidAPI-Key': HARDINESS_ZONE_KEY,
+          'X-RapidAPI-Host': 'plant-hardiness-zone.p.rapidapi.com'
+        }
+      };
+      try {
+        const response = await fetch(url, options)
+        const result = await response.json()
+        console.log(result)
+        this.zipCodeResult = result.hardiness_zone
+        console.log(this.zipCodeResult)
+      } catch (error) {
+        console.log(error)
+      }
+    }
 
-    // if(this.isZipCodeValid){
-    //   fetchHardiness()
-    // }else{
-    //   //send error to user, enter a valid zip code
-    //   if(this.zipCodeResult !== ""){
-    //     this.raiseZipCodeError = true
-    //     console.log(this.raiseZipCodeError)
-    //   }else{
-    //     console.log(this.raiseZipCodeError)
-    //   }
-    // }
-    // console.log(this.raiseZipCodeError)
+    if(this.isZipCodeValid){
+      fetchHardiness()
+    }else{
+      //send error to user, enter a valid zip code
+      if(this.zipCodeResult !== ""){
+        this.raiseZipCodeError = true
+        console.log(this.raiseZipCodeError)
+      }else{
+        console.log(this.raiseZipCodeError)
+      }
+    }
+    console.log(this.raiseZipCodeError)
     
     // this.searchData.getHardinessZoneData(this.hardinessZone).subscribe(
     //   (result: string) => {
@@ -88,21 +87,22 @@ export class SearchComponent {
     //   (error: any) => {
     //     console.error(error);
     //   })
-    this.searchData.getHardinessZoneData(this.hardinessZone).subscribe({
-      next:response => {
-        console.log(response)
-        
-      },
-      error: error =>{
-        console.log(error)
-      }
-    })
+
+    // this.searchData.getHardinessZoneData(this.hardinessZone).subscribe({
+    //   next:response => {
+    //     console.log(response)
+
+    //   },
+    //   error: error =>{
+    //     console.log(error)
+    //   }
+    // })
 
   }
 
 
-  
-  async saveCheckboxValues(){
+  //apply function
+  saveCheckboxValues(){
   
     if(this.sunlight.full_shade){
       this.query += '&sunlight=full_sun'
@@ -119,10 +119,8 @@ export class SearchComponent {
     if(this.indoor){
       this.query += '&indoor=1'
     }
-    await this.getHardinessZone()
-    if(this.zipCodeResult){
-      this.query += `&hardiness=${this.zipCodeResult}`
-    }
+    this.getHardinessZone()
+    
     console.log(this.query)
   }
   
@@ -142,15 +140,43 @@ export class SearchComponent {
     this.showHardinessZone = !this.showHardinessZone;
   }
 
-  // getSearchData() {
-  //   this.searchData.getSearchData().subscribe({
-  //     next: response => {
-  //       console.log(response.data);
-  //       this.searchResults = response.data;
-  //     },
-  //     error: error => {
-  //       console.log(error);
-  //     }
-  //   })
-  // }
+  //reset function
+  resetAll(){
+    //reset query
+    this.query = ''
+    this.sunlight.full_shade =false
+    this.sunlight.part_shade =false
+    this.sunlight.sun_part_shade =false
+    this.sunlight.full_sun =false
+    this.indoor = false
+    this.hardinessZone = ''
+    this.zipCodeResult =''
+    this.isZipCodeValid = false
+    this.raiseZipCodeError = false
+  }
+
+  getSearchData() {
+    this.query += `&q=${this.plant_name}`
+    if(this.zipCodeResult){
+      this.query += `&hardiness=${this.zipCodeResult}`
+    }
+    console.log(this.query)
+    this.searchData.getSearchData(this.query).subscribe({
+      next: response => {
+        console.log(response.data);
+        for(let plant of response.data){
+          if (plant.default_image === null) {
+            // Create a new default_image object with the original_url property
+            plant.default_image = { original_url: "https://www.chileplants.com/images/chiles/medleybasil.jpg" };
+          }else if(plant.default_image.original_url == "https://perenual.com/storage/image/upgrade_access.jpg"){
+            plant.default_image.original_url = "https://www.chileplants.com/images/chiles/medleybasil.jpg"
+          }
+        }
+        this.searchResults = response.data;
+      },
+      error: error => {
+        console.log(error);
+      }
+    })
+  }
 }
