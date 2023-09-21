@@ -101,7 +101,7 @@ def token_required(f):
                 return jsonify({'message': 'Invalid Authorization header format', 'status': 401})
           
         if not token:
-            return jsonify({'message': 'Token is missing', 'status': 401})
+            return jsonify({'error': 'Token is missing', 'status': 401}), 401
         
         try:
             data = jwt.decode(token, app.config['SECRET_KEY'], algorithms=['HS256'])

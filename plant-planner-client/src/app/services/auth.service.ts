@@ -60,7 +60,7 @@ export class AuthService {
     if (user === null) {
       this.router.navigate(['/login']);
     }
-    
+
     return !(user === null)
   }
 
