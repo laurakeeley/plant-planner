@@ -75,10 +75,10 @@ def login():
                 return jsonify(response)
             else:
                 #*login password do not match
-                response = {'message': 'Invalid credentials','user_id': None, 'status': 401}
+                response = {'error': 'Invalid credentials','user_id': None, 'status': 401}
         else:
-            response = {'message': 'No such user','user_id': None, 'status': 401}     
-        return jsonify(response)
+            response = {'error': 'No such user','user_id': None, 'status': 401}     
+        return jsonify(response), 401
     
 # Set to store revoked tokens
 revoked_tokens = set()
