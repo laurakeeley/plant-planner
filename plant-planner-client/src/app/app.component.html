@@ -22,16 +22,20 @@
       <!-- Navigation Links (Currently showing on medium and larger Screens) -->
       <div class="md:flex items-center space-x-4 ">
         <div class="ml-4 flex items-center space-x-4 sm:hidden">
-          <!-- Profile Tab -->
-          <a href="/" class="text-darkslategray hover:text-darkolivegreen px-3 py-2 rounded-md text-xl font-sans no-underline">Profile</a>
-          <!-- Search Tab -->
-          <a href="/search" class="text-darkslategray hover:text-darkolivegreen px-3 py-2 rounded-md text-xl font-sans no-underline">Search</a>
-          <!-- Sign In Tab -->
-          <a href="/signup" class="text-darkslategray hover:text-darkolivegreen px-3 py-2 rounded-md text-xl font-sans no-underline">Sign Up</a>
-          <!-- Log In Tab -->
-          <a href="/login" class="text-darkslategray hover:text-darkolivegreen px-3 py-2 rounded-md text-xl font-sans no-underline">Login</a>
-          <!-- Sign Out Tab -->
-          <a href="/logout" class="text-darkslategray hover:text-darkolivegreen px-3 py-2 rounded-md text-xl font-sans no-underline">Logout</a>
+          <div *ngIf="isUserLoggedIn()">
+            <!-- Profile Tab -->
+            <a href="/" class="text-darkslategray hover:text-darkolivegreen px-3 py-2 rounded-md text-xl font-sans no-underline">Profile</a>
+            <!-- Search Tab -->
+            <a href="/search" class="text-darkslategray hover:text-darkolivegreen px-3 py-2 rounded-md text-xl font-sans no-underline">Search</a>
+            <!-- Sign Out Tab -->
+            <a href="/logout" class="text-darkslategray hover:text-darkolivegreen px-3 py-2 rounded-md text-xl font-sans no-underline">Logout</a>
+          </div>
+          <div *ngIf="!isUserLoggedIn()">
+            <!-- Sign In Tab -->
+            <a href="/signup" class="text-darkslategray hover:text-darkolivegreen px-3 py-2 rounded-md text-xl font-sans no-underline">Sign Up</a>
+            <!-- Log In Tab -->
+            <a href="/login" class="text-darkslategray hover:text-darkolivegreen px-3 py-2 rounded-md text-xl font-sans no-underline">Login</a>
+          </div>
         </div>
       </div>
     </div>
