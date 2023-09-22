@@ -108,7 +108,8 @@ export class SearchComponent {
 
   //apply function
   saveCheckboxValues(){
-
+    this.query = ''
+    console.log("before if", this.query)
     if(this.sunlight.full_shade){
       this.query += '&sunlight=full_sun'
     }
