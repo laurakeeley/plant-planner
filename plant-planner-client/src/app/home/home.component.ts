@@ -1,6 +1,7 @@
 import { Component, Injectable } from '@angular/core';
 import { PlantDataService } from '../services/plant-data.service';
 import { AuthService, userId } from '../services/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -13,7 +14,8 @@ export class HomeComponent {
   
   constructor(
     private plants:PlantDataService,
-    private auth:AuthService
+    private auth:AuthService,
+    private router:Router
   ) {}
     
     
@@ -30,7 +32,9 @@ export class HomeComponent {
       },
       error: error => {
         console.log(error);
-        this.auth.isUserLoggedIn();
+        if (!this.auth.isUserLoggedIn()) {
+          this.router.navigate(['/login']);
+        }
       }
     })
   }

@@ -57,9 +57,6 @@ export class AuthService {
 
   isUserLoggedIn() {
     let user = sessionStorage.getItem(userId);
-    // if (user === null) {
-    //   this.router.navigate(['/login']);
-    // }
 
     return !(user === null)
   }
