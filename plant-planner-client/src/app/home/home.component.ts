@@ -1,6 +1,6 @@
 import { Component, Injectable } from '@angular/core';
 import { PlantDataService } from '../services/plant-data.service';
-import { userId } from '../services/auth.service';
+import { AuthService, userId } from '../services/auth.service';
 
 @Component({
   selector: 'app-home',
@@ -12,7 +12,8 @@ export class HomeComponent {
   userPlants = {};
   
   constructor(
-    private plants:PlantDataService
+    private plants:PlantDataService,
+    private auth:AuthService
   ) {}
     
     
@@ -29,6 +30,7 @@ export class HomeComponent {
       },
       error: error => {
         console.log(error);
+        this.auth.isUserLoggedIn();
       }
     })
   }

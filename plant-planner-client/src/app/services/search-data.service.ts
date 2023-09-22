@@ -1,8 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { PLANT_SEARCH_KEY } from '../env';
-import { HARDINESS_ZONE_KEY } from '../env';
-import { HARDINESS_ZONE_OBJECT } from '../env';
+import { PLANT_SEARCH_KEY, HARDINESS_ZONE_KEY } from '../env';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -28,6 +26,6 @@ export class SearchDataService {
     // return this.http.get<any>(`https://plant-hardiness-zone.p.rapidapi.com/zipcodes/${zipCode}/?rapidapi-key=${HARDINESS_ZONE_KEY}`)
     
     
-    return this.http.get(`https://plant-hardiness-zone.p.rapidapi.com/zipcodes/`+zipCode, { headers: HARDINESS_ZONE_OBJECT})
+    return this.http.get(`https://plant-hardiness-zone.p.rapidapi.com/zipcodes/`+zipCode, { headers: this.headers})
   }
 }

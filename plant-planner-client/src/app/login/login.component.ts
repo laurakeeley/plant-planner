@@ -31,7 +31,14 @@ export class LoginComponent {
       }, 
       error: error => {
         console.log(error);
+        let element = document.getElementById('login_error');
+        element ? element.removeAttribute('hidden') : console.log("Element not found.");
       }
     });
+  }
+
+  close(id:string) {
+    let element = document.getElementById(id);
+    element ? element.setAttribute('hidden', 'true') : console.log('Element not found.');
   }
 }

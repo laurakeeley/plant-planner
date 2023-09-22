@@ -75,10 +75,10 @@ def login():
                 return jsonify(response)
             else:
                 #*login password do not match
-                response = {'message': 'Invalid credentials','user_id': None, 'status': 401}
+                response = {'error': 'Invalid credentials','user_id': None, 'status': 401}
         else:
-            response = {'message': 'No such user','user_id': None, 'status': 401}     
-        return jsonify(response)
+            response = {'error': 'No such user','user_id': None, 'status': 401}     
+        return jsonify(response), 401
     
 # Set to store revoked tokens
 revoked_tokens = set()
@@ -101,7 +101,7 @@ def token_required(f):
                 return jsonify({'message': 'Invalid Authorization header format', 'status': 401})
           
         if not token:
-            return jsonify({'message': 'Token is missing', 'status': 401})
+            return jsonify({'error': 'Token is missing', 'status': 401}), 401
         
         try:
             data = jwt.decode(token, app.config['SECRET_KEY'], algorithms=['HS256'])
