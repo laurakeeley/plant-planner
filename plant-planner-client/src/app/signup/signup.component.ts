@@ -14,6 +14,7 @@ export class SignupComponent { 
     email: "",
     password: ""
   };
+  error = '';
 
   constructor(
     private auth:AuthService,
@@ -28,7 +29,15 @@ export class SignupComponent { 
       },
       error: error => {
         console.log(error);
+        this.error = error.error.error;
+        let element = document.getElementById('signup_error');
+        element ? element.removeAttribute('hidden') : console.log("Element not found.");
       }
     });
+  }
+
+  close(id:string) {
+    let element = document.getElementById(id);
+    element ? element.setAttribute('hidden', 'true') : console.log('Element not found.');
   }
 }

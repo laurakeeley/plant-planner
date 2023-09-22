@@ -16,5 +16,8 @@ export class AppComponent {
     this.mobileMenuVisible = !this.mobileMenuVisible
   }
 
+  isUserLoggedIn() {
+    return this.auth.isUserLoggedIn();
+  }
  
 }

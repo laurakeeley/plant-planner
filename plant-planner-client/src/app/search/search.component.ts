@@ -3,6 +3,7 @@ import { SearchDataService } from '../services/search-data.service';
 import { AuthService } from '../services/auth.service';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { HARDINESS_ZONE_KEY } from '../env';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-search',
   templateUrl: './search.component.html',
@@ -10,16 +11,14 @@ import { HARDINESS_ZONE_KEY } from '../env';
 })
 export class SearchComponent {
   searchResults: any = [];
-  auth: AuthService;
   
 
   constructor (
     private searchData:SearchDataService,
-    private authService:AuthService
+    private auth:AuthService,
+    private router:Router
     
-  ) {
-    this.auth = authService;
-  }
+  ) {}
 
 
 
@@ -38,7 +37,13 @@ export class SearchComponent {
   };
   indoor = false;
   hardinessZone = '';
-  plant_name = ''
+  plant_name = '';
+
+  isUserLoggedIn() {
+    if (!this.auth.isUserLoggedIn()) {
+      this.router.navigate(['/login'])
+    }
+  }
 
   //fetch hardiness zone based on zip code
   getHardinessZone(){

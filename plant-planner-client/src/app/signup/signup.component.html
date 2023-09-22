@@ -155,18 +155,18 @@
             <div
               class="self-stretch bg-coolgray-10 box-border h-12 flex flex-row py-3 px-4 items-center justify-start gap-[8px] text-base text-coolgray-60 border-b-[1px] border-solid border-coolgray-30"
             >
-              <img
+              <!-- <img
                 class="relative w-6 h-6 overflow-hidden shrink-0 hidden"
                 alt=""
                 src="/public/icon--jamicons--outline--logos--search3.svg"
-              />
+              /> -->
 
               <div class="flex-1 relative leading-[140%]">Placeholder</div>
-              <img
+              <!-- <img
                 class="relative w-6 h-6 overflow-hidden shrink-0"
                 alt=""
                 src="/public/icon--jamicons--outline--logos--chevrondown3.svg"
-              />
+              /> -->
             </div>
           </div>
           <div
@@ -204,11 +204,11 @@
                 Button Text
               </div>
             </div>
-            <img
+            <!-- <img
               class="relative w-6 h-6 overflow-hidden shrink-0 hidden z-[2]"
               alt=""
               src="/public/icon--jamicons--outline--logos--arrowright4.svg"
-            />
+            /> -->
 
             <div
               class="my-0 mx-[!important] absolute top-[8px] left-[24px] rounded-xl bg-default-alert hidden flex-row py-[0.5px] px-[5.5px] items-center justify-center z-[3] text-center text-xs text-default-white"
@@ -221,11 +221,11 @@
             type="button"
             (click)="signup()"
             >
-            <img
+            <!-- <img
               class="flex-1 relative max-w-full overflow-hidden h-6 hidden"
               alt=""
               src="/public/icon--jamicons--outline--logos--plus5.svg"
-            />
+            /> -->
 
             <div
               class="flex-1 hidden border-r-[1px] border-solid border-gray"
@@ -242,19 +242,28 @@
             <div
               class="flex-1 hidden border-l-[1px] border-solid border-gray"
             ></div>
-            <img
+            <!-- <img
               class="flex-1 relative max-w-full overflow-hidden h-6 hidden"
               alt=""
               src="/public/icon--jamicons--outline--logos--arrowright5.svg"
-            />
+            /> -->
           </button>
+        </div>
+      </div>
+      <div class="self-stretch relative leading-[140%] text-center" id="signup_error" hidden>
+        <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
+          <strong class="font-bold">Oops!</strong>
+          <span class="block sm:inline">{{error}}</span>
+          <span class="absolute top-0 bottom-0 right-0 px-4 py-3" (click)="close('signup_error')">
+            <svg class="fill-current h-6 w-6 text-red-500" role="button" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><title>Close</title><path d="M14.348 14.849a1.2 1.2 0 0 1-1.697 0L10 11.819l-2.651 3.029a1.2 1.2 0 1 1-1.697-1.697l2.758-3.15-2.759-3.152a1.2 1.2 0 1 1 1.697-1.697L10 8.183l2.651-3.031a1.2 1.2 0 1 1 1.697 1.697l-2.758 3.152 2.758 3.15a1.2 1.2 0 0 1 0 1.698z"/></svg>
+          </span>
         </div>
       </div>
       <div
         class="self-stretch relative box-border h-px border-t-[1px] border-solid border-coolgray-20"
       ></div>
       <div class="self-stretch relative leading-[140%] text-darkslategray">
-        Already have an account?
+        <a href="/login" class="text-darkslategray hover:text-darkolivegreen">Already have an account?</a>
       </div>
     </div>
 </div>

@@ -32,21 +32,21 @@ def sign_up():
         if user:
             response = {'message': 'Email has been registered', 'status': 404}
         elif len(email) < 4:
-            response = {'message': 'Email must be greater than 3 characters', 'status': 404}
+            response = {'error': 'Email must be greater than 3 characters', 'status': 404}
         elif len(first_name) < 2:
-            response = {'message': 'First name must be greater than 1 character', 'status': 404}
+            response = {'error': 'First name must be greater than 1 character', 'status': 404}
         elif len(password) < 4:
-            response = {'message': 'Password must be at least 4 characters', 'status': 404}
+            response = {'error': 'Password must be at least 4 characters', 'status': 404}
         else:
             new_user = User(first_name=first_name, last_name= last_name, email=email, password=generate_password_hash(password).decode('utf-8'))
             db.session.add(new_user)
             db.session.commit()
             login_user(new_user, remember=True)
             response = {'message': 'User registered successfully', 'status': 200}
-        return jsonify(response)
+        return jsonify(response), response['status']
      
             
-    return jsonify({'message': 'get method is not available', 'status': 400})
+    return jsonify({'error': 'get method is not available', 'status': 400}), 400
 
 
 @auth.route('/login', methods=["GET", "POST"])
