@@ -43,6 +43,7 @@ export class SearchComponent {
     if (!this.auth.isUserLoggedIn()) {
       this.router.navigate(['/login'])
     }
+    return this.auth.isUserLoggedIn();
   }
 
   //fetch hardiness zone based on zip code
