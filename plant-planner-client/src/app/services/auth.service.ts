@@ -57,7 +57,6 @@ export class AuthService {
 
   isUserLoggedIn() {
     let user = sessionStorage.getItem(userId);
-
     return !(user === null)
   }
 
