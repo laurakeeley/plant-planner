@@ -12,6 +12,27 @@ body {
     border-width: 0;
   }
 
+input {
+  @apply
+    text-coolgray-60 
+    text-base 
+    bg-coolgray-10
+    self-stretch 
+    box-border 
+    h-12 flex 
+    flex-row 
+    py-3 
+    px-4 
+    items-center 
+    justify-start 
+    gap-[8px] 
+}
+
+input:focus {
+  @apply
+    outline-forrestgreen
+}
+
   .btn {
     @apply 
       font-bold 
