@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { AuthService } from '../services/auth.service';
 import { Router } from '@angular/router';
-import { PasswordInputComponent } from '../password-input/password-input.component';
 
 @Component({
   selector: 'app-login',
@@ -12,6 +11,7 @@ export class LoginComponent {
   loginImage: string;
   email = '';
   password = '';
+  isPasswordVisible = false;
 
   constructor(private auth: AuthService, private router: Router) {
     this.loginImage = 'assets/pexelssamuelcrosland2557232-1@2x.png';
@@ -42,5 +42,19 @@ export class LoginComponent {
     element
       ? element.setAttribute('hidden', 'true')
       : console.log('Element not found.');
+  }
+
+  passwordVisibility() {
+    this.isPasswordVisible = !this.isPasswordVisible;
+  }
+
+  getInputType() {
+    return this.isPasswordVisible ? 'text' : 'password';
+  }
+
+  toggleEyeSVG() {
+    return this.isPasswordVisible
+      ? 'assets/icon--jamicons--outline--logos--eye1.svg'
+      : 'assets/icon--jamicons--outline--logos--eye_close.svg';
   }
 }

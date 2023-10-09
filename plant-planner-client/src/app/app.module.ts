@@ -13,7 +13,6 @@ import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { HttpService } from './services/http.service';
 import { PlantDataService } from './services/plant-data.service';
 import { LogoutComponent } from './logout/logout.component';
-import { PasswordInputComponent } from './password-input/password-input.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +22,6 @@ import { PasswordInputComponent } from './password-input/password-input.componen
     LoginComponent,
     SignupComponent,
     LogoutComponent,
-    PasswordInputComponent
   ],
   imports: [
     BrowserModule,
