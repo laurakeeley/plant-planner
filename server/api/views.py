@@ -10,23 +10,23 @@ from .auth import token_required
 views = Blueprint("views", __name__)
 
 @views.route("/getPlants", methods=['GET'])
-# @login_required
-@token_required
+# @token_required
 def profile():
     return jsonify({'message': 'This is a protected route to get saved plants info for a user'})
 
+
 @views.route("/addPlantDetailsIndb", methods=['POST'])
-@token_required
+# @token_required
 def insert_plant_detail_to_db():
     return jsonify({'message': 'This is a protected route for saving plant details in db'})
 
 @views.route("/searchPlantsDetails", methods=['POST'])
-@token_required
+# @token_required
 def search_plants_detail():
     return jsonify({'message': 'This is a protected route for searching'})
 
 @views.route("/deletePlantsDetails", methods=['DELETE'])
-@token_required
+# @token_required
 def delete_plants_detail():
     return jsonify({'message': 'This is a protected route for deleting a plant'})
 
