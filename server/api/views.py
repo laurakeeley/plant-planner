@@ -28,6 +28,18 @@ def insert_plant_detail_in_db():
             plant_id = data.get('plant_id')            
             plant_name = data.get('plant_name')
             details = data.get("details")
+            
+            #validate data type
+            if not isinstance(plant_id, int):
+                return jsonify({'error': 'plant_id must be an int'}), 400
+            if not isinstance(plant_name, str):
+                return jsonify({'error': 'plant_name must be a string'}), 400
+            if not isinstance(details, dict):
+                return jsonify({'error': 'details must be a dictionary'}), 400
+            #check to see if the record is existed
+            plant_detail_lookup = Plant.query.filter_by(plant_id=plant_id).first()
+            if plant_detail_lookup:
+                return jsonify({'error': 'Failed to create a new plant reocrd because the plant exists in db alreay'}), 400
             #store in the plant db
             new_plant_detail_record = Plant(plant_id=plant_id, plant_name=plant_name, details=details)
             db.session.add(new_plant_detail_record)
