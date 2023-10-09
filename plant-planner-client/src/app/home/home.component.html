@@ -1,117 +1,505 @@
-<div
-  class="self-stretch bg-default-white flex flex-col items-center justify-start p-20 gap-[64px] z-[7] text-left"
->
   <div
-    class="self-stretch flex flex-col items-start justify-start gap-[48px] text-center"
+    class="home"
   >
-    <div
-      class="self-stretch flex flex-col items-center justify-start gap-[8px]"
+    <header
+      class="self-stretch flex flex-col items-start justify-start gap-[48px] text-center text-35xl text-coolgray-90 font-button-m"
     >
-      <b
-        class="font-sans self-stretch relative tracking-[1px] leading-[100%] uppercase text-primary-90"
-        >From Our Blog</b
-      >
-      <b class="self-stretch relative text-35xl leading-[110%] hidden"
-        >Purus sagittis fringilla arcu neque.</b
-      >
-      <b class="font-sans self-stretch relative text-23xl leading-[110%]">
-        <p class="[margin-block-start:0] [margin-block-end:5px]">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-        </p>
-        <p class="m-0">Bibendum amet at molestie mattis.</p>
-      </b>
-    </div>
-    <div class="self-stretch relative text-lg leading-[140%] hidden">
-      Rhoncus morbi et augue nec, in id ullamcorper at sit. Condimentum sit nunc
-      in eros scelerisque sed. Commodo in viverra nunc, ullamcorper ut. Non,
-      amet, aliquet scelerisque nullam sagittis, pulvinar. Fermentum scelerisque
-      sit consectetur hac mi. Mollis leo eleifend ultricies purus iaculis.
-    </div>
-  </div>
-  <div
-    class="self-stretch flex flex-row items-start justify-start gap-[16px] text-base lg:flex-row lg:gap-[16px] lg:items-start lg:justify-start md:flex-row md:gap-[16px] md:items-start md:justify-start sm:flex-col sm:gap-[16px] sm:items-start sm:justify-start"
-  >
-    <div
-      class="flex-1 bg-default-white box-border h-[524px] flex flex-col items-center justify-start border-[1px] border-solid border-coolgray-20 sm:flex-[unset] sm:self-stretch"
-    >
-      <img
-        class="self-stretch max-w-full overflow-hidden h-[220px] shrink-0 object-cover"
-        alt=""
-        src="/public/placeholder--picture@2x.png"
-      />
-
       <div
-        class="self-stretch hidden flex-row items-center justify-start py-0 px-4"
+        class="self-stretch flex flex-col items-center justify-start gap-[8px]"
+      >
+        <h1
+          class="m-0 self-stretch relative text-23xl leading-[110%] font-bold font-inherit"
+        >
+          <p class="[margin-block-start:0] [margin-block-end:5px]">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+          </p>
+          <p class="m-0">Bibendum amet at molestie mattis.</p>
+        </h1>
+      </div>
+      <h3
+        class="m-0 self-stretch relative text-lg leading-[140%] font-normal font-inherit hidden"
+      >
+        Rhoncus morbi et augue nec, in id ullamcorper at sit. Condimentum sit
+        nunc in eros scelerisque sed. Commodo in viverra nunc, ullamcorper ut.
+        Non, amet, aliquet scelerisque nullam sagittis, pulvinar. Fermentum
+        scelerisque sit consectetur hac mi. Mollis leo eleifend ultricies
+        purus iaculis.
+      </h3>
+    </header>
+    <div
+      class="cards-container"
+      
+    >
+      <div
+        class="card"
+        *ngFor="let i of [1, 2, 3]"
       >
         <img
-          class="relative w-12 h-12 overflow-hidden shrink-0"
+          class="self-stretch max-w-full overflow-hidden h-[220px] shrink-0"
           alt=""
-          src="/public/icon--jamicons--outline--logos--pictures.svg"
+          src="/public/placeholder--picture.svg"
         />
-      </div>
-      <div
-        class="self-stretch flex flex-col items-start justify-start pt-6 px-4 pb-4 gap-[16px]"
-      >
+
         <div
-          class="self-stretch flex flex-col items-start justify-start gap-[4px]"
+          class="self-stretch hidden flex-row items-center justify-between py-0 px-4"
+        >
+          <img
+            class="relative w-12 h-12 overflow-hidden shrink-0"
+            alt=""
+            src="/public/icon--jamicons--outline--logos--pictures.svg"
+          />
+        </div>
+        <div
+          class="self-stretch flex flex-col items-start justify-start pt-6 px-4 pb-4 gap-[16px]"
         >
           <div
-            class="font-sans self-stretch relative leading-[110%] font-medium"
+            class="self-stretch flex flex-col items-start justify-start gap-[4px]"
           >
-            Category
+            <h6
+              class="m-0 self-stretch relative text-inherit leading-[110%] font-medium font-inherit"
+            >
+              Category
+            </h6>
+            <h4
+              class="m-0 self-stretch relative text-xl leading-[110%] font-bold font-inherit"
+            >
+              Article Title
+            </h4>
           </div>
-          <b class="font-sans self-stretch relative text-xl leading-[110%]"
-            >Article Title
-          </b>
-        </div>
-        <div class="font-sans relative leading-[140%] inline-block w-[276px]">
-          Egestas elit dui scelerisque ut eu purus aliquam vitae habitasse.
+          <p class="m-0 self-stretch relative leading-[140%]">
+            Egestas elit dui scelerisque ut eu purus aliquam vitae habitasse.
+          </p>
+          <div
+            class="self-stretch flex flex-row items-center justify-start pt-4 px-0 pb-0 gap-[16px]"
+          >
+            <img
+              class="rounded-81xl w-12 h-12 object-cover"
+              alt=""
+              src="/public/user-thumb@2x.png"
+            />
+
+            <div class="flex-1 flex flex-col items-start justify-start">
+              <a
+                class="[text-decoration:none] self-stretch relative leading-[110%] font-medium text-[inherit]"
+                >Jane Doe</a
+              >
+              <a
+                class="[text-decoration:none] self-stretch relative leading-[140%] text-coolgray-60"
+                >Senior Designer</a
+              >
+            </div>
+          </div>
         </div>
         <div
-          class="w-[276px] flex flex-row items-center justify-start pt-4 px-0 pb-0 box-border gap-[16px]"
+          class="hidden flex-row items-start justify-start p-4 gap-[16px] lg:flex-row lg:gap-[16px] lg:items-start lg:justify-start md:flex-row md:gap-[16px] md:items-start md:justify-start sm:flex-col sm:gap-[16px] sm:items-start sm:justify-start"
         >
-          <!-- <div
-                  class="rounded-81xl bg-coolgray-10 w-12 h-12 flex flex-row items-center justify-center"
-                >
-                  <img
-                    class="relative w-6 h-6 overflow-hidden shrink-0"
-                    alt=""
-                    src="/public/icon--jamicons--outline--logos--user1.svg"
-                  />
-                </div> -->
-          <!-- <div class="flex-1 flex flex-col items-start justify-start">
-                  <div class="self-stretch relative leading-[110%] font-medium">
-                    Jane Doe
-                  </div>
-                  <div
-                    class="self-stretch relative leading-[140%] text-coolgray-60"
-                  >
-                    Senior Designer
-                  </div>
-                </div> -->
+          <button
+            class="cursor-pointer py-4 px-3 bg-primary-60 flex-1 box-border h-12 flex flex-row items-center justify-center border-[2px] border-solid border-primary-60 sm:flex-[unset] sm:self-stretch"
+            id="plant_details"
+          >
+            <img
+              class="relative w-6 h-6 overflow-hidden shrink-0 hidden"
+              alt=""
+              src="/public/icon--jamicons--outline--logos--plus.svg"
+            />
+
+            <div
+              class="box-border w-3 hidden border-r-[1px] border-solid border-gray"
+            ></div>
+            <div class="flex flex-row items-center justify-center py-0 px-4">
+              <span
+                class="relative text-base tracking-[0.5px] leading-[100%] font-medium font-button-m text-white text-left"
+                >Button Text</span
+              >
+            </div>
+            <div
+              class="box-border w-3 hidden border-l-[1px] border-solid border-gray"
+            ></div>
+            <img
+              class="relative w-6 h-6 overflow-hidden shrink-0 hidden"
+              alt=""
+              src="/public/icon--jamicons--outline--logos--arrowright.svg"
+            />
+          </button>
+          <button
+            class="cursor-pointer py-4 px-3 bg-[transparent] flex-1 box-border h-12 flex flex-row items-center justify-center border-[2px] border-solid border-primary-60 sm:flex-[unset] sm:self-stretch"
+          >
+            <img
+              class="relative w-6 h-6 overflow-hidden shrink-0 hidden"
+              alt=""
+              src="/public/icon--jamicons--outline--logos--plus1.svg"
+            />
+
+            <div class="flex flex-row items-center justify-center py-0 px-4">
+              <label
+                class="cursor-pointer relative text-base tracking-[0.5px] leading-[100%] font-medium font-button-m text-primary-60 text-left"
+                >Button Text</label
+              >
+            </div>
+            <img
+              class="relative w-6 h-6 overflow-hidden shrink-0 hidden"
+              alt=""
+              src="/public/icon--jamicons--outline--logos--arrowright1.svg"
+            />
+          </button>
         </div>
       </div>
-    </div>
-  </div>
-  <button
-    type="button"
-    class="btn btn-green box-border h-14 flex flex-row items-center justify-center"
-  >
-    <img
-      class="relative w-6 h-6 overflow-hidden shrink-0 hidden"
-      alt=""
-      src="/public/icon--jamicons--outline--logos--plus3.svg"
-    />
+      <!-- <div
+        class="card"
+      >
+        <img
+          class="self-stretch max-w-full overflow-hidden h-[220px] shrink-0 object-cover"
+          alt=""
+          src="/public/placeholder--picture1@2x.png"
+        />
 
-    <div class="flex flex-row items-center justify-center py-0 px-4">
-      <div class="font-sans relative tracking-[0.5px] leading-[100%] font-medium">
-        Primary Action
+        <div
+          class="self-stretch hidden flex-row items-center justify-start py-0 px-4"
+        >
+          <img
+            class="flex-1 relative max-w-full overflow-hidden h-12"
+            alt=""
+            src="/public/icon--jamicons--outline--logos--pictures1.svg"
+          />
+        </div>
+        <div
+          class="self-stretch flex flex-col items-start justify-start pt-6 px-4 pb-4 gap-[16px]"
+        >
+          <div
+            class="self-stretch flex flex-col items-start justify-start gap-[4px]"
+          >
+            <h6
+              class="m-0 self-stretch relative text-inherit leading-[110%] font-medium font-inherit"
+            >
+              Category
+            </h6>
+            <h4
+              class="m-0 self-stretch relative text-xl leading-[110%] font-bold font-inherit"
+            >
+              Article Title
+            </h4>
+          </div>
+          <p class="m-0 self-stretch relative leading-[140%]">
+            Egestas elit dui scelerisque ut eu purus aliquam vitae habitasse.
+          </p>
+          <div
+            class="self-stretch flex flex-row items-center justify-start pt-4 px-0 pb-0 gap-[16px]"
+          >
+            <img
+              class="rounded-81xl w-12 h-12 object-cover"
+              alt=""
+              src="/public/user-thumb@2x.png"
+            />
+
+            <div class="flex-1 flex flex-col items-start justify-start">
+              <a
+                class="[text-decoration:none] self-stretch relative leading-[110%] font-medium text-[inherit]"
+                >Jane Doe</a
+              >
+              <a
+                class="[text-decoration:none] self-stretch relative leading-[140%] text-coolgray-60"
+                >Senior Designer</a
+              >
+            </div>
+          </div>
+        </div>
+        <div
+          class="self-stretch hidden flex-row items-start justify-start p-4 gap-[16px] lg:flex-row lg:gap-[16px] lg:items-start lg:justify-start md:flex-row md:gap-[16px] md:items-start md:justify-start sm:flex-col sm:gap-[16px] sm:items-start sm:justify-start"
+        >
+          <button
+            class="cursor-pointer py-4 px-3 bg-primary-60 flex-1 box-border h-12 flex flex-row items-center justify-center border-[2px] border-solid border-primary-60 sm:flex-[unset] sm:self-stretch"
+          >
+            <img
+              class="relative w-6 h-6 overflow-hidden shrink-0 hidden"
+              alt=""
+              src="/public/icon--jamicons--outline--logos--plus.svg"
+            />
+
+            <div
+              class="box-border w-3 hidden border-r-[1px] border-solid border-gray"
+            ></div>
+            <div class="flex flex-row items-center justify-center py-0 px-4">
+              <label
+                class="cursor-pointer relative text-base tracking-[0.5px] leading-[100%] font-medium font-button-m text-white text-left"
+                >Button Text</label
+              >
+            </div>
+            <div
+              class="box-border w-3 hidden border-l-[1px] border-solid border-gray"
+            ></div>
+            <img
+              class="relative w-6 h-6 overflow-hidden shrink-0 hidden"
+              alt=""
+              src="/public/icon--jamicons--outline--logos--arrowright.svg"
+            />
+          </button>
+          <button
+            class="cursor-pointer py-4 px-3 bg-[transparent] flex-1 box-border h-12 flex flex-row items-center justify-center border-[2px] border-solid border-primary-60 sm:flex-[unset] sm:self-stretch"
+          >
+            <img
+              class="relative w-6 h-6 overflow-hidden shrink-0 hidden"
+              alt=""
+              src="/public/icon--jamicons--outline--logos--plus1.svg"
+            />
+
+            <div class="flex flex-row items-center justify-center py-0 px-4">
+              <label
+                class="cursor-pointer relative text-base tracking-[0.5px] leading-[100%] font-medium font-button-m text-primary-60 text-left"
+                >Button Text</label
+              >
+            </div>
+            <img
+              class="relative w-6 h-6 overflow-hidden shrink-0 hidden"
+              alt=""
+              src="/public/icon--jamicons--outline--logos--arrowright1.svg"
+            />
+          </button>
+        </div>
       </div>
+      <div
+        class="card"
+      >
+        <img
+          class="self-stretch max-w-full overflow-hidden h-[220px] shrink-0 object-cover"
+          alt=""
+          src="/public/placeholder--picture1@2x.png"
+        />
+
+        <div
+          class="self-stretch hidden flex-row items-center justify-start py-0 px-4"
+        >
+          <img
+            class="flex-1 relative max-w-full overflow-hidden h-12"
+            alt=""
+            src="/public/icon--jamicons--outline--logos--pictures1.svg"
+          />
+        </div>
+        <div
+          class="self-stretch flex flex-col items-start justify-start pt-6 px-4 pb-4 gap-[16px]"
+        >
+          <div
+            class="self-stretch flex flex-col items-start justify-start gap-[4px]"
+          >
+            <h4
+              class="m-0 self-stretch relative text-inherit leading-[110%] font-medium font-inherit"
+            >
+              Category
+            </h4>
+            <h4
+              class="m-0 self-stretch relative text-xl leading-[110%] font-bold font-inherit"
+            >
+              Article Title
+            </h4>
+          </div>
+          <p class="m-0 self-stretch relative leading-[140%]">
+            Egestas elit dui scelerisque ut eu purus aliquam vitae habitasse.
+          </p>
+          <div
+            class="self-stretch flex flex-row items-center justify-start pt-4 px-0 pb-0 gap-[16px]"
+          >
+            <img
+              class="rounded-81xl w-12 h-12 object-cover"
+              alt=""
+              src="/public/user-thumb@2x.png"
+            />
+
+            <div class="flex-1 flex flex-col items-start justify-start">
+              <a
+                class="[text-decoration:none] self-stretch relative leading-[110%] font-medium text-[inherit]"
+                >Jane Doe</a
+              >
+              <a
+                class="[text-decoration:none] self-stretch relative leading-[140%] text-coolgray-60"
+                >Senior Designer</a
+              >
+            </div>
+          </div>
+        </div>
+        <div
+          class="self-stretch hidden flex-row items-start justify-start p-4 gap-[16px] lg:flex-row lg:gap-[16px] lg:items-start lg:justify-start md:flex-row md:gap-[16px] md:items-start md:justify-start sm:flex-col sm:gap-[16px] sm:items-start sm:justify-start"
+        >
+          <button
+            class="cursor-pointer py-4 px-3 bg-primary-60 flex-1 box-border h-12 flex flex-row items-center justify-center border-[2px] border-solid border-primary-60 sm:flex-[unset] sm:self-stretch"
+          >
+            <img
+              class="relative w-6 h-6 overflow-hidden shrink-0 hidden"
+              alt=""
+              src="/public/icon--jamicons--outline--logos--plus.svg"
+            />
+
+            <div
+              class="box-border w-3 hidden border-r-[1px] border-solid border-gray"
+            ></div>
+            <div class="flex flex-row items-center justify-center py-0 px-4">
+              <label
+                class="cursor-pointer relative text-base tracking-[0.5px] leading-[100%] font-medium font-button-m text-white text-left"
+                >Button Text</label
+              >
+            </div>
+            <div
+              class="box-border w-3 hidden border-l-[1px] border-solid border-gray"
+            ></div>
+            <img
+              class="relative w-6 h-6 overflow-hidden shrink-0 hidden"
+              alt=""
+              src="/public/icon--jamicons--outline--logos--arrowright.svg"
+            />
+          </button>
+          <button
+            class="cursor-pointer py-4 px-3 bg-[transparent] flex-1 box-border h-12 flex flex-row items-center justify-center border-[2px] border-solid border-primary-60 sm:flex-[unset] sm:self-stretch"
+          >
+            <img
+              class="relative w-6 h-6 overflow-hidden shrink-0 hidden"
+              alt=""
+              src="/public/icon--jamicons--outline--logos--plus1.svg"
+            />
+
+            <div class="flex flex-row items-center justify-center py-0 px-4">
+              <label
+                class="cursor-pointer relative text-base tracking-[0.5px] leading-[100%] font-medium font-button-m text-primary-60 text-left"
+                >Button Text</label
+              >
+            </div>
+            <img
+              class="relative w-6 h-6 overflow-hidden shrink-0 hidden"
+              alt=""
+              src="/public/icon--jamicons--outline--logos--arrowright1.svg"
+            />
+          </button>
+        </div>
+      </div>
+      <div
+        class="card"
+      >
+        <img
+          class="self-stretch max-w-full overflow-hidden h-[220px] shrink-0 object-cover"
+          alt=""
+          src="/public/placeholder--picture1@2x.png"
+        />
+
+        <div
+          class="self-stretch hidden flex-row items-center justify-start py-0 px-4"
+        >
+          <img
+            class="flex-1 relative max-w-full overflow-hidden h-12"
+            alt=""
+            src="/public/icon--jamicons--outline--logos--pictures1.svg"
+          />
+        </div>
+        <div
+          class="self-stretch flex flex-col items-start justify-start pt-6 px-4 pb-4 gap-[16px]"
+        >
+          <div
+            class="self-stretch flex flex-col items-start justify-start gap-[4px]"
+          >
+            <h4
+              class="m-0 self-stretch relative text-inherit leading-[110%] font-medium font-inherit"
+            >
+              Category
+            </h4>
+            <h6
+              class="m-0 self-stretch relative text-xl leading-[110%] font-bold font-inherit"
+            >
+              Article Title
+            </h6>
+          </div>
+          <p class="m-0 self-stretch relative leading-[140%]">
+            Egestas elit dui scelerisque ut eu purus aliquam vitae habitasse.
+          </p>
+          <div
+            class="self-stretch flex flex-row items-center justify-start pt-4 px-0 pb-0 gap-[16px]"
+          >
+            <img
+              class="rounded-81xl w-12 h-12 object-cover"
+              alt=""
+              src="/public/user-thumb@2x.png"
+            />
+
+            <div class="flex-1 flex flex-col items-start justify-start">
+              <a
+                class="[text-decoration:none] self-stretch relative leading-[110%] font-medium text-[inherit]"
+                >Jane Doe</a
+              >
+              <a
+                class="[text-decoration:none] self-stretch relative leading-[140%] text-coolgray-60"
+                >Senior Designer</a
+              >
+            </div>
+          </div>
+        </div>
+        <div
+          class="self-stretch hidden flex-row items-start justify-start p-4 gap-[16px] lg:flex-row lg:gap-[16px] lg:items-start lg:justify-start md:flex-row md:gap-[16px] md:items-start md:justify-start sm:flex-col sm:gap-[16px] sm:items-start sm:justify-start"
+        >
+          <button
+            class="cursor-pointer py-4 px-3 bg-primary-60 flex-1 box-border h-12 flex flex-row items-center justify-center border-[2px] border-solid border-primary-60 sm:flex-[unset] sm:self-stretch"
+          >
+            <img
+              class="relative w-6 h-6 overflow-hidden shrink-0 hidden"
+              alt=""
+              src="/public/icon--jamicons--outline--logos--plus.svg"
+            />
+
+            <div
+              class="box-border w-3 hidden border-r-[1px] border-solid border-gray"
+            ></div>
+            <div class="flex flex-row items-center justify-center py-0 px-4">
+              <label
+                class="cursor-pointer relative text-base tracking-[0.5px] leading-[100%] font-medium font-button-m text-white text-left"
+                >Button Text</label
+              >
+            </div>
+            <div
+              class="box-border w-3 hidden border-l-[1px] border-solid border-gray"
+            ></div>
+            <img
+              class="relative w-6 h-6 overflow-hidden shrink-0 hidden"
+              alt=""
+              src="/public/icon--jamicons--outline--logos--arrowright.svg"
+            />
+          </button>
+          <button
+            class="cursor-pointer py-4 px-3 bg-[transparent] flex-1 box-border h-12 flex flex-row items-center justify-center border-[2px] border-solid border-primary-60 sm:flex-[unset] sm:self-stretch"
+          >
+            <img
+              class="relative w-6 h-6 overflow-hidden shrink-0 hidden"
+              alt=""
+              src="/public/icon--jamicons--outline--logos--plus1.svg"
+            />
+
+            <div class="flex flex-row items-center justify-center py-0 px-4">
+              <span
+                class="relative text-base tracking-[0.5px] leading-[100%] font-medium font-button-m text-primary-60 text-left"
+                >Button Text</span
+              >
+            </div>
+            <img
+              class="relative w-6 h-6 overflow-hidden shrink-0 hidden"
+              alt=""
+              src="/public/icon--jamicons--outline--logos--arrowright1.svg"
+            />
+          </button>
+        </div>
+      </div> -->
     </div>
-    <img
-      class="relative w-6 h-6 overflow-hidden shrink-0 hidden"
-      alt=""
-      src="/public/icon--jamicons--outline--logos--arrowright3.svg"
-    />
-  </button>
-</div>
+    <button
+      type="button"
+      class="btn btn-green box-border h-14 flex flex-row items-center justify-center"
+    >
+      <img
+        class="relative w-6 h-6 overflow-hidden shrink-0 hidden"
+        alt=""
+        src="/public/icon--jamicons--outline--logos--plus3.svg"
+      />
+  
+      <div class="flex flex-row items-center justify-center py-0 px-4">
+        <div class="font-sans relative tracking-[0.5px] leading-[100%] font-medium">
+          Primary Action
+        </div>
+      </div>
+      <img
+        class="relative w-6 h-6 overflow-hidden shrink-0 hidden"
+        alt=""
+        src="/public/icon--jamicons--outline--logos--arrowright3.svg"
+      />
+    </button>
+  </div>

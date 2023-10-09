@@ -1,0 +1,48 @@
+.home {
+    @apply
+        relative 
+        bg-white
+        w-full
+        flex 
+        flex-col 
+        items-center 
+        justify-start 
+        p-20 
+        box-border 
+        gap-[64px] 
+        text-left 
+        text-base 
+        text-coolgray-90 
+        font-button-m
+}
+
+.cards-container {
+    @apply
+        self-stretch 
+        flex 
+        flex-row 
+        items-center 
+        justify-start;
+    flex-wrap: wrap;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr); /* 4 columns */
+    gap: 16px; /* Adjust the gap between grid items */
+
+}
+
+.card {
+    box-sizing: border-box;
+    @apply
+        flex-1 
+        bg-white
+        h-[524px] 
+        flex 
+        flex-col 
+        justify-start
+        items-center
+        border-[1px] 
+        border-solid 
+        border-coolgray-20 
+        sm:flex-[unset] 
+        sm:self-stretch
+}
