@@ -2,6 +2,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
 body {
     @apply leading-[normal] m-0;
   }
@@ -9,6 +10,66 @@ body {
   ::before,
   ::after {
     border-width: 0;
+  }
+
+input {
+  @apply
+    text-coolgray-60 
+    text-base 
+    bg-coolgray-10
+    self-stretch 
+    box-border 
+    h-12 flex 
+    flex-row 
+    py-3 
+    px-4 
+    items-center 
+    justify-start 
+    gap-[8px] 
+}
+
+input:focus {
+  @apply
+    outline-forrestgreen
+}
+
+  .btn {
+    @apply 
+      font-bold 
+      py-4 
+      px-3
+      text-default-white 
+      border-[2px] 
+      border-solid 
+      border-darkslategray;
+  }
+  .btn-green {
+    @apply bg-darkolivegreen text-white;
+  }
+  .btn-green:hover {
+    @apply bg-forrestgreen;
+  }
+  /* dark:active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] */
+  .btn-green:active {
+    @apply bg-camel;
+  }
+  .btn-green:focus {
+    @apply border-forrestgreen;
+  }
+
+  .nav {
+    @apply
+      text-darkslategray
+      px-3 
+      py-2 
+      rounded-md 
+      text-xl 
+      font-sans 
+      no-underline
+  }
+  .nav:hover{
+    @apply
+      text-darkolivegreen 
   }
 
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
