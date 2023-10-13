@@ -45,17 +45,13 @@
         <div
           class="self-stretch flex flex-row items-start justify-start gap-[16px] lg:flex-row lg:gap-[16px] lg:items-start lg:justify-start md:flex-row md:gap-[16px] md:items-start md:justify-start sm:flex-row sm:gap-[16px] sm:items-start sm:justify-start"
         >
-          <div
-            class="flex-1 flex flex-col items-start justify-start gap-[4px]"
-          >
+          <div class="flex-1 flex flex-col items-start justify-start gap-[4px]">
             <div
               class="self-stretch flex flex-col items-start justify-start gap-[8px]"
             >
-              <div class="self-stretch relative leading-[140%]">
-                First Name
-              </div>
+              <div class="self-stretch relative leading-[140%]">First Name</div>
               <input
-                class="[border:none] font-button-m text-base bg-coolgray-10 self-stretch box-border h-12 flex flex-row py-3 px-4 items-center justify-start border-b-[1px] border-solid border-coolgray-30"
+                class="[border:none] h-12"
                 type="text"
                 required
                 id="signupFirstName"
@@ -68,15 +64,11 @@
               Helper text goes here
             </div>
           </div>
-          <div
-            class="flex-1 flex flex-col items-start justify-start gap-[4px]"
-          >
+          <div class="flex-1 flex flex-col items-start justify-start gap-[4px]">
             <div
               class="self-stretch flex flex-col items-start justify-start gap-[8px]"
             >
-              <div class="self-stretch relative leading-[140%]">
-                Last Name
-              </div>
+              <div class="self-stretch relative leading-[140%]">Last Name</div>
               <input
                 class="[border:none] font-button-m text-base bg-coolgray-10 self-stretch box-border h-12 flex flex-row py-3 px-4 items-center justify-start border-b-[1px] border-solid border-coolgray-30"
                 type="text"
@@ -114,156 +106,92 @@
           </div>
         </div>
         <div
-        class="self-stretch flex flex-col items-start justify-start gap-[4px]"
-        >
-            <div
-                class="self-stretch flex flex-col items-start mb-4 justify-start gap-[8px]"
-            >
-                <div class="self-stretch relative leading-[140%]">Password</div>
-                <div
-                class="self-stretch bg-coolgray-10 box-border h-12 flex flex-row py-3 items-center justify-start gap-[8px] text-base text-coolgray-60 border-solid border-coolgray-30"
-                >
-                <img
-                    class="relative w-6 h-6 overflow-hidden shrink-0 hidden"
-                    alt=""
-                    src="assets/icon--jamicons--outline--logos--search3.svg"
-                />
-                <input 
-                    
-                    class="flex-1 h-11 bg-coolgray-10 px-4 relative leading-[140%]"
-                    type="password"
-                    required
-                    id="signupPassword"
-                    [(ngModel)]="newUser.password"
-                />
-                <img
-                    class="relative w-6 h-6 overflow-hidden shrink-0"
-                    alt=""
-                    src="assets/icon--jamicons--outline--logos--eye1.svg"
-                />
-            </div>
-            </div>
-        <div
-          class="self-stretch hidden flex-col items-start justify-start gap-[4px]"
+          class="self-stretch flex flex-col items-start justify-start gap-[4px]"
         >
           <div
-            class="self-stretch flex flex-col items-start justify-start gap-[8px]"
+            class="self-stretch flex flex-col items-start mb-4 justify-start gap-[8px]"
           >
-            <div class="self-stretch relative leading-[140%]">
-              Label Name
-            </div>
+            <div class="self-stretch relative leading-[140%]">Password</div>
             <div
-              class="self-stretch bg-coolgray-10 box-border h-12 flex flex-row py-3 px-4 items-center justify-start gap-[8px] text-base text-coolgray-60 border-b-[1px] border-solid border-coolgray-30"
+              class="self-stretch bg-coolgray-10 box-border h-12 flex flex-row py-3 items-center justify-start gap-[8px] text-base text-coolgray-60 border-solid border-coolgray-30"
             >
-              <!-- <img
+              <img
                 class="relative w-6 h-6 overflow-hidden shrink-0 hidden"
                 alt=""
-                src="/public/icon--jamicons--outline--logos--search3.svg"
-              /> -->
-
-              <div class="flex-1 relative leading-[140%]">Placeholder</div>
-              <!-- <img
+                src="assets/icon--jamicons--outline--logos--search3.svg"
+              />
+              <input
+                class="flex-1 h-11 bg-coolgray-10 px-4 relative leading-[140%]"
+                type="password"
+                required
+                id="signupPassword"
+                [(ngModel)]="newUser.password"
+              />
+              <img
                 class="relative w-6 h-6 overflow-hidden shrink-0"
                 alt=""
-                src="/public/icon--jamicons--outline--logos--chevrondown3.svg"
-              /> -->
+                src="assets/icon--jamicons--outline--logos--eye1.svg"
+              />
             </div>
-          </div>
-          <div
-            class="self-stretch relative text-xs leading-[140%] text-coolgray-60 hidden"
+            <div
+              class="self-stretch relative text-xs leading-[140%] text-coolgray-60"
           >
-            Helper text goes here
+              It must be a combination of minimum 8 letters, numbers, and
+              symbols.
+          </div>
+          </div>
+          <div class="self-stretch flex flex-col items-start justify-start">
+            <button
+              class="btn btn-green self-stretch bg-darkolivegreen flex flex-row items-center justify-center text-base"
+              type="button"
+              (click)="signup()"
+            >
+              <div
+                class="flex-1 flex flex-row py-0 px-4 items-center justify-center"
+              >
+                <div class="font-medium">Sign Up</div>
+              </div>
+            </button>
           </div>
         </div>
-        <!-- <div class="flex flex-row items-center justify-between">
-          <input
-            class="cursor-pointer w-5 h-5 flex flex-row items-center justify-center"
-            type="checkbox"
-          />
-
-          <div class="relative leading-[140%]">
-            Vestibulum faucibus odio vitae arcu auctor lectus.
-          </div>
-        </div> -->
         <div
-          class="self-stretch shadow-[0px_4px_4px_rgba(0,_0,_0,_0.25)] flex flex-row items-center justify-start gap-[16px] text-base text-primary-60 border-[1px] border-solid border-black lg:flex-row lg:gap-[16px] lg:items-center lg:justify-start md:flex-row md:gap-[16px] md:items-center md:justify-start sm:flex-row sm:gap-[16px] sm:items-center sm:justify-start"
+          class="self-stretch relative leading-[140%] text-center"
+          id="signup_error"
+          hidden
         >
           <div
-            class="h-12 hidden flex-row py-4 px-2 box-border items-center justify-center relative gap-[16px]"
+            class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative"
+            role="alert"
           >
-            <img
-              class="relative w-6 h-6 overflow-hidden shrink-0 hidden z-[0]"
-              alt=""
-              src="assets/icon--jamicons--outline--logos--plus4.svg"
-            />
-
-            <div class="flex flex-row items-center justify-center z-[1]">
-              <div
-                class="relative tracking-[0.5px] leading-[100%] font-medium"
-              >
-                Button Text
-              </div>
-            </div>
-            <!-- <img
-              class="relative w-6 h-6 overflow-hidden shrink-0 hidden z-[2]"
-              alt=""
-              src="/public/icon--jamicons--outline--logos--arrowright4.svg"
-            /> -->
-
-            <div
-              class="my-0 mx-[!important] absolute top-[8px] left-[24px] rounded-xl bg-default-alert hidden flex-row py-[0.5px] px-[5.5px] items-center justify-center z-[3] text-center text-xs text-default-white"
+            <strong class="font-bold">Oops!</strong>
+            <span class="block sm:inline">{{ error }}</span>
+            <span
+              class="absolute top-0 bottom-0 right-0 px-4 py-3"
+              (click)="close('signup_error')"
             >
-              <div class="relative leading-[140%]">9</div>
-            </div>
+              <svg
+                class="fill-current h-6 w-6 text-red-500"
+                role="button"
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 20 20"
+              >
+                <title>Close</title>
+                <path
+                  d="M14.348 14.849a1.2 1.2 0 0 1-1.697 0L10 11.819l-2.651 3.029a1.2 1.2 0 1 1-1.697-1.697l2.758-3.15-2.759-3.152a1.2 1.2 0 1 1 1.697-1.697L10 8.183l2.651-3.031a1.2 1.2 0 1 1 1.697 1.697l-2.758 3.152 2.758 3.15a1.2 1.2 0 0 1 0 1.698z"
+                />
+              </svg>
+            </span>
           </div>
-          <button
-            class="flex-1 bg-darkolivegreen flex flex-row py-4 px-3 items-center justify-center text-default-white border-[2px] border-solid border-darkolivegreen lg:flex-row lg:gap-[0px] lg:items-center lg:justify-center md:flex-row md:gap-[0px] md:items-center md:justify-center sm:flex-row sm:gap-[0px] sm:items-center sm:justify-center"
-            type="button"
-            (click)="signup()"
-            >
-            <!-- <img
-              class="flex-1 relative max-w-full overflow-hidden h-6 hidden"
-              alt=""
-              src="/public/icon--jamicons--outline--logos--plus5.svg"
-            /> -->
-
-            <div
-              class="flex-1 hidden border-r-[1px] border-solid border-gray"
-            ></div>
-            <div
-              class="flex-1 flex flex-row py-0 px-4 items-center justify-center"
-            >
-              <div
-                class="relative tracking-[0.5px] leading-[100%] font-medium"
-              >
-                Sign Up
-              </div>
-            </div>
-            <div
-              class="flex-1 hidden border-l-[1px] border-solid border-gray"
-            ></div>
-            <!-- <img
-              class="flex-1 relative max-w-full overflow-hidden h-6 hidden"
-              alt=""
-              src="/public/icon--jamicons--outline--logos--arrowright5.svg"
-            /> -->
-          </button>
         </div>
-      </div>
-      <div class="self-stretch relative leading-[140%] text-center" id="signup_error" hidden>
-        <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
-          <strong class="font-bold">Oops!</strong>
-          <span class="block sm:inline">{{error}}</span>
-          <span class="absolute top-0 bottom-0 right-0 px-4 py-3" (click)="close('signup_error')">
-            <svg class="fill-current h-6 w-6 text-red-500" role="button" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><title>Close</title><path d="M14.348 14.849a1.2 1.2 0 0 1-1.697 0L10 11.819l-2.651 3.029a1.2 1.2 0 1 1-1.697-1.697l2.758-3.15-2.759-3.152a1.2 1.2 0 1 1 1.697-1.697L10 8.183l2.651-3.031a1.2 1.2 0 1 1 1.697 1.697l-2.758 3.152 2.758 3.15a1.2 1.2 0 0 1 0 1.698z"/></svg>
-          </span>
+        <div
+          class="self-stretch relative box-border h-px border-t-[1px] border-solid border-coolgray-20"
+        ></div>
+        <div class="self-stretch relative leading-[140%] text-darkslategray">
+          <a href="/login" class="text-darkslategray hover:text-darkolivegreen"
+            >Already have an account?</a
+          >
         </div>
-      </div>
-      <div
-        class="self-stretch relative box-border h-px border-t-[1px] border-solid border-coolgray-20"
-      ></div>
-      <div class="self-stretch relative leading-[140%] text-darkslategray">
-        <a href="/login" class="text-darkslategray hover:text-darkolivegreen">Already have an account?</a>
       </div>
     </div>
+  </main>
 </div>

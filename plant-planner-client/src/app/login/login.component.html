@@ -97,7 +97,7 @@
             </div>
             <input
             type="email"
-            class="self-stretch bg-coolgray-10 box-border h-12 flex flex-row py-3 px-4 items-center justify-start gap-[8px] text-base text-coolgray-60 border-b-[1px] border-solid border-coolgray-30 md:flex-row md:gap-[8px] md:items-center md:justify-start"
+            class="md:flex-row md:gap-[8px] md:items-center md:justify-start"
             [(ngModel)]="email"
             >
                 <img
@@ -122,35 +122,27 @@
         <div
         class="self-stretch flex flex-col items-start justify-start gap-[4px]"
         >
+        <div class="self-stretch relative leading-[140%]">Password</div>
             <div
-                class="self-stretch flex flex-col items-start justify-start gap-[8px]"
+                class="self-stretch flex flex-col items-start justify-start gap-[8px] password-input"
             >
-                <div class="self-stretch relative leading-[140%]">Password</div>
-                <div
-                class="self-stretch bg-coolgray-10 box-border h-12 flex flex-row py-3 items-center justify-start gap-[8px] text-base text-coolgray-60 border-b-[1px] border-solid border-coolgray-30"
+                <input
+                    class="password"
+                    [type]="getInputType()"
+                    [(ngModel)]="password">
+                <button (click)="passwordVisibility()">
+                    <img [src]="toggleEyeSVG()" alt="Toggle Password Visibility">
+                </button>
+                <!-- <div
+                class="self-stretch bg-coolgray-10 box-border h-12 flex flex-row py-3 items-center justify-start gap-[8px]"
                 >
                 <img
-                    class="relative w-6 h-6 overflow-hidden shrink-0 hidden"
-                    alt=""
-                    src="assets/icon--jamicons--outline--logos--search3.svg"
-                />
-                <input
-                    type="password" 
-                    class="flex-1 h-11 bg-coolgray-10 px-4 relative leading-[140%]"
-                    [(ngModel)]="password">
-                <img
-                    class="relative w-6 h-6 overflow-hidden shrink-0"
+                    class="absolute inset-y-0 right-0 w-6 h-6 overflow-hidden shrink-0"
                     alt=""
                     src="assets/icon--jamicons--outline--logos--eye1.svg"
                 />
+            </div> -->
             </div>
-            </div>
-        <div
-            class="self-stretch relative text-xs leading-[140%] text-coolgray-60"
-        >
-            It must be a combination of minimum 8 letters, numbers, and
-            symbols.
-        </div>
         </div>
         <div
         class="self-stretch hidden flex-col items-start justify-start gap-[8px] text-xs"
@@ -196,7 +188,7 @@
         </div>
         </div> -->
             <button
-            class="self-stretch bg-darkolivegreen flex flex-row py-4 px-3 items-center justify-center text-base text-default-white border-[2px] border-solid border-darkslategray"
+            class="btn btn-green self-stretch bg-darkolivegreen flex flex-row items-center justify-center text-base"
             (click)="login()"
             >
                 <img

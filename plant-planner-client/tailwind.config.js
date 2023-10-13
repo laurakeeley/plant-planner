@@ -16,6 +16,8 @@ module.exports = {
         darkslategray: "#283618",
         "coolgray-20": "#dde1e6",
         darkolivegreen: "#606c38",
+        forrestgreen: "#283618",
+        camel: "#BC6C25"
       },
       fontFamily: {
         "button-m": "Roboto",

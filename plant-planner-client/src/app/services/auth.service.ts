@@ -60,4 +60,7 @@ export class AuthService {
     return !(user === null)
   }
 
+  getUser() {
+    return this.http.get('${BASE_URL}/')
+  }
 }
