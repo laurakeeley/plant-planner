@@ -5,6 +5,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { HARDINESS_ZONE_KEY } from '../env';
 import { Router } from '@angular/router';
 import { DetailsModalServiceService } from '../services/details-modal-service.service';
+import { PlantDataService } from '../services/plant-data.service';
 @Component({
   selector: 'app-search',
   templateUrl: './search.component.html',
@@ -196,6 +197,31 @@ export class SearchComponent {
 
   showDetails(plantId: number) {
     console.log(plantId);
-    this.detailsModalService.modalVisibility();
+    this.searchData.getPlantDetails(plantId).subscribe({
+      next: response => {
+        this.detailsModalService.setDetailResults(response);
+        this.detailsModalService.toggleModalVisiblity();
+        console.log("search.component.ts", response);
+      },
+      error: error => {
+        console.log(error);
+      }
+    })
   } 
+
+  // getUserPlants() {
+  //   this.plants.getUserPlants(userId).subscribe({
+  //     next: response => {
+  //       console.log(response);
+  //       this.userPlants = response;
+  //       this.message = response.message;
+  //     },
+  //     error: error => {
+  //       console.log(error);
+  //       if (!this.auth.isUserLoggedIn()) {
+  //         this.router.navigate(['/login']);
+  //       }
+  //     }
+  //   })
+  // }
 }

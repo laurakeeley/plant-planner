@@ -1,14 +1,35 @@
-import { Injectable } from '@angular/core';
-import { DetailsModalComponent } from '../details-modal/details-modal.component';
+import { EventEmitter, Injectable, Output } from '@angular/core';
 
 @Injectable({
   providedIn: 'root'
 })
 export class DetailsModalServiceService {
-  modalVisible = true;
+  private response: any;
+  modalHidden: boolean = true;
+
+  @Output() opened: EventEmitter<void> = new EventEmitter<void>();
+  @Output() closed: EventEmitter<void> = new EventEmitter<void>();
 
   modalVisibility() {
-    this.modalVisible = !this.modalVisible;
-    return this.modalVisible;
+    return this.modalHidden;
   }
+
+  toggleModalVisiblity() {
+    this.modalHidden = !this.modalHidden;
+    if (!this.modalHidden) {
+      this.opened.emit();
+    } else {
+      this.closed.emit();
+    }
+  }
+
+  setDetailResults(results: any) {
+    this.response = results;
+    console.log("details-modal-service.ts", this.response);
+  }
+
+  getDetailResults() {
+    return this.response;
+  }
+  
 }

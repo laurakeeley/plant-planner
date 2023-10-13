@@ -5,10 +5,10 @@
         <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
             <!-- Modal header -->
             <div class="flex items-start justify-between p-4 border-b rounded-t dark:border-gray-600">
-                <h3 class="text-xl font-semibold text-gray-900 dark:text-white">
+                <!-- <h3 class="text-xl font-semibold text-gray-900 dark:text-white">
                     Terms of Service
-                </h3>
-                <button type="button" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ml-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-forrestgreen" (click)="close()">
+                </h3> -->
+                <button type="button" class="bg-transparent ml-auto inline-flex justify-center items-center dark:hover:text-forrestgreen" (click)="close()">
                     <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
                         <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"/>
                     </svg>
@@ -17,48 +17,50 @@
             </div>
             <!-- Modal body -->
             <div
-            class="relative bg-default-white w-full flex flex-col items-start justify-center py-12 px-4 box-border gap-[32px] text-left text-xl text-coolgray-90 font-button-m lg:bg-default-white md:bg-default-white"
+            class="relative bg-default-white w-full flex flex-col items-start justify-center pb-12 px-4 box-border gap-[32px] text-left text-xl text-coolgray-90 font-button-m lg:bg-default-white md:bg-default-white"
             >
-            <img
-                class="self-stretch max-w-full overflow-hidden h-[280px] shrink-0 object-cover"
-                alt=""
-                src="assets/placeholder--picture2@2x.png"
-            />
-
+            <div class="flex items-center justify-center w-full">
+                <div class="w-1/2 p-4">
+                    <div
+                    class="self-stretch flex flex-col items-center justify-start gap-[8px]"
+                    >
+                        <h2
+                        class="m-0 self-stretch relative text-inherit tracking-[1px] leading-[100%] uppercase font-bold font-inherit text-forrestgreen"
+                        >
+                        {{response?.common_name}}
+                        </h2>
+                        <h3
+                        class="text-darkslategray m-0 self-stretch relative text-35xl leading-[110%] font-bold font-inherit"
+                        >
+                        TEST
+                        </h3>
+                        <h5
+                        class="m-0 self-stretch relative text-5xl leading-[110%] font-bold font-inherit"
+                        >
+                            <p class="m-0">
+                                {{response?.scientific_name[0]}}
+                            </p>
+                            <p class="m-0">Bibendum amet at molestie mattis.</p>
+                        </h5>
+                    </div>
+                </div>
+                <div class="w-1/2 p-4 flex justify-center">
+                    <img
+                        class="self-stretch max-w-full overflow-hidden h-[280px] shrink-0 object-cover"
+                        alt=""
+                        [src]="response?.default_image.original_url"
+                    />
+                </div>
+            </div>
             <div
                 class="self-stretch flex flex-col items-start justify-start gap-[48px]"
             >
                 <div
                 class="self-stretch flex flex-col items-start justify-start gap-[24px]"
                 >
-                <div
-                    class="self-stretch flex flex-col items-center justify-start gap-[8px]"
-                >
-                    <h2
-                    class="m-0 self-stretch relative text-inherit tracking-[1px] leading-[100%] uppercase font-bold font-inherit text-primary-90"
-                    >
-                    Caption
-                    </h2>
-                    <h3
-                    class="m-0 self-stretch relative text-35xl leading-[110%] font-bold font-inherit hidden"
-                    >
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                    </h3>
-                    <h3
-                    class="m-0 self-stretch relative text-5xl leading-[110%] font-bold font-inherit"
-                    >
-                    <p class="m-0">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                    </p>
-                    <p class="m-0">Bibendum amet at molestie mattis.</p>
-                    </h3>
-                </div>
-                <p class="m-0 self-stretch relative text-lg leading-[140%] hidden">
-                    Rhoncus morbi et augue nec, in id ullamcorper at sit. Condimentum
-                    sit nunc in eros scelerisque sed. Commodo in viverra nunc,
-                    ullamcorper ut. Non, amet, aliquet scelerisque nullam sagittis,
-                    pulvinar. Fermentum scelerisque sit consectetur hac mi. Mollis leo
-                    eleifend ultricies purus iaculis.
+                
+                <p class="m-0 self-stretch relative text-sm leading-[140%]">
+                    {{response?.description}}
                 </p>
                 </div>
                 <div
@@ -70,12 +72,11 @@
                     <img
                     class="relative w-12 h-12 overflow-hidden shrink-0"
                     alt=""
-                    src="assets/icon--jamicons--outline--logos--activity.svg"
+                    src="assets/sun.svg"
                     />
 
-                    <p class="m-0 self-stretch relative leading-[140%]">
-                    Tristique elementum, ac maecenas enim fringilla placerat
-                    scelerisque semper.
+                    <p class="m-0 self-stretch relative text-sm leading-[140%]">
+                    Sunlight: {{response?.sunlight}}
                     </p>
                 </div>
                 <div
@@ -84,12 +85,63 @@
                     <img
                     class="relative w-12 h-12 overflow-hidden shrink-0"
                     alt=""
-                    src="assets/icon--jamicons--outline--logos--car.svg"
+                    src="assets/tree.svg"
                     />
 
-                    <p class="m-0 self-stretch relative leading-[140%]">
-                    Curabitur magna cras euismod pharetra, mauris malesuada sit enim,
-                    elementum.
+                    <p class="m-0 self-stretch text-sm relative leading-[140%]">
+                    Type: {{response?.type}}
+                    </p>
+                </div>
+                <div
+                    class="flex-1 flex flex-col items-start justify-start gap-[16px]"
+                >
+                    <img
+                    class="relative w-12 h-12 overflow-hidden shrink-0"
+                    alt=""
+                    src="assets/ruler.svg"
+                    />
+
+                    <p class="m-0 self-stretch relative text-sm leading-[140%]">
+                    Height: {{response?.dimensions.min_value}} - {{response?.dimensions.max_value}} {{response?.dimensions.unit}}
+                    </p>
+                </div>
+                <div
+                    class="flex-1 flex flex-col items-start justify-start gap-[16px]"
+                >
+                    <img
+                    class="relative w-12 h-12 overflow-hidden shrink-0"
+                    alt=""
+                    src="assets/leaf.svg"
+                    />
+
+                    <p class="m-0 self-stretch relative text-sm leading-[140%]">
+                    Life Cycle: {{response?.cycle}}
+                    </p>
+                </div>
+                <div
+                    class="flex-1 flex flex-col items-start justify-start gap-[16px]"
+                >
+                    <img
+                    class="relative w-12 h-12 overflow-hidden shrink-0"
+                    alt=""
+                    src="assets/flower.svg"
+                    />
+
+                    <p class="m-0 self-stretch relative text-sm leading-[140%]">
+                    Flower Season: {{response?.flowering_season}}
+                    </p>
+                </div>
+                <div
+                    class="flex-1 flex flex-col items-start justify-start gap-[16px]"
+                >
+                    <img
+                    class="relative w-12 h-12 overflow-hidden shrink-0"
+                    alt=""
+                    src="assets/map-marker.svg"
+                    />
+
+                    <p class="m-0 self-stretch relative text-sm leading-[140%]">
+                    Zone: {{response?.hardiness.min}} - {{response?.hardiness.max}}
                     </p>
                 </div>
                 </div>

@@ -6,17 +6,28 @@ import { DetailsModalServiceService } from '../services/details-modal-service.se
   templateUrl: './details-modal.component.html',
   styleUrls: ['./details-modal.component.css']
 })
+
+
 export class DetailsModalComponent {
-
-
-  constructor (private detailsModalService: DetailsModalServiceService) {}
-
+  response: any;
+ 
+  constructor (private detailsModalService: DetailsModalServiceService) {
+    this.detailsModalService.opened.subscribe(() => { 
+      this.loadPlantDetails();
+    })
+  }
+  
   getModalVisiblity() {
     return this.detailsModalService.modalVisibility();
   }
-
+  
   close() {
-    this.detailsModalService.modalVisible = false;
+    this.detailsModalService.modalHidden = true;
   }
-
+  
+  loadPlantDetails() {
+    this.response = this.detailsModalService.getDetailResults();
+    console.log("details-modal.component.ts", this.response);
+  }
+  
 }
