@@ -13,6 +13,8 @@ import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { HttpService } from './services/http.service';
 import { PlantDataService } from './services/plant-data.service';
 import { LogoutComponent } from './logout/logout.component';
+import { DetailsModalComponent } from './details-modal/details-modal.component';
+
 
 @NgModule({
   declarations: [
@@ -22,6 +24,7 @@ import { LogoutComponent } from './logout/logout.component';
     LoginComponent,
     SignupComponent,
     LogoutComponent,
+    DetailsModalComponent,
   ],
   imports: [
     BrowserModule,

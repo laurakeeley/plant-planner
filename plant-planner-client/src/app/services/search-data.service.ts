@@ -28,4 +28,8 @@ export class SearchDataService {
     
     return this.http.get(`https://plant-hardiness-zone.p.rapidapi.com/zipcodes/`+zipCode, { headers: this.headers})
   }
+
+  getPlantDetails(plandId: number) {
+    return this.http.get(`https://perenual.com/api/species/details/${plandId}?key=${PLANT_SEARCH_KEY}`)
+  }
 }

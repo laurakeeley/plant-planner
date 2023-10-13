@@ -1,0 +1,153 @@
+<!-- Main modal -->
+<div id="defaultModal" tabindex="-1" aria-hidden="true" class="fixed top-0 left-0 right-0 z-50 flex justify-center items-center md:inset-0 h-[calc(100%-1rem)]" [ngClass]="{'hidden': getModalVisiblity()}">
+    <div class="relative w-full max-w-2xl max-h-full">
+        <!-- Modal content -->
+        <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
+            <!-- Modal header -->
+            <div class="flex items-start justify-between p-4 border-b rounded-t dark:border-gray-600">
+                <h3 class="text-xl font-semibold text-gray-900 dark:text-white">
+                    Terms of Service
+                </h3>
+                <button type="button" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ml-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-forrestgreen" (click)="close()">
+                    <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
+                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"/>
+                    </svg>
+                    <span class="sr-only">Close modal</span>
+                </button>
+            </div>
+            <!-- Modal body -->
+            <div
+            class="relative bg-default-white w-full flex flex-col items-start justify-center py-12 px-4 box-border gap-[32px] text-left text-xl text-coolgray-90 font-button-m lg:bg-default-white md:bg-default-white"
+            >
+            <img
+                class="self-stretch max-w-full overflow-hidden h-[280px] shrink-0 object-cover"
+                alt=""
+                src="assets/placeholder--picture2@2x.png"
+            />
+
+            <div
+                class="self-stretch flex flex-col items-start justify-start gap-[48px]"
+            >
+                <div
+                class="self-stretch flex flex-col items-start justify-start gap-[24px]"
+                >
+                <div
+                    class="self-stretch flex flex-col items-center justify-start gap-[8px]"
+                >
+                    <h2
+                    class="m-0 self-stretch relative text-inherit tracking-[1px] leading-[100%] uppercase font-bold font-inherit text-primary-90"
+                    >
+                    Caption
+                    </h2>
+                    <h3
+                    class="m-0 self-stretch relative text-35xl leading-[110%] font-bold font-inherit hidden"
+                    >
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                    </h3>
+                    <h3
+                    class="m-0 self-stretch relative text-5xl leading-[110%] font-bold font-inherit"
+                    >
+                    <p class="m-0">
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                    </p>
+                    <p class="m-0">Bibendum amet at molestie mattis.</p>
+                    </h3>
+                </div>
+                <p class="m-0 self-stretch relative text-lg leading-[140%] hidden">
+                    Rhoncus morbi et augue nec, in id ullamcorper at sit. Condimentum
+                    sit nunc in eros scelerisque sed. Commodo in viverra nunc,
+                    ullamcorper ut. Non, amet, aliquet scelerisque nullam sagittis,
+                    pulvinar. Fermentum scelerisque sit consectetur hac mi. Mollis leo
+                    eleifend ultricies purus iaculis.
+                </p>
+                </div>
+                <div
+                class="self-stretch flex flex-row items-start justify-start gap-[24px] text-base"
+                >
+                <div
+                    class="flex-1 flex flex-col items-start justify-start gap-[16px]"
+                >
+                    <img
+                    class="relative w-12 h-12 overflow-hidden shrink-0"
+                    alt=""
+                    src="assets/icon--jamicons--outline--logos--activity.svg"
+                    />
+
+                    <p class="m-0 self-stretch relative leading-[140%]">
+                    Tristique elementum, ac maecenas enim fringilla placerat
+                    scelerisque semper.
+                    </p>
+                </div>
+                <div
+                    class="flex-1 flex flex-col items-start justify-start gap-[16px]"
+                >
+                    <img
+                    class="relative w-12 h-12 overflow-hidden shrink-0"
+                    alt=""
+                    src="assets/icon--jamicons--outline--logos--car.svg"
+                    />
+
+                    <p class="m-0 self-stretch relative leading-[140%]">
+                    Curabitur magna cras euismod pharetra, mauris malesuada sit enim,
+                    elementum.
+                    </p>
+                </div>
+                </div>
+            </div>
+            </div>
+            <!-- Modal footer -->
+            <div class="flex items-center p-6 space-x-2 border-t border-gray-200 rounded-b dark:border-gray-600">
+                <div class="flex flex-row items-start justify-start gap-[16px]">
+                    <button
+                        class="btn btn-green h-10 flex flex-row items-center"
+                    >
+                        <!-- <img
+                        class="relative w-6 h-6 overflow-hidden shrink-0 hidden"
+                        alt=""
+                        src="assets/icon--jamicons--outline--logos--plus2.svg"
+                        /> -->
+    
+                        <div
+                        class="box-border w-3 hidden border-r-[1px] border-solid border-gray"
+                        ></div>
+                        <div class="flex flex-row items-center justify-center py-0 px-4">
+                        <span
+                            class="relative text-sm tracking-[0.5px] leading-[100%] font-medium font-button-m text-default-white text-left"
+                            >Primary Action</span
+                        >
+                        </div>
+                        <div
+                        class="box-border w-3 hidden border-l-[1px] border-solid border-gray"
+                        ></div>
+                        <img
+                        class="relative w-6 h-6 overflow-hidden shrink-0 hidden"
+                        alt=""
+                        src="assets/icon--jamicons--outline--logos--arrowright2.svg"
+                        />
+                    </button>
+                    <button
+                        class="cursor-pointer py-2 px-3 bg-[transparent] box-border h-10 flex flex-row items-center justify-center border-[2px] border-solid border-primary-60"
+                    >
+                        <img
+                        class="relative w-6 h-6 overflow-hidden shrink-0 hidden"
+                        alt=""
+                        src="assets/icon--jamicons--outline--logos--plus3.svg"
+                        />
+    
+                        <div class="flex flex-row items-center justify-center py-0 px-4">
+                        <span
+                            class="relative text-sm tracking-[0.5px] leading-[100%] font-medium font-button-m text-primary-60 text-left"
+                            >Secondary Action</span
+                        >
+                        </div>
+                        <img
+                        class="relative w-6 h-6 overflow-hidden shrink-0 hidden"
+                        alt=""
+                        src="assets/icon--jamicons--outline--logos--arrowright3.svg"
+                        />
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

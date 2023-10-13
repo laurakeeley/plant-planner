@@ -43,6 +43,14 @@ input:focus {
       border-solid 
       border-darkslategray;
   }
+  .btn-sm {
+    @apply 
+      font-bold
+      text-default-white 
+      border-[2px] 
+      border-solid 
+      border-darkslategray;
+  }
   .btn-green {
     @apply bg-darkolivegreen text-white;
   }

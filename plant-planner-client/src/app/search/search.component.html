@@ -1,4 +1,5 @@
 <div *ngIf="isUserLoggedIn()">
+  <app-details-modal></app-details-modal>
   <div class="main">
     <div class="banner-container">
         <div class="word-banner">
@@ -15,14 +16,14 @@
             To find plants that better serve your needs and can thrive in your area, apply your requirements below before searching! 
         </div>
         <div class="input-field flex space-x-3 mt-3 flex-wrap justify-evenly w-96 mx-auto">
-            <label class="relative block mr-4">
+            <div class="relative block mr-4">
                 <span class="sr-only">Search</span>
                 <span class="absolute inset-y-0 left-0 flex items-center pl-2">
                   <svg xmlns="http://www.w3.org/2000/svg" height="1rem" class="h-5 w-5 fill-slate-300" viewBox="0 0 512 512"><!-- ... --><path d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208zM208 352a144 144 0 1 0 0-288 144 144 0 1 0 0 288z"/></svg>
                 </span>
                 <input class="w-96 placeholder:italic placeholder:text-slate-400 block bg-white w-full border border-slate-300 rounded-md py-2 pl-9 pr-3 shadow-sm focus:outline-none focus:border-sky-500 focus:ring-sky-500 focus:ring-1 sm:text-sm rounded-full mr-4" placeholder="Type Your Plant Name" type="text" name="search" [(ngModel)]="plant_name" />
-            </label>
-            <button class="bg-darkolivegreen hover:bg-darkslategray active:bg-darkslategray focus:outline-none focus:ring focus:bg-darkolivegreen text-white rounded-full ml-4 font-sans" (click)="getSearchData()">
+            </div>
+            <button class="btn-sm btn-green w-20 ml-4" (click)="getSearchData()">
                 Search
             </button>
               
@@ -89,10 +90,10 @@
               </div>
             </div>
             
-            <button class="bg-darkolivegreen hover:bg-darkslategray active:bg-darkslategray focus:outline-none focus:ring focus:bg-darkolivegreen text-white rounded-full h-6 font-sans w-20 ml-4 mt-4" (click)="saveCheckboxValues()">
+            <button class="btn-sm btn-green h-6 w-20 ml-4 mt-4" (click)="saveCheckboxValues()">
                 Apply
             </button>
-            <button class="bg-darkolivegreen hover:bg-darkslategray active:bg-darkslategray focus:outline-none focus:ring focus:bg-darkolivegreen text-white rounded-full h-6 font-sans w-20 ml-4 mt-4" (click)="resetAll()">
+            <button class="btn-sm btn-green h-6 w-20 ml-4 mt-4" (click)="resetAll()">
                 Reset
             </button>
         </div>   
@@ -106,18 +107,77 @@
       
           <div class="grid grid-cols-3 gap-x-8 gap-y-10 sm:grid-cols-1 md:grid-cols-1 mx-auto">
             <div *ngFor="let result of searchResults">
-            <!-- each card section -->
-            <div class="group w-80">
-              <div class="aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-lg bg-gray-200 xl:aspect-h-8 xl:aspect-w-7">
-                <img [src]="result.default_image.original_url" alt="Plant Image" class="h-96 w-96 object-cover object-center group-hover:opacity-75">
-              </div>
-              <h3 class="mt-4 text-lg font-sans text-darkslategray">{{result.common_name}}</h3>
-              <p class="mt-1 text-lg font-medium text-darkslategray">{{result.scientific_name[0]}}</p>
+              <!-- each card section -->
+              <div class="group w-80">
+                <div class="aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-lg bg-gray-200 xl:aspect-h-8 xl:aspect-w-7">
+                  <img [src]="result.default_image.original_url" alt="Plant Image" class="h-96 w-96 object-cover object-center group-hover:opacity-75">
+                </div>
+                <h3 class="mt-4 text-lg font-sans text-darkslategray">{{result.common_name}}</h3>
+                <p class="mt-1 text-lg font-medium text-darkslategray">{{result.scientific_name[0]}}</p>
+                <div
+          class="flex-row flex items-start justify-start pl-3 pr-3 gap-[16px] lg:flex-row lg:gap-[16px] lg:items-start lg:justify-start md:flex-row md:gap-[16px] md:items-start md:justify-start sm:flex-col sm:gap-[16px] sm:items-start sm:justify-start"
+        >
+          <button
+            type="button"
+            class="btn btn-green w-24 flex-1 h-12 flex flex-row items-center sm:flex-[unset] sm:self-stretch"
+            id="search_plant_details"
+            (click)="showDetails(result.id)"
+          >
+            <!-- <img
+              class="relative w-6 h-6 overflow-hidden shrink-0"
+              alt=""
+              src="assets/icon--jamicons--outline--logos--plus5.svg"
+            /> -->
+
+            <div
+              class="box-border w-3 hidden border-r-[1px] border-solid border-gray"
+            ></div>
+            <div class="flex flex-row items-center justify-center py-0 px-4">
+              <span
+                class="relative text-base tracking-[0.5px] leading-[100%] justify-center font-medium font-button-m text-white"
+                >Plant Details</span
+              >
             </div>
-            <!-- end of each card section -->
-        </div> 
+            <div
+              class="box-border w-3 hidden border-l-[1px] border-solid border-gray"
+            ></div>
+            <img
+              class="relative w-6 h-6 overflow-hidden shrink-0 hidden"
+              alt=""
+              src="assets/icon--jamicons--outline--logos--arrowright.svg"
+            />
+          </button>
+          <button
+            class="cursor-pointer w-24 py-4 px-3 bg-[transparent] flex-1 box-border h-12 flex flex-row items-center justify-center border-[2px] border-solid border-primary-60 sm:flex-[unset] sm:self-stretch"
+          >
+            <!-- <img
+              class="relative w-6 h-6 overflow-hidden shrink-0 hidden"
+              alt=""
+              src="assets/icon--jamicons--outline--logos--plus1.svg"
+            /> -->
+
+            <div class="flex flex-row items-center justify-center py-0 px-4">
+              <label
+                class="cursor-pointer relative text-base tracking-[0.5px] leading-[100%] font-medium font-button-m text-primary-60"
+                >Add to Profile</label
+              >
+            </div>
+            <img
+              class="relative w-6 h-6 overflow-hidden shrink-0 hidden"
+              alt=""
+              src="assets/icon--jamicons--outline--logos--arrowright1.svg"
+            />
+          </button>
+        </div>
+              </div>
+              <!-- end of each card section -->
+            </div> 
         </div>
     </div>
     </div>
+    <!-- <app-details-modal id="detailsModal" aria-hidden="true" class="fixed top-0 left-0 right-0 z-50 w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] max-h-full"></app-details-modal> -->
+    
+    
+    
+  </div>
 
-</div>
