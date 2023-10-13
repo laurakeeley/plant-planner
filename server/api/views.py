@@ -1,11 +1,11 @@
-from flask import Blueprint, render_template, request, flash, jsonify
+from flask import Blueprint, render_template, request, flash, jsonify, current_app
 from flask_login import login_required, current_user
 from sqlalchemy.exc import SQLAlchemyError
-from ..models import Plant
+from ..models import Plant, User
 from .. import db
 
 from flask import Flask, request, jsonify
-from server import create_app
+# from server import create_app
 
 from .auth import token_required
 
@@ -13,13 +13,39 @@ from .auth import token_required
 views = Blueprint("views", __name__)
 
 @views.route("/getPlants", methods=['GET'])
-# @token_required
+@token_required
 def profile():
-    return jsonify({'message': 'This is a protected route to get saved plants info for a user'})
+    if request.method == "GET":
+        try:
+            data = request.json
+            user_id = data.get('user_id')
+            
+            #*validate data type
+            if not isinstance(user_id, int):
+                return jsonify({'error': 'user id must be an int'}), 400
+            
+            #*query user table to get user info
+            user_info = User.query.filter_by(id = user_id).first()
+            print(f"user_info: {user_info.__dict__}")
+            if user_info is None:
+                return jsonify({'error': 'User record not found'}), 404
+            
+            #* convert SQLAlchemy object into JSON to pass to FE
+            user_data = {
+                'email': user_info.email,
+                "first_name": user_info.first_name,
+                "last_name": user_info.last_name
+            }
+            return jsonify({'user_record': user_data}), 200
+            #query user_plant table to get all the plant id that associate with the current user id
+            #query plant details for the plant id
+        except:
+            
+            return jsonify({'message': 'Failed to get user or their plants info'})
 
 
 @views.route("/addPlantDetailsIndb", methods=['POST'])
-# @token_required
+@token_required
 def insert_plant_detail_in_db():
     if request.method == "POST":
         try:
@@ -53,7 +79,7 @@ def insert_plant_detail_in_db():
         
         
 @views.route("/searchPlantsDetails", methods=['GET'])
-# @token_required
+@token_required
 def search_plants_detail():
     if request.method == "GET":
         try:
@@ -80,7 +106,7 @@ def search_plants_detail():
             return jsonify({'error': str(e)}), 500
 
 @views.route("/deletePlantsDetails", methods=['DELETE'])
-# @token_required
+@token_required
 def delete_plants_detail():
     return jsonify({'message': 'This is a protected route for deleting a plant'})
 

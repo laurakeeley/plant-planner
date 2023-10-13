@@ -1,4 +1,4 @@
-from flask import Blueprint, request, jsonify, Flask
+from flask import Blueprint, request, jsonify, Flask, current_app
 from ..models import User
 from flask_bcrypt import generate_password_hash, check_password_hash
 
@@ -9,7 +9,7 @@ import jwt
 import datetime
 from functools import wraps
 
-from server import create_app
+# from server import create_app
 
 
 #! initialize blueprint, always need to pass in __name__, and the name of the blueprint
@@ -55,7 +55,6 @@ def login():
     if request.method == "GET":
         return jsonify({'message': 'Please login', 'status': 400})
     elif request.method == "POST":
-        print(f"data: {request.json}")
         data = request.json
         email = data.get('email')
         password = data.get('password')
@@ -66,9 +65,9 @@ def login():
             if check_password_hash(user.password, password):
                 #*flask remember tht user has logged in
                 result = login_user(user, remember=True)
-                app = create_app()
+                # app = create_app()
                 expiration = datetime.datetime.utcnow() + datetime.timedelta(hours=1)
-                token = jwt.encode({'user_id': user.id, 'expiration': expiration.strftime('%Y-%m-%d %H:%M:%S')}, app.config['SECRET_KEY'], algorithm='HS256')
+                token = jwt.encode({'user_id': user.id, 'expiration': expiration.strftime('%Y-%m-%d %H:%M:%S')}, current_app.config['SECRET_KEY'], algorithm='HS256')
                 print(f"token: {token}")
                 response = {'message': 'login successfully', 'user_id': user.id, 'status': 200, 'token': token, 'expiration': expiration}
                 print(f"response: {response}")
@@ -87,11 +86,11 @@ def token_required(f):
     @wraps(f)
     def decorated(*args, **kwargs):
         token = None
-        app = create_app()
+        # app = create_app()
         auth_header = request.headers.get('Authorization')
 
         if auth_header:
-            print(f"auth_header format: {auth_header}, secrete key: {app.config['SECRET_KEY']}")
+            print(f"auth_header format: {auth_header}, secrete key: {current_app.config['SECRET_KEY']}")
           
             auth_parts = auth_header.split()
             if len(auth_parts) == 2 and auth_parts[0] == 'Bearer':
@@ -104,7 +103,7 @@ def token_required(f):
             return jsonify({'error': 'Token is missing', 'status': 401}), 401
         
         try:
-            data = jwt.decode(token, app.config['SECRET_KEY'], algorithms=['HS256'])
+            data = jwt.decode(token, current_app.config['SECRET_KEY'], algorithms=['HS256'])
             print(f"data in try block: {data}")
             #check if current token has expired
             token_expiration_date = data.get('expiration')
@@ -134,7 +133,7 @@ def logout():
     try:
         # Extract token from the Authorization header
         token = request.headers.get('Authorization').split()[1]
-        app = create_app()
+        # app = create_app()
         
         #add token to the list of revoked tokens
         revoked_tokens.add(token)
