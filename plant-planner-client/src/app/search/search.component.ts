@@ -208,20 +208,4 @@ export class SearchComponent {
       }
     })
   } 
-
-  // getUserPlants() {
-  //   this.plants.getUserPlants(userId).subscribe({
-  //     next: response => {
-  //       console.log(response);
-  //       this.userPlants = response;
-  //       this.message = response.message;
-  //     },
-  //     error: error => {
-  //       console.log(error);
-  //       if (!this.auth.isUserLoggedIn()) {
-  //         this.router.navigate(['/login']);
-  //       }
-  //     }
-  //   })
-  // }
 }

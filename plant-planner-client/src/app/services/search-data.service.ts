@@ -30,6 +30,6 @@ export class SearchDataService {
   }
 
   getPlantDetails(plantId: number) {
-    return this.http.get(`https://perenual.com/api/species/details/${plantId}?key=${PLANT_SEARCH_KEY}`)
+    return this.http.get(`https://perenual.com/api/species/details/${plantId}?key=${PLANT_SEARCH_KEY}`);
   }
 }
