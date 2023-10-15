@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { DetailsModalServiceService } from '../services/details-modal-service.service';
+import { PlantDataService } from '../services/plant-data.service';
 
 @Component({
   selector: 'app-details-modal',
@@ -11,7 +12,10 @@ import { DetailsModalServiceService } from '../services/details-modal-service.se
 export class DetailsModalComponent {
   response: any;
  
-  constructor (private detailsModalService: DetailsModalServiceService) {
+  constructor (
+    private detailsModalService: DetailsModalServiceService,
+    private plants: PlantDataService
+    ) {
     this.detailsModalService.opened.subscribe(() => { 
       this.loadPlantDetails();
     })
@@ -27,11 +31,23 @@ export class DetailsModalComponent {
   
   loadPlantDetails() {
     this.response = this.detailsModalService.getDetailResults();
-    console.log("details-modal.component.ts", this.response);
   }
 
   capitalizeFirstLetter(string: string) {
     return string.charAt(0).toUpperCase() + string.slice(1);
   }
-  
+
+  addPlant(plantObject: any) {
+    console.log("details-modal.comp.ts");
+    console.log(plantObject);
+    this.plants.createPlant(plantObject).subscribe({
+      next: response => {
+        console.log("addPlant response:");
+        console.log(response);
+      },
+      error: error => {
+        console.log(error);
+      }
+    })
+  } 
 }

@@ -18,7 +18,8 @@ export class SearchComponent {
     private searchData: SearchDataService,
     private auth: AuthService,
     private router: Router,
-    private detailsModalService: DetailsModalServiceService
+    private detailsModalService: DetailsModalServiceService,
+    private plants: PlantDataService
   ) {}
 
   //banner words
@@ -201,11 +202,24 @@ export class SearchComponent {
       next: response => {
         this.detailsModalService.setDetailResults(response);
         this.detailsModalService.toggleModalVisiblity();
-        console.log("search.component.ts", response);
       },
       error: error => {
         console.log(error);
       }
     })
   } 
+
+  addPlant(plantObject: any) {
+    console.log("search.comp.ts");
+    console.log(plantObject);
+    this.plants.createPlant(plantObject).subscribe({
+      next: response => {
+        console.log("addPlant response:");
+        console.log(response);
+      },
+      error: error => {
+        console.log(error);
+      }
+    })
+  }
 }

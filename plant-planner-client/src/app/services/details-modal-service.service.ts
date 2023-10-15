@@ -25,7 +25,6 @@ export class DetailsModalServiceService {
 
   setDetailResults(results: any) {
     this.response = results;
-    console.log("details-modal-service.ts", this.response);
   }
 
   getDetailResults() {

@@ -12,6 +12,7 @@ export class HomeComponent {
   message = "";
   userPlants = {};
   user = {};
+  private userId = this.auth.getAuthenticatedUser();
   
   constructor(
     private plants:PlantDataService,
@@ -21,18 +22,18 @@ export class HomeComponent {
     
     
   ngOnInit() {
-    this.getUserPlants();
+    this.getUserPlants(this.userId);
   }
 
-  getUserPlants() {
+  getUserPlants(userId: any) {
     this.plants.getUserPlants(userId).subscribe({
       next: response => {
-        console.log(response);
+        console.log("getUserPlants: ", response);
         if (!this.auth.isUserLoggedIn()) {
           this.router.navigate(['/login']);
         } else {
-          this.userPlants = response;
-          this.message = response.message;
+          // this.userPlants = response;
+          console.log(response);
         }
       },
       error: error => {
@@ -43,21 +44,5 @@ export class HomeComponent {
       }
     })
   }
-
-  // getUser() {
-  //   this.plants.getUserPlants(userId).subscribe({
-  //     next: response => {
-  //       console.log(response);
-  //       this.userPlants = response;
-  //       this.message = response.message;
-  //     },
-  //     error: error => {
-  //       console.log(error);
-  //       if (!this.auth.isUserLoggedIn()) {
-  //         this.router.navigate(['/login']);
-  //       }
-  //     }
-  //   })
-  // }
 
 }
