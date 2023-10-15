@@ -29,5 +29,9 @@ export class DetailsModalComponent {
     this.response = this.detailsModalService.getDetailResults();
     console.log("details-modal.component.ts", this.response);
   }
+
+  capitalizeFirstLetter(string: string) {
+    return string.charAt(0).toUpperCase() + string.slice(1);
+  }
   
 }
