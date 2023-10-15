@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BASE_URL } from '../env';
-import { userId } from './auth.service';
+import { map, catchError } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +11,7 @@ export class PlantDataService {
 
   constructor(private http: HttpClient) {}
 
-  getUserPlants(userId: any) {
+  getUser(userId: any) {
     return this.http.get<any>(`${BASE_URL}/getPlants?user_id=${userId}`);
 }
 
@@ -22,7 +22,20 @@ export class PlantDataService {
     const data = {plant_id, plant_name, details};
     console.log("plant-data.service.ts");
     console.log(data);
-    // const data = {plantObject};
     return this.http.post<any>(`${BASE_URL}/addPlantDetailsIndb`, data);
+  }
+
+  getPlant(plantId: number) {
+    return this.http.get<any>(`${BASE_URL}/searchPlantsDetails?plant_id=${plantId}`)
+      .pipe(
+        map(response => {
+          console.log("getPlant map response: ", response);
+          return response;
+        }),
+        catchError(error => {
+          console.log("getPlant catchError error: ", error);
+          return error;
+        })
+      )
   }
 }

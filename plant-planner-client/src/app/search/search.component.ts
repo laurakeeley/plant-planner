@@ -198,6 +198,23 @@ export class SearchComponent {
 
   showDetails(plantId: number) {
     console.log(plantId);
+    this.plants.getPlant(plantId).subscribe({
+      next: response => {
+        this.detailsModalService.setDetailResults(response);
+        this.detailsModalService.toggleModalVisiblity();
+      },
+      error: error => {
+        console.log(error);
+        if (error.status === 404) {
+          this.getDetailsFromAPI(plantId);
+        } else {
+          console.log(error);
+        }
+      }
+    })
+  } 
+
+  getDetailsFromAPI(plantId: number) {
     this.searchData.getPlantDetails(plantId).subscribe({
       next: response => {
         this.detailsModalService.setDetailResults(response);
@@ -207,7 +224,7 @@ export class SearchComponent {
         console.log(error);
       }
     })
-  } 
+  }
 
   addPlant(plantObject: any) {
     console.log("search.comp.ts");

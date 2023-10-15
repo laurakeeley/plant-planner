@@ -22,13 +22,13 @@ export class HomeComponent {
     
     
   ngOnInit() {
-    this.getUserPlants(this.userId);
+    this.getUser(this.userId);
   }
-
-  getUserPlants(userId: any) {
-    this.plants.getUserPlants(userId).subscribe({
+  
+  getUser(userId: any) {
+    this.plants.getUser(userId).subscribe({
       next: response => {
-        console.log("getUserPlants: ", response);
+        console.log("getUser: ", response);
         if (!this.auth.isUserLoggedIn()) {
           this.router.navigate(['/login']);
         } else {
