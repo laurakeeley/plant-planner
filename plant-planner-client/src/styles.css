@@ -39,21 +39,57 @@ input:focus {
       py-4 
       px-3
       text-default-white 
+      rounded
       border-[2px] 
-      border-solid 
-      border-darkslategray;
+      border-solid
+      border-darkolivegreen
+  }
+  .btn-sm {
+    @apply 
+      font-bold
+      text-default-white
+      rounded 
+      border-[2px] 
+      border-solid
+      border-darkolivegreen
   }
   .btn-green {
-    @apply bg-darkolivegreen text-white;
+    @apply  
+      bg-darkolivegreen
+      text-white;
   }
   .btn-green:hover {
-    @apply bg-forrestgreen;
+    @apply 
+    bg-forrestgreen
+    border-forrestgreen;
   }
   /* dark:active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] */
   .btn-green:active {
     @apply bg-camel;
   }
   .btn-green:focus {
+    @apply 
+      border-forrestgreen;
+  }
+
+  .btn-white {
+    @apply 
+      bg-[transparent]
+      border-[2px]
+      border-darkolivegreen
+      text-darkolivegreen;
+  }
+  .btn-white:hover {
+    @apply 
+      bg-forrestgreen
+      border-forrestgreen
+      text-white;
+  }
+  /* dark:active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] */
+  .btn-white:active {
+    @apply bg-camel;
+  }
+  .btn-whitte:focus {
     @apply border-forrestgreen;
   }
 
