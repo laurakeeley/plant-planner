@@ -1,7 +1,7 @@
 from flask import Blueprint, render_template, request, flash, jsonify, current_app
 from flask_login import login_required, current_user
 from sqlalchemy.exc import SQLAlchemyError
-from ..models import Plant, User
+from ..models import Plant, User, UserPlants
 from .. import db
 
 from flask import Flask, request, jsonify
@@ -111,3 +111,36 @@ def delete_plants_detail():
     return jsonify({'message': 'This is a protected route for deleting a plant'})
 
 
+@views.route("/addPlantToProfile", methods=['POST'])
+@token_required
+def add_a_plant_in_profile():
+    if request.method == "POST":
+        try:
+        #*get user id and plant id
+            data = request.json
+            user_id = data.get("user_id")
+            plant_id = data.get("plant_id")  
+        #*validate user id and plant id and both exist
+            if not isinstance(user_id, int):
+                return jsonify({'error': 'user_id must be an int'}), 400
+            _validate_plant_id(plant_id)
+            
+        #*write to user_plants
+            add_a_plant_in_profile = UserPlants(plant_id=plant_id, user_id=user_id)
+            db.session.add(add_a_plant_in_profile)
+            db.session.commit()
+        
+            return jsonify({'message': 'Add a plant in profile for the current user successfully', 'status':200}),200
+        except:
+            return jsonify({'error': "Failed to add a plant in profile for the current user"}), 400
+        
+        
+        
+def _validate_plant_id(plant_id):
+    if isinstance(plant_id, int):
+        plant_record_lookup = Plant.query.filter_by(plant_id=plant_id).first()
+        if not plant_record_lookup:
+            return jsonify({'error': 'Plant does not exist'}), 400
+        return plant_id
+    else:
+        return jsonify({'error': 'plant_id must be an int'}), 400
