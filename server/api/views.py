@@ -17,9 +17,26 @@ views = Blueprint("views", __name__)
 def profile():
     if request.method == "GET":
         try:
-            data = request.json
+            # data = request.json
+            # user_id = data.get('user_id')
+            
+            auth_header = request.headers.get('Authorization')
+            if auth_header:
+                print(f"auth_header format: {auth_header}, secrete key: {current_app.config['SECRET_KEY']}")
+            
+                auth_parts = auth_header.split()
+                if len(auth_parts) == 2 and auth_parts[0] == 'Bearer':
+                    token = auth_parts[1]
+                    print(f"token => {token}")
+                else:
+                    return jsonify({'message': 'Invalid Authorization header format', 'status': 401})
+            
+            
+            data = jwt.decode(token, current_app.config['SECRET_KEY'], algorithms=['HS256'])
+            print(f"data in try block: {data}")
             user_id = data.get('user_id')
             
+            print(f"+++++===== {user_id}")
             #*validate data type
             if not isinstance(user_id, int):
                 return jsonify({'error': 'user id must be an int'}), 400
@@ -100,14 +117,14 @@ def insert_plant_detail_in_db():
         except Exception:
             return jsonify({"message": "Failed to insert plant detail into db", "status":400}),400
         
-        
-@views.route("/searchPlantsDetails", methods=['GET'])
+
+@views.route("/searchPlantsDetails/<int:plant_id>", methods=['GET'])
 @token_required
-def search_plants_detail():
+def search_plants_detail(plant_id):
     if request.method == "GET":
         try:
-            data = request.json
-            plant_id = data.get("plant_id")
+            # data = request.json
+            # plant_id = data.get("plant_id")
             if not isinstance(plant_id, int):
                 return jsonify({'error': 'plant_id must be an int'}), 400
             plant_record = Plant.query.filter_by(plant_id=plant_id).first()
