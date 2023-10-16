@@ -26,7 +26,6 @@ def profile():
             
             #*query user table to get user info
             user_info = User.query.filter_by(id = user_id).first()
-            print(f"user_info: {user_info.__dict__}")
             if user_info is None:
                 return jsonify({'error': 'User record not found'}), 404
             
@@ -36,13 +35,37 @@ def profile():
                 "first_name": user_info.first_name,
                 "last_name": user_info.last_name
             }
-            return jsonify({'user_record': user_data}), 200
-            #query user_plant table to get all the plant id that associate with the current user id
-            #query plant details for the plant id
-        except:
+         
             
+            #*query user_plant to get all the plant ids
+            favorite_plant_ids = set()
+            all_plants_ids = UserPlants.query.filter_by(user_id=user_id).all()
+
+            for plant in all_plants_ids:
+                plant_id = plant.plant_id
+                if isinstance(plant_id, int):
+                    favorite_plant_ids.add(plant_id)
+            #*query plant details for the plant id
+                _all_plants_detail_list = _get_all_plants_by_ids(plant_ids_list=favorite_plant_ids)
+            return jsonify({'user_record': user_data, 'plants_record': _all_plants_detail_list}), 200
+        except: 
             return jsonify({'message': 'Failed to get user or their plants info'})
 
+def _get_all_plants_by_ids(plant_ids_list: set) -> list:
+    all_plants_detail_list = list()
+    if isinstance(plant_ids_list, set):
+        for plant_id in plant_ids_list:
+            plant_details = Plant.query.filter_by(plant_id=plant_id).first()
+            
+            plant_data = {
+                'plant_id': plant_details.plant_id,
+                'plant_name': plant_details.plant_name,
+                'details': plant_details.details
+            }
+            all_plants_detail_list.append(plant_data)
+        return all_plants_detail_list
+    else:
+        return jsonify({'message': 'Failed to get plants info for current user'}), 400
 
 @views.route("/addPlantDetailsIndb", methods=['POST'])
 @token_required
@@ -136,7 +159,7 @@ def add_a_plant_in_profile():
         
         
         
-def _validate_plant_id(plant_id):
+def _validate_plant_id(plant_id: int) -> int:
     if isinstance(plant_id, int):
         plant_record_lookup = Plant.query.filter_by(plant_id=plant_id).first()
         if not plant_record_lookup:
