@@ -12,8 +12,10 @@ export class PlantDataService {
   constructor(private http: HttpClient) {}
 
   getUser(userId: any) {
-    return this.http.get<any>(`${BASE_URL}/getPlants?user_id=${userId}`);
-}
+    const user_id = parseInt(userId);
+    return this.http.get<any>(`${BASE_URL}/getPlants/${user_id}`);
+  }
+  
 
   createPlant(plantObject: any) {
     const plant_id = plantObject.id;

@@ -23,6 +23,7 @@ export class HomeComponent {
     
   ngOnInit() {
     this.getUser(this.userId);
+    console.log("ngOnInit userId: ", this.userId);
   }
   
   getUser(userId: any) {
