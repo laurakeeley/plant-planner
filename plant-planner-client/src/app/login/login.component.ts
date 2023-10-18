@@ -20,7 +20,6 @@ export class LoginComponent {
   login() {
     this.auth.login(this.email, this.password).subscribe({
       next: (response) => {
-        console.log(response);
         if ((response.status === 200)) {
           this.router.navigate(['/']);
         } else {

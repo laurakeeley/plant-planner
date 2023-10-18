@@ -10,8 +10,8 @@ import { Router } from '@angular/router';
 })
 export class HomeComponent {
   message = "";
-  userPlants = {};
-  user = {};
+  userPlants: any = {};
+  user: any = {};
   private userId = this.auth.getAuthenticatedUser();
   
   constructor(
@@ -32,7 +32,8 @@ export class HomeComponent {
         if (!this.auth.isUserLoggedIn()) {
           this.router.navigate(['/login']);
         } else {
-          // this.userPlants = response;
+          this.userPlants = response.plants_record ? response.plants_record : {};
+          this.user = response.user_record ? response.user_record : {};
           console.log(response);
         }
       },

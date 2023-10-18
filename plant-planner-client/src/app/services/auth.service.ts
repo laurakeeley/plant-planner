@@ -28,7 +28,6 @@ export class AuthService {
       `${BASE_URL}/login`, data).pipe(
       map(
         data => {
-          console.log("loging data:", data);
           sessionStorage.setItem('userId', data.user_id);
           sessionStorage.setItem('jwtToken', `Bearer ${data.token}`);
           return data;
