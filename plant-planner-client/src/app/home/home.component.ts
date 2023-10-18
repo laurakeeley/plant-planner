@@ -25,51 +25,24 @@ export class HomeComponent {
     this.getUser();
   }
   
-  // getUser() {
-  //   this.plants.getUser().subscribe({
-  //     next: response => {
-  //       console.log("getUser response: ", response);
-  //       // if (!this.auth.isUserLoggedIn()) {
-  //       //   this.router.navigate(['/login']);
-  //       // } else {
-  //       //   // this.userPlants = response;
-  //       //   console.log(response);
-  //       // }
-  //     },
-  //     error: error => {
-  //       console.log('errors: ', error);
-  //       if (!this.auth.isUserLoggedIn()) {
-  //         this.router.navigate(['/login']);
-  //       }
-  //     }
-  //   })
-  // }
-
-  //chatGPT nonsense
   getUser() {
     this.plants.getUser().subscribe({
       next: response => {
         console.log("getUser response: ", response);
-        if (response && response.user_record && response.plants_record) {
-          // Data is available, handle it as needed
-          this.userPlants = response.plants_record;
+        if (!this.auth.isUserLoggedIn()) {
+          this.router.navigate(['/login']);
         } else {
-          // Handle the case when the response data is missing or incorrect
-          console.log("Invalid response data.");
+          // this.userPlants = response;
+          console.log(response);
         }
       },
       error: error => {
-        console.log("Error:", error);
-        if (error.status === 401) {
-          // Unauthorized error, user is not logged in or token is invalid
+        console.log(error);
+        if (!this.auth.isUserLoggedIn()) {
           this.router.navigate(['/login']);
-        } else {
-          // Handle other types of errors
-          // You can display an error message or take appropriate actions
         }
       }
-    });
+    })
   }
-  
 
 }
