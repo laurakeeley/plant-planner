@@ -29,8 +29,8 @@ export class AuthService {
       map(
         data => {
           console.log("loging data:", data);
-          sessionStorage.setItem(userId, data.user_id);
-          sessionStorage.setItem(jwtToken, `Bearer ${data.token}`);
+          sessionStorage.setItem('userId', data.user_id);
+          sessionStorage.setItem('jwtToken', `Bearer ${data.token}`);
           return data;
         }
       )
@@ -38,29 +38,25 @@ export class AuthService {
   }
 
   logout() {
-    sessionStorage.removeItem(jwtToken);
-    sessionStorage.removeItem(userId);
+    sessionStorage.removeItem('jwtToken');
+    sessionStorage.removeItem('userId');
     jwtToken = "";
     userId = "";
     this.router.navigate(['/login']);
   }
 
   getAuthenticatedUser() {
-    return sessionStorage.getItem(userId);
+    return sessionStorage.getItem('userId');
   }
 
   getAuthToken() {
     if (this.getAuthenticatedUser())
-      return sessionStorage.getItem(jwtToken)
+      return sessionStorage.getItem('jwtToken')
     return null
   }
 
   isUserLoggedIn() {
-    let user = sessionStorage.getItem(userId);
+    let user = sessionStorage.getItem('userId');
     return !(user === null)
-  }
-
-  getUser() {
-    return this.http.get('${BASE_URL}/')
   }
 }
