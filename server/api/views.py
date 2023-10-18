@@ -52,14 +52,16 @@ def profile():
             #*query user_plant to get all the plant ids
             favorite_plant_ids = set()
             all_plants_ids = UserPlants.query.filter_by(user_id=user_id).all()
-
-            for plant in all_plants_ids:
-                plant_id = plant.plant_id
-                if isinstance(plant_id, int):
-                    favorite_plant_ids.add(plant_id)
-            #*query plant details for the plant id
-                _all_plants_detail_list = _get_all_plants_by_ids(plant_ids_list=favorite_plant_ids)
-            return jsonify({'user_record': user_data, 'plants_record': _all_plants_detail_list}), 200
+            if all_plants_ids:    
+                for plant in all_plants_ids:
+                    plant_id = plant.plant_id
+                    if isinstance(plant_id, int):
+                        favorite_plant_ids.add(plant_id)
+                #*query plant details for the plant id
+                    _all_plants_detail_list = _get_all_plants_by_ids(plant_ids_list=favorite_plant_ids)
+                return jsonify({'user_record': user_data, 'plants_record': _all_plants_detail_list}), 200
+            else:
+                return jsonify({'user_record': user_data, 'plants_record': None}), 200
         except: 
             return jsonify({'message': 'Failed to get user or their plants info'})
 
