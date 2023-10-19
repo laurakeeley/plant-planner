@@ -1,3 +1,4 @@
+<app-details-modal></app-details-modal>
   <div
     class="home"
   >
@@ -97,6 +98,7 @@
             type="button"
             class="btn btn-green w-24 py-4 px-3 bg-primary-60 flex-1 box-border h-12 flex flex-row items-center justify-center border-[2px] border-solid border-primary-60 sm:flex-[unset] sm:self-stretch"
             id="plant_details"
+            (click)="showDetails(plant.plant_id)"
           >
             <!-- <img
               class="relative w-6 h-6 overflow-hidden shrink-0"

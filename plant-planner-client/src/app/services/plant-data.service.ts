@@ -21,13 +21,11 @@ export class PlantDataService {
     const plant_name = plantObject.common_name;
     const details = plantObject;
     const data = {plant_id, plant_name, details};
-    console.log("plant-data.service.ts");
-    console.log(data);
     return this.http.post<any>(`${BASE_URL}/addPlantDetailsIndb`, data);
   }
 
   getPlant(plantId: number) {
-    return this.http.get<any>(`${BASE_URL}/searchPlantsDetails?plant_id=${plantId}`)
+    return this.http.get<any>(`${BASE_URL}/searchPlantsDetails/${plantId}`)
       .pipe(
         map(response => {
           console.log("getPlant map response: ", response);
@@ -38,5 +36,11 @@ export class PlantDataService {
           return error;
         })
       )
+  }
+
+  createUserPlant(userId: any, plantId: any) {
+    userId = parseInt(userId);
+    const data = {user_id: userId, plant_id: plantId};
+    return this.http.post<any>(`${BASE_URL}/addPlantToProfile`, data);
   }
 }

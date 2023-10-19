@@ -13,6 +13,7 @@ import { PlantDataService } from '../services/plant-data.service';
 })
 export class SearchComponent {
   searchResults: any = [];
+  userId = this.auth.getAuthenticatedUser();
 
   constructor(
     private searchData: SearchDataService,
@@ -235,7 +236,22 @@ export class SearchComponent {
         console.log(response);
       },
       error: error => {
-        console.log(error);
+        if (error.status === 409) {
+          console.log("error: ", error);
+          this.createUserPlant(this.userId, plantObject.id);
+        } else {
+          console.log("error: ", error);
+        }
+      }
+    })
+  }
+
+  createUserPlant(userId: any, plantId: any) {
+    this.plants.createUserPlant(userId, plantId).subscribe({
+      next: response => {
+        console.log("createUserPlant response: ", response);
+      }, error: error  => {
+        console.log("createUserPlant error: ", error);
       }
     })
   }
