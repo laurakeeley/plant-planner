@@ -19,8 +19,7 @@ export class HomeComponent {
     private plants:PlantDataService,
     private auth:AuthService,
     private router:Router,
-    private detailsModalService: DetailsModalServiceService,
-    private searchData: SearchDataService
+    private detailsModalService: DetailsModalServiceService
   ) {}
     
     
@@ -53,24 +52,7 @@ export class HomeComponent {
     console.log(plantId);
     this.plants.getPlant(plantId).subscribe({
       next: response => {
-        this.detailsModalService.setDetailResults(response.details);
-        this.detailsModalService.toggleModalVisiblity();
-      },
-      error: error => {
-        console.log(error);
-        if (error.status === 404) {
-          this.getDetailsFromAPI(plantId);
-        } else {
-          console.log(error);
-        }
-      }
-    })
-  }
-
-  getDetailsFromAPI(plantId: number) {
-    this.searchData.getPlantDetails(plantId).subscribe({
-      next: response => {
-        this.detailsModalService.setDetailResults(response);
+        this.detailsModalService.setDetailResults(response.record.details);
         this.detailsModalService.toggleModalVisiblity();
       },
       error: error => {

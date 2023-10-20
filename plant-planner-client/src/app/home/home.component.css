@@ -33,9 +33,10 @@
 .card {
     box-sizing: border-box;
     @apply
+        rounded-lg
         flex-1 
         bg-white
-        h-[524px] 
+        h-[480px] 
         flex 
         flex-col 
         justify-start
