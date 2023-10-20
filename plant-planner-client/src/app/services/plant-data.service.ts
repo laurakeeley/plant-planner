@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BASE_URL } from '../env';
+import { Observable } from 'rxjs';
 import { map, catchError } from 'rxjs/operators';
 
 @Injectable({
@@ -33,7 +34,7 @@ export class PlantDataService {
         }),
         catchError(error => {
           console.log("getPlant catchError error: ", error);
-          return error;
+          throw error;
         })
       )
   }
