@@ -103,7 +103,7 @@ def insert_plant_detail_in_db():
             #*check to see if the record is existed
             plant_detail_lookup = Plant.query.filter_by(plant_id=plant_id).first()
             if plant_detail_lookup:
-                return jsonify({'error': 'Failed to create a new plant reocrd because the plant exists in db alreay'}), 400
+                return jsonify({'error': 'Failed to create a new plant reocrd because the plant exists in db alreay'}), 409
             
             #* if no data exists yet, store in the plant db
             new_plant_detail_record = Plant(plant_id=plant_id, plant_name=plant_name, details=details)

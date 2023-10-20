@@ -13,12 +13,14 @@ import { PlantDataService } from '../services/plant-data.service';
 })
 export class SearchComponent {
   searchResults: any = [];
+  userId = this.auth.getAuthenticatedUser();
 
   constructor(
     private searchData: SearchDataService,
     private auth: AuthService,
     private router: Router,
-    private detailsModalService: DetailsModalServiceService
+    private detailsModalService: DetailsModalServiceService,
+    private plants: PlantDataService
   ) {}
 
   //banner words
@@ -197,15 +199,60 @@ export class SearchComponent {
 
   showDetails(plantId: number) {
     console.log(plantId);
+    this.plants.getPlant(plantId).subscribe({
+      next: response => {
+        this.detailsModalService.setDetailResults(response);
+        this.detailsModalService.toggleModalVisiblity();
+      },
+      error: error => {
+        console.log(error);
+        if (error.status === 404) {
+          this.getDetailsFromAPI(plantId);
+        } else {
+          console.log(error);
+        }
+      }
+    })
+  } 
+
+  getDetailsFromAPI(plantId: number) {
     this.searchData.getPlantDetails(plantId).subscribe({
       next: response => {
         this.detailsModalService.setDetailResults(response);
         this.detailsModalService.toggleModalVisiblity();
-        console.log("search.component.ts", response);
       },
       error: error => {
         console.log(error);
       }
     })
-  } 
+  }
+
+  addPlant(plantObject: any) {
+    console.log("search.comp.ts");
+    console.log(plantObject);
+    this.plants.createPlant(plantObject).subscribe({
+      next: response => {
+        console.log("addPlant response:");
+        console.log(response);
+      },
+      error: error => {
+        if (error.status === 409) {
+          console.log("error: ", error);
+          this.createUserPlant(this.userId, plantObject.id);
+        } else {
+          console.log("error: ", error);
+        }
+      }
+    })
+  }
+
+  createUserPlant(userId: any, plantId: any) {
+    this.plants.createUserPlant(userId, plantId).subscribe({
+      next: response => {
+        console.log("createUserPlant response: ", response);
+      }, error: error  => {
+        console.log("createUserPlant error: ", error);
+      }
+    })
+  }
 }

@@ -1,3 +1,4 @@
+<app-details-modal></app-details-modal>
   <div
     class="home"
   >
@@ -11,9 +12,9 @@
           class="m-0 self-stretch relative text-23xl leading-[110%] font-bold font-inherit"
         >
           <p class="[margin-block-start:0] [margin-block-end:5px]">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+            Hi {{user.first_name}}, see your plants below.
           </p>
-          <p class="m-0">Bibendum amet at molestie mattis.</p>
+          <!-- <p class="m-0">Bibendum amet at molestie mattis.</p> -->
         </h1>
       </div>
       <h3
@@ -32,23 +33,23 @@
     >
       <div
         class="card"
-        *ngFor="let i of [1, 2, 3, 4, 5, 6]"
+        *ngFor="let plant of userPlants"
       >
         <img
-          class="self-stretch max-w-full overflow-hidden h-[220px] shrink-0"
+          class="self-stretch max-w-full overflow-hidden h-[220px] shrink-0 rounded-lg"
           alt=""
-          src="assets/placeholder--picture.svg"
+          [src]="plant.details.default_image.original_url"
         />
 
-        <div
+        <!-- <div
           class="self-stretch hidden flex-row items-center justify-between py-0 px-4"
         >
           <img
             class="relative w-12 h-12 overflow-hidden shrink-0"
             alt=""
-            src="assets/icon--jamicons--outline--logos--pictures.svg"
+            [src]="plant.details.default_image.original_url"
           />
-        </div>
+        </div> -->
         <div
           class="self-stretch flex flex-col items-start justify-start pt-6 px-4 pb-4 gap-[16px]"
         >
@@ -58,27 +59,50 @@
             <h6
               class="m-0 self-stretch relative text-inherit leading-[110%] font-medium font-inherit"
             >
-              Category
+              {{plant.details.scientific_name}}
             </h6>
             <h4
               class="m-0 self-stretch relative text-xl leading-[110%] font-bold font-inherit"
             >
-              Article Title
+              {{plant.details.common_name}}
             </h4>
           </div>
-          <p class="m-0 self-stretch relative leading-[140%]">
-            Egestas elit dui scelerisque ut eu purus aliquam vitae habitasse.
-          </p>
+          <div
+              *ngIf="plant.details?.cycle" 
+              class="flex-1 flex flex-col items-start justify-start gap-[16px]"
+          >
+            <p class="m-0 self-stretch relative text-sm leading-[140%]">
+                <img
+                class="relative w-5 h-5 overflow-hidden shrink-0"
+                alt=""
+                src="assets/leaf.svg"
+                />
+                {{plant.details?.cycle}}
+              </p>
+          </div>
+          <div
+              *ngIf="plant.details?.cycle" 
+              class="flex-1 flex flex-col items-start justify-start gap-[16px]"
+          >
+            <p class="m-0 self-stretch relative text-sm leading-[140%]">
+                <img
+                class="relative w-5 h-5 overflow-hidden shrink-0"
+                alt=""
+                src="assets/map-marker.svg"
+                />
+                Zone: {{plant.details?.hardiness.min}}
+              </p>
+          </div>
           <div
             class="self-stretch flex flex-row items-center justify-start pt-4 px-0 pb-0 gap-[16px]"
           >
-            <img
+            <!-- <img
               class="rounded-81xl w-12 h-12 object-cover"
               alt=""
               src="assets/user-thumb@2x.png"
-            />
+            /> -->
 
-            <div class="flex-1 flex flex-col items-start justify-start">
+            <!-- <div class="flex-1 flex flex-col items-start justify-start">
               <a
                 class="[text-decoration:none] self-stretch relative leading-[110%] font-medium text-[inherit]"
                 >Jane Doe</a
@@ -87,7 +111,7 @@
                 class="[text-decoration:none] self-stretch relative leading-[140%] text-coolgray-60"
                 >Senior Designer</a
               >
-            </div>
+            </div> -->
           </div>
         </div>
         <div
@@ -95,8 +119,9 @@
         >
           <button
             type="button"
-            class="btn btn-green w-24 py-4 px-3 bg-primary-60 flex-1 box-border h-12 flex flex-row items-center justify-center border-[2px] border-solid border-primary-60 sm:flex-[unset] sm:self-stretch"
+            class="btn btn-green w-48 py-4 px-3 bg-primary-60 flex-1 box-border h-12 flex flex-row items-center justify-center border-[2px] border-solid border-primary-60 sm:flex-[unset] sm:self-stretch"
             id="plant_details"
+            (click)="showDetails(plant.plant_id)"
           >
             <!-- <img
               class="relative w-6 h-6 overflow-hidden shrink-0"
@@ -116,33 +141,22 @@
             <div
               class="box-border w-3 hidden border-l-[1px] border-solid border-gray"
             ></div>
-            <img
-              class="relative w-6 h-6 overflow-hidden shrink-0 hidden"
-              alt=""
-              src="assets/icon--jamicons--outline--logos--arrowright.svg"
-            />
-          </button>
-          <button
-            class="cursor-pointer w-24 py-4 px-3 bg-[transparent] flex-1 box-border h-12 flex flex-row items-center justify-center border-[2px] border-solid border-primary-60 sm:flex-[unset] sm:self-stretch"
-          >
             <!-- <img
               class="relative w-6 h-6 overflow-hidden shrink-0 hidden"
               alt=""
-              src="assets/icon--jamicons--outline--logos--plus1.svg"
+              src="assets/icon--jamicons--outline--logos--arrowright.svg"
             /> -->
-
+          </button>
+          <!-- <button
+            class="cursor-pointer w-24 py-4 px-3 bg-[transparent] flex-1 box-border h-12 flex flex-row items-center justify-center border-[2px] border-solid border-primary-60 sm:flex-[unset] sm:self-stretch"
+          >
             <div class="flex flex-row items-center justify-center py-0 px-4">
               <label
                 class="cursor-pointer relative text-base tracking-[0.5px] leading-[100%] font-medium font-button-m text-primary-60"
                 >Add to Profile</label
               >
             </div>
-            <img
-              class="relative w-6 h-6 overflow-hidden shrink-0 hidden"
-              alt=""
-              src="assets/icon--jamicons--outline--logos--arrowright1.svg"
-            />
-          </button>
+          </button> -->
         </div>
       </div>
       <!-- <div
@@ -497,10 +511,10 @@
           Primary Action
         </div>
       </div>
-      <img
+      <!-- <img
         class="relative w-6 h-6 overflow-hidden shrink-0 hidden"
         alt=""
         src="assets/icon--jamicons--outline--logos--arrowright3.svg"
-      />
+      /> -->
     </button>
   </div>

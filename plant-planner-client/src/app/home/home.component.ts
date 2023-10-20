@@ -2,6 +2,8 @@ import { Component, Injectable } from '@angular/core';
 import { PlantDataService } from '../services/plant-data.service';
 import { AuthService, userId } from '../services/auth.service';
 import { Router } from '@angular/router';
+import { DetailsModalServiceService } from '../services/details-modal-service.service';
+import { SearchDataService } from '../services/search-data.service';
 
 @Component({
   selector: 'app-home',
@@ -10,29 +12,31 @@ import { Router } from '@angular/router';
 })
 export class HomeComponent {
   message = "";
-  userPlants = {};
-  user = {};
+  userPlants: any = [];
+  user: any = [];
   
   constructor(
     private plants:PlantDataService,
     private auth:AuthService,
-    private router:Router
+    private router:Router,
+    private detailsModalService: DetailsModalServiceService
   ) {}
     
     
   ngOnInit() {
-    this.getUserPlants();
+    this.getUser();
   }
-
-  getUserPlants() {
-    this.plants.getUserPlants(userId).subscribe({
+  
+  getUser() {
+    this.plants.getUser().subscribe({
       next: response => {
-        console.log(response);
+        console.log("getUser response: ", response);
         if (!this.auth.isUserLoggedIn()) {
           this.router.navigate(['/login']);
         } else {
-          this.userPlants = response;
-          this.message = response.message;
+          this.userPlants = response.plants_record || [];
+          this.user = response.user_record ? response.user_record : [];
+          console.log(response);
         }
       },
       error: error => {
@@ -44,20 +48,17 @@ export class HomeComponent {
     })
   }
 
-  // getUser() {
-  //   this.plants.getUserPlants(userId).subscribe({
-  //     next: response => {
-  //       console.log(response);
-  //       this.userPlants = response;
-  //       this.message = response.message;
-  //     },
-  //     error: error => {
-  //       console.log(error);
-  //       if (!this.auth.isUserLoggedIn()) {
-  //         this.router.navigate(['/login']);
-  //       }
-  //     }
-  //   })
-  // }
+  showDetails(plantId: number) {
+    console.log(plantId);
+    this.plants.getPlant(plantId).subscribe({
+      next: response => {
+        this.detailsModalService.setDetailResults(response.record.details);
+        this.detailsModalService.toggleModalVisiblity();
+      },
+      error: error => {
+        console.log(error);
+      }
+    })
+  }
 
 }
