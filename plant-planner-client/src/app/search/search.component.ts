@@ -201,11 +201,13 @@ export class SearchComponent {
     console.log(plantId);
     this.plants.getPlant(plantId).subscribe({
       next: response => {
-        this.detailsModalService.setDetailResults(response);
+        this.detailsModalService.setDetailResults(response.record.details);
         this.detailsModalService.toggleModalVisiblity();
       },
       error: error => {
-        console.log(error);
+        console.log("error: ", error);
+        console.log("error.status", error.status);
+        console.log("error.message", error.message);
         if (error.status === 404) {
           this.getDetailsFromAPI(plantId);
         } else {
