@@ -25,7 +25,7 @@
         justify-start;
     flex-wrap: wrap;
     display: grid;
-    grid-template-columns: repeat(5, 1fr); /* 4 columns */
+    grid-template-columns: repeat(4, 1fr); /* 4 columns */
     gap: 16px; /* Adjust the gap between grid items */
 
 }
@@ -36,7 +36,7 @@
         rounded-lg
         flex-1 
         bg-white
-        h-[480px] 
+        h-[500px] 
         flex 
         flex-col 
         justify-start
