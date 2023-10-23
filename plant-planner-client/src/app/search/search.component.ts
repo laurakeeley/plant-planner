@@ -236,6 +236,7 @@ export class SearchComponent {
       next: response => {
         console.log("addPlant response:");
         console.log(response);
+        this.createUserPlant(this.userId, plantObject.id);
       },
       error: error => {
         if (error.status === 409) {

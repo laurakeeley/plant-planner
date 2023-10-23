@@ -51,6 +51,12 @@ export class DetailsModalComponent {
       },
       error: error => {
         console.log(error);
+        if (error.status === 409) {
+          console.log("error: ", error);
+          this.createUserPlant(this.userId, plantObject.id);
+        } else {
+          console.log("error: ", error);
+        }
       }
     })
   } 
