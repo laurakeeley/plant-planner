@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { DetailsModalServiceService } from '../services/details-modal-service.service';
 import { PlantDataService } from '../services/plant-data.service';
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-details-modal',
@@ -11,10 +12,12 @@ import { PlantDataService } from '../services/plant-data.service';
 
 export class DetailsModalComponent {
   response: any;
+  userId = this.auth.getAuthenticatedUser();
  
   constructor (
     private detailsModalService: DetailsModalServiceService,
-    private plants: PlantDataService
+    private plants: PlantDataService,
+    private auth: AuthService
     ) {
     this.detailsModalService.opened.subscribe(() => { 
       this.loadPlantDetails();
@@ -44,10 +47,22 @@ export class DetailsModalComponent {
       next: response => {
         console.log("addPlant response:");
         console.log(response);
+        this.createUserPlant(this.userId, plantObject.id);
       },
       error: error => {
         console.log(error);
       }
     })
   } 
+
+  createUserPlant(userId: any, plantId: any) {
+    this.plants.createUserPlant(userId, plantId).subscribe({
+      next: response => {
+        console.log("createUserPlant response: ", response);
+      }, error: error  => {
+        console.log("createUserPlant error: ", error);
+      }
+    })
+  }
+  
 }
