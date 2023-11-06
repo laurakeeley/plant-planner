@@ -1,0 +1,12 @@
+.password-input{
+    position: relative;
+}
+
+.password-input button {
+    position: absolute;
+    top: 20%;
+    right: 1%;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+  }

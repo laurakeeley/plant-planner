@@ -106,32 +106,19 @@
           </div>
         </div>
         <div
-          class="self-stretch flex flex-col items-start justify-start gap-[4px]"
+        class="self-stretch flex flex-col items-start justify-start gap-[4px]"
         >
-          <div
-            class="self-stretch flex flex-col items-start mb-4 justify-start gap-[8px]"
-          >
-            <div class="self-stretch relative leading-[140%]">Password</div>
+        <div class="self-stretch relative leading-[140%]">Password</div>
             <div
-              class="self-stretch bg-coolgray-10 box-border h-12 flex flex-row py-3 items-center justify-start gap-[8px] text-base text-coolgray-60 border-solid border-coolgray-30"
+                class="self-stretch flex flex-col items-start justify-start gap-[8px] password-input"
             >
-              <img
-                class="relative w-6 h-6 overflow-hidden shrink-0 hidden"
-                alt=""
-                src="assets/icon--jamicons--outline--logos--search3.svg"
-              />
-              <input
-                class="flex-1 h-11 bg-coolgray-10 px-4 relative leading-[140%]"
-                type="password"
-                required
-                id="signupPassword"
-                [(ngModel)]="newUser.password"
-              />
-              <img
-                class="relative w-6 h-6 overflow-hidden shrink-0"
-                alt=""
-                src="assets/icon--jamicons--outline--logos--eye1.svg"
-              />
+                <input
+                    class="password"
+                    [type]="getInputType()"
+                    [(ngModel)]="newUser.password">
+                <button (click)="passwordVisibility()">
+                    <img [src]="toggleEyeSVG()" alt="Toggle Password Visibility">
+                </button>
             </div>
             <div
               class="self-stretch relative text-xs leading-[140%] text-coolgray-60"
@@ -140,19 +127,18 @@
               symbols.
           </div>
           </div>
-          <div class="self-stretch flex flex-col items-start justify-start">
-            <button
-              class="btn btn-green self-stretch bg-darkolivegreen flex flex-row items-center justify-center text-base"
-              type="button"
-              (click)="signup()"
+        <div class="self-stretch flex flex-col items-start justify-start">
+          <button
+            class="btn btn-green self-stretch bg-darkolivegreen flex flex-row items-center justify-center text-base"
+            type="button"
+            (click)="signup()"
+          >
+            <div
+              class="flex-1 flex flex-row py-0 px-4 items-center justify-center"
             >
-              <div
-                class="flex-1 flex flex-row py-0 px-4 items-center justify-center"
-              >
-                <div class="font-medium">Sign Up</div>
-              </div>
-            </button>
-          </div>
+              <div class="font-medium">Sign Up</div>
+            </div>
+          </button>
         </div>
         <div
           class="self-stretch relative leading-[140%] text-center"
