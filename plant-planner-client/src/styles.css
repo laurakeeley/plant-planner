@@ -108,4 +108,23 @@ input:focus {
       text-darkolivegreen 
   }
 
+  .btn-red {
+    @apply  
+      bg-basered
+      border-basered
+      text-white;
+  }
+  .btn-red:hover {
+    @apply 
+    bg-darkred
+    border-darkred;
+  }
+  .btn-red:active {
+    @apply bg-darkestred;
+  }
+  .btn-red:focus {
+    @apply 
+      border-darkred;
+  }
+
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
