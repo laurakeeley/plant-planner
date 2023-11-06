@@ -150,7 +150,6 @@ def delete_plants_detail():
             data = request.json
             user_id = data.get("user_id")
             plant_id = data.get("plant_id")
-            print(f"user: {user_id}")
             if not isinstance(user_id, int) and not isinstance(plant_id, int):
                 return jsonify({'error': 'user_id must be an int'}), 400
             #* delete the record
