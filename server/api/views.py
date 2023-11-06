@@ -143,7 +143,6 @@ def search_plants_detail(plant_id):
 @views.route("/deletePlantsDetails", methods=['DELETE'])
 @token_required
 def delete_plants_detail():
-    print("inside delete")
     if request.method == "DELETE":
         try:
             #*get user id and plant id
@@ -161,7 +160,6 @@ def delete_plants_detail():
             else:
                 return jsonify({'message': 'Record not found or already deleted', 'status':404}), 404
         except:
-            #*return a error msg
             return jsonify({'message': 'Invalid request to delete a plant', 'status':400}), 400
    
 
