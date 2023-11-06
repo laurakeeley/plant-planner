@@ -15,6 +15,7 @@ export class SignupComponent { 
     password: ""
   };
   error = '';
+  isPasswordVisible = false;
 
   constructor(
     private auth:AuthService,
@@ -39,5 +40,19 @@ export class SignupComponent { 
   close(id:string) {
     let element = document.getElementById(id);
     element ? element.setAttribute('hidden', 'true') : console.log('Element not found.');
+  }
+
+  passwordVisibility() {
+    this.isPasswordVisible = !this.isPasswordVisible;
+  }
+
+  getInputType() {
+    return this.isPasswordVisible ? 'text' : 'password';
+  }
+
+  toggleEyeSVG() {
+    return this.isPasswordVisible
+      ? 'assets/icon--jamicons--outline--logos--eye1.svg'
+      : 'assets/icon--jamicons--outline--logos--eye_close.svg';
   }
 }
