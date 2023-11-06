@@ -143,7 +143,28 @@ def search_plants_detail(plant_id):
 @views.route("/deletePlantsDetails", methods=['DELETE'])
 @token_required
 def delete_plants_detail():
-    return jsonify({'message': 'This is a protected route for deleting a plant'})
+    print("inside delete")
+    if request.method == "DELETE":
+        try:
+            #*get user id and plant id
+            data = request.json
+            user_id = data.get("user_id")
+            plant_id = data.get("plant_id")
+            print(f"user: {user_id}")
+            if not isinstance(user_id, int) and not isinstance(plant_id, int):
+                return jsonify({'error': 'user_id must be an int'}), 400
+            #* delete the record
+            record_to_delete = UserPlants.query.filter_by(user_id=user_id, plant_id=plant_id).first()
+            if record_to_delete:
+                db.session.delete(record_to_delete)
+                db.session.commit()  
+                return jsonify({'message': 'Deleted a plant record for current user successfully', 'status':200}),200
+            else:
+                return jsonify({'message': 'Record not found or already deleted', 'status':404}), 404
+        except:
+            #*return a error msg
+            return jsonify({'message': 'Invalid request to delete a plant', 'status':400}), 400
+   
 
 
 @views.route("/addPlantToProfile", methods=['POST'])
