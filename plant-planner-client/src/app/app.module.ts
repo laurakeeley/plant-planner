@@ -14,6 +14,7 @@ import { HttpService } from './services/http.service';
 import { PlantDataService } from './services/plant-data.service';
 import { LogoutComponent } from './logout/logout.component';
 import { DetailsModalComponent } from './details-modal/details-modal.component';
+import { LoaderComponent } from './loader/loader.component';
 
 
 @NgModule({
@@ -25,6 +26,7 @@ import { DetailsModalComponent } from './details-modal/details-modal.component';
     SignupComponent,
     LogoutComponent,
     DetailsModalComponent,
+    LoaderComponent,
   ],
   imports: [
     BrowserModule,

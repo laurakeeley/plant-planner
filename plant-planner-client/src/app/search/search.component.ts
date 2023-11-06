@@ -199,6 +199,7 @@ export class SearchComponent {
 
   showDetails(plantId: number) {
     console.log(plantId);
+    this.detailsModalService.toggleLoaderVisiblity();
     this.plants.getPlant(plantId).subscribe({
       next: response => {
         this.detailsModalService.setDetailResults(response.record.details);
