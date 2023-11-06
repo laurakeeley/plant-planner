@@ -44,4 +44,8 @@ export class PlantDataService {
     const data = {user_id: userId, plant_id: plantId};
     return this.http.post<any>(`${BASE_URL}/addPlantToProfile`, data);
   }
+
+  deleteUserPlant(userPlantId: number) {
+    return this.http.delete<any>(`${BASE_URL}/deletePlantsDetails/${userPlantId}`);
+  }
 }

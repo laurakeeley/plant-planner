@@ -88,8 +88,15 @@ export class DetailsModalComponent {
     return this.currentRoute === '/'
   }
 
-  deletePlant() {
+  deletePlant(userPlantId: number) {
     console.log("DELETED");
+    this.plants.deleteUserPlant(userPlantId).subscribe({
+      next: response => {
+        console.log(response);
+      }, error: error => {
+        console.log(error);
+      }
+    })
   }
   
 }
