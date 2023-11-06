@@ -48,12 +48,14 @@ export class DetailsModalComponent {
         console.log("addPlant response:");
         console.log(response);
         this.createUserPlant(this.userId, plantObject.id);
+        this.close();
       },
       error: error => {
         console.log(error);
         if (error.status === 409) {
           console.log("error: ", error);
           this.createUserPlant(this.userId, plantObject.id);
+          this.close();
         } else {
           console.log("error: ", error);
         }
