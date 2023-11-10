@@ -13,25 +13,28 @@ from .auth import token_required
 #! initialize blueprint, always need to pass in __name__, and the name of the blueprint
 views = Blueprint("views", __name__)
 
+def getUserIdFromToken(request):
+    token = None
+    auth_header = request.headers.get('Authorization')
+    if auth_header:  
+        auth_parts = auth_header.split()
+        if len(auth_parts) == 2 and auth_parts[0] == 'Bearer':
+            token = auth_parts[1]
+        else:
+            return jsonify({'message': 'Invalid Authorization header format', 'status': 401})
+    if not token:
+        return jsonify({'error': 'Token is missing', 'status': 401}), 401
+    
+    data = jwt.decode(token, current_app.config['SECRET_KEY'], algorithms=['HS256'])
+    user_id = data.get('user_id')
+    return user_id
+
 @views.route("/getPlants", methods=['GET'])
 @token_required
 def profile():
     if request.method == "GET":
         try:
-            token = None
-            auth_header = request.headers.get('Authorization')
-            if auth_header:  
-                auth_parts = auth_header.split()
-                if len(auth_parts) == 2 and auth_parts[0] == 'Bearer':
-                    token = auth_parts[1]
-                else:
-                    return jsonify({'message': 'Invalid Authorization header format', 'status': 401})
-            if not token:
-                return jsonify({'error': 'Token is missing', 'status': 401}), 401
-            
-            data = jwt.decode(token, current_app.config['SECRET_KEY'], algorithms=['HS256'])
-            user_id = data.get('user_id')
-            
+            user_id = getUserIdFromToken(request=request)
             #*validate data type
             if not isinstance(user_id, int):
                 return jsonify({'error': 'user id must be an int'}), 400
@@ -140,17 +143,18 @@ def search_plants_detail(plant_id):
         except Exception as e:
             return jsonify({'error': str(e)}), 500
 
-@views.route("/deletePlantsDetails", methods=['DELETE'])
+@views.route("/deletePlantsDetails/<int:plant_id>", methods=['DELETE'])
 @token_required
-def delete_plants_detail():
+def delete_plants_detail(plant_id):
     if request.method == "DELETE":
         try:
             #*get user id and plant id
-            data = request.json
-            user_id = data.get("user_id")
-            plant_id = data.get("plant_id")
+            if not isinstance(plant_id, int):
+                return jsonify({'error': 'plant_id must be an int'}), 400
+            user_id = getUserIdFromToken(request=request)
             if not isinstance(user_id, int) and not isinstance(plant_id, int):
                 return jsonify({'error': 'user_id must be an int'}), 400
+            
             #* delete the record
             record_to_delete = UserPlants.query.filter_by(user_id=user_id, plant_id=plant_id).first()
             if record_to_delete:
