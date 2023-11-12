@@ -166,6 +166,7 @@
                 <div class="flex flex-row items-start justify-start gap-[16px]">
                     <button
                         class="btn btn-green h-10 flex flex-row items-center"
+                        *ngIf="showDetailsButton()"
                         (click)="addPlant(response)"
                     >
                         <div class="flex flex-row items-center justify-center py-0 px-4">
@@ -176,27 +177,19 @@
                             </span>
                         </div>
                     </button>
-                    <!-- <button
-                        class="cursor-pointer py-2 px-3 bg-[transparent] box-border h-10 flex flex-row items-center justify-center border-[2px] border-solid border-primary-60"
+                    <button
+                        class="btn btn-red h-10 flex flex-row items-center"
+                        *ngIf="showDeleteButton()"
+                        (click)="deletePlant(response?.id)"
                     >
-                        <img
-                        class="relative w-6 h-6 overflow-hidden shrink-0 hidden"
-                        alt=""
-                        src="assets/icon--jamicons--outline--logos--plus3.svg"
-                        />
-    
                         <div class="flex flex-row items-center justify-center py-0 px-4">
-                        <span
-                            class="relative text-sm tracking-[0.5px] leading-[100%] font-medium font-button-m text-primary-60 text-left"
-                            >Secondary Action</span
-                        >
+                            <span
+                                class="relative text-sm tracking-[0.5px] leading-[100%] font-medium font-button-m text-default-white text-left"
+                            >
+                                Delete
+                            </span>
                         </div>
-                        <img
-                        class="relative w-6 h-6 overflow-hidden shrink-0 hidden"
-                        alt=""
-                        src="assets/icon--jamicons--outline--logos--arrowright3.svg"
-                        />
-                    </button> -->
+                    </button>
                 </div>
             </div>
         </div>

@@ -1,8 +1,8 @@
-.password-input{
+.signup-password-input{
     position: relative;
 }
 
-.password-input button {
+.signup-password-input button {
     position: absolute;
     top: 20%;
     right: 1%;

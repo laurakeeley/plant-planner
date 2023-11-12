@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { DetailsModalServiceService } from '../services/details-modal-service.service';
 import { PlantDataService } from '../services/plant-data.service';
 import { AuthService } from '../services/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-details-modal',
@@ -13,11 +14,13 @@ import { AuthService } from '../services/auth.service';
 export class DetailsModalComponent {
   response: any;
   userId = this.auth.getAuthenticatedUser();
+  currentRoute = this.router.url;
  
   constructor (
     private detailsModalService: DetailsModalServiceService,
     private plants: PlantDataService,
-    private auth: AuthService
+    private auth: AuthService,
+    private router: Router
     ) {
     this.detailsModalService.opened.subscribe(() => { 
       this.loadPlantDetails();
@@ -71,6 +74,33 @@ export class DetailsModalComponent {
         console.log("createUserPlant error: ", error);
       }
     })
+  }
+
+  showDetailsButton() {
+    return this.currentRoute === '/search'
+  }
+
+  showDeleteButton() {
+    return this.currentRoute === '/'
+  }
+
+  deletePlant(plantId: number) {
+    console.log("deleting plant id:", plantId);
+    this.plants.deleteUserPlant(plantId).subscribe({
+      next: response => {
+        if (confirm("Are you sure you want to delete this plant?")) {
+          console.log(response);
+          this.close();
+          this.removePlantFromProfile(plantId);
+        }
+      }, error: error => {
+        console.log(error);
+      }
+    })
+  }
+
+  removePlantFromProfile(plantId: number) {
+    this.plants.removePlantFromProfile(plantId);
   }
   
 }

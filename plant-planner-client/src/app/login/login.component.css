@@ -1,14 +1,8 @@
-/* .password {
-    background-image: url("/assets/icon--jamicons--outline--logos--eye1.svg");
-    background-repeat: no-repeat;
-    text-align: right;
-} */
-
-.password-input{
+.login-password-input{
     position: relative;
 }
 
-.password-input button {
+.login-password-input button {
     position: absolute;
     top: 20%;
     right: 1%;

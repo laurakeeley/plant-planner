@@ -35,6 +35,7 @@ export class HomeComponent {
           this.router.navigate(['/login']);
         } else {
           this.userPlants = response.plants_record || [];
+          this.plants.setUserPlants(this.userPlants);
           this.user = response.user_record ? response.user_record : [];
           console.log(response);
         }
@@ -50,6 +51,7 @@ export class HomeComponent {
 
   showDetails(plantId: number) {
     console.log(plantId);
+    this.detailsModalService.toggleLoaderVisiblity();
     this.plants.getPlant(plantId).subscribe({
       next: response => {
         this.detailsModalService.setDetailResults(response.record.details);
