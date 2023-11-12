@@ -15,10 +15,6 @@ export class DetailsModalComponent {
   response: any;
   userId = this.auth.getAuthenticatedUser();
   currentRoute = this.router.url;
-
-  // ngOnInit() {
-  //   this.currentRoute = this.router.url;
-  // }
  
   constructor (
     private detailsModalService: DetailsModalServiceService,
@@ -88,15 +84,23 @@ export class DetailsModalComponent {
     return this.currentRoute === '/'
   }
 
-  deletePlant(userPlantId: number) {
-    console.log("DELETED");
-    this.plants.deleteUserPlant(userPlantId).subscribe({
+  deletePlant(plantId: number) {
+    console.log("deleting plant id:", plantId);
+    this.plants.deleteUserPlant(plantId).subscribe({
       next: response => {
-        console.log(response);
+        if (confirm("Are you sure you want to delete this plant?")) {
+          console.log(response);
+          this.close();
+          this.removePlantFromProfile(plantId);
+        }
       }, error: error => {
         console.log(error);
       }
     })
+  }
+
+  removePlantFromProfile(plantId: number) {
+    this.plants.removePlantFromProfile(plantId);
   }
   
 }
