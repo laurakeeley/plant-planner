@@ -1,6 +1,7 @@
 from flask import Blueprint, render_template, request, flash, jsonify, current_app
 from flask_login import login_required, current_user
 from sqlalchemy.exc import SQLAlchemyError
+from sqlalchemy import func
 from ..models import Plant, User, UserPlants
 from .. import db
 
@@ -201,3 +202,30 @@ def _validate_plant_id(plant_id: int) -> int:
         return plant_id
     else:
         return jsonify({'error': 'plant_id must be an int'}), 400
+    
+    
+@views.route("/pickRandomPlants", methods=["GET"])
+def pick_random_five_plants_for_search_page():
+    if request.method == "GET":
+        try:
+            plants_detail_list = get_five_random_plants()
+            return jsonify({'plants_record': plants_detail_list}), 200
+        except:
+            return jsonify({'message': 'Failed to get random plants'}), 400
+        
+def get_five_random_plants():
+    random_plants = Plant.query.order_by(func.random()).limit(5).all()
+    details = convert_db_record_to_list(random_plants)
+    return details
+
+def convert_db_record_to_list(record: list) -> list:
+    plants_data_list = []
+    for plant_record in record:
+        plant_data = {
+            'plant_id': plant_record.plant_id,
+            'plant_name': plant_record.plant_name,
+            'details': plant_record.details
+        }
+        plants_data_list.append(plant_data)
+    return plants_data_list
+ 
