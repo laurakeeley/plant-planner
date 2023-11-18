@@ -185,16 +185,23 @@ def add_a_plant_in_profile():
                 return jsonify({'error': 'user_id must be an int'}), 400
             _validate_plant_id(plant_id)
             
-        #*write to user_plants
-            add_a_plant_in_profile = UserPlants(plant_id=plant_id, user_id=user_id)
-            db.session.add(add_a_plant_in_profile)
-            db.session.commit()
-        
-            return jsonify({'message': 'Add a plant in profile for the current user successfully', 'status':200}),200
+        #*check duplicate plants:
+            response = _look_up_if_user_added_duplicate_plant_or_add(plant_id=plant_id, user_id=user_id)
+            return response
         except:
             return jsonify({'error': "Failed to add a plant in profile for the current user"}), 400
         
-        
+def _look_up_if_user_added_duplicate_plant_or_add(plant_id, user_id):
+    is_duplicated_plant = UserPlants.query.filter_by(plant_id=plant_id).filter_by(user_id=user_id).first()
+    if is_duplicated_plant:
+        return jsonify({'error': f'current user has added a plant for {plant_id}'}), 409
+    else:
+        #*write to user_plants
+        add_a_plant_in_profile = UserPlants(plant_id=plant_id, user_id=user_id)
+        db.session.add(add_a_plant_in_profile)
+        db.session.commit()
+        return jsonify({'message': 'Add a plant in profile for the current user successfully', 'status':200}),200
+          
         
 def _validate_plant_id(plant_id: int) -> int:
     if isinstance(plant_id, int):
