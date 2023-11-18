@@ -93,8 +93,10 @@ def insert_plant_detail_in_db():
             data = request.json
             #*get plant_id, plant_name and details 
             plant_id = data.get('plant_id')            
-            plant_name = data.get('plant_name')
+            plant_name = data.get('plant_name').title()
+            plant_common_name = data.get("details").get("common_name").title()
             details = data.get("details")
+            details.update({'common_name': plant_common_name})           
             
             #*validate data type
             if not isinstance(plant_id, int):
