@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { SearchDataService } from '../services/search-data.service';
 import { AuthService } from '../services/auth.service';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
@@ -14,6 +14,7 @@ import { PlantDataService } from '../services/plant-data.service';
 export class SearchComponent {
   searchResults: any = [];
   userId = this.auth.getAuthenticatedUser();
+  randomPlants: any = [];
 
   constructor(
     private searchData: SearchDataService,
@@ -22,6 +23,26 @@ export class SearchComponent {
     private detailsModalService: DetailsModalServiceService,
     private plants: PlantDataService
   ) {}
+
+  ngOnInit() {
+    this.fetchRandomPlants();
+  }
+
+  fetchRandomPlants() {
+    console.log("Inside fetch Random Plants")
+    this.searchData.getRandomPlants().subscribe({
+      next: res => {
+        console.log("random plants res: ", res)
+        console.log("random plants res1: ", res.plants_record[0])
+        this.randomPlants = res.plants_record[0]
+        console.log((`randomPlants: ${this.randomPlants}`))
+        console.log((`randomPlants: ${this.randomPlants.plant_name}`))
+      },
+      error: error => {
+        console.log(error)
+      }
+    })
+  }
 
   //banner words
   words: string[] = [
@@ -90,24 +111,6 @@ export class SearchComponent {
       }
     }
     console.log(this.raiseZipCodeError);
-
-    // this.searchData.getHardinessZoneData(this.hardinessZone).subscribe(
-    //   (result: string) => {
-    //     console.log(result);
-    //   },
-    //   (error: any) => {
-    //     console.error(error);
-    //   })
-
-    // this.searchData.getHardinessZoneData(this.hardinessZone).subscribe({
-    //   next:response => {
-    //     console.log(response)
-
-    //   },
-    //   error: error =>{
-    //     console.log(error)
-    //   }
-    // })
   }
 
   //apply function

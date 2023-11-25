@@ -2,6 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { PLANT_SEARCH_KEY, HARDINESS_ZONE_KEY } from '../env';
 import { Observable } from 'rxjs';
+import { BASE_URL } from '../env';
 
 @Injectable({
   providedIn: 'root'
@@ -32,4 +33,9 @@ export class SearchDataService {
   getPlantDetails(plantId: number) {
     return this.http.get(`https://perenual.com/api/species/details/${plantId}?key=${PLANT_SEARCH_KEY}`);
   }
-}
+
+  getRandomPlants() {
+    console.log("inside getRandomPlants")
+    return this.http.get<any>(`${BASE_URL}/pickRandomPlants`);
+  }
+ }
