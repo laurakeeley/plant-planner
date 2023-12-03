@@ -6,6 +6,7 @@ import { HARDINESS_ZONE_KEY } from '../env';
 import { Router } from '@angular/router';
 import { DetailsModalServiceService } from '../services/details-modal-service.service';
 import { PlantDataService } from '../services/plant-data.service';
+import { AlertService } from '../services/alert.service';
 @Component({
   selector: 'app-search',
   templateUrl: './search.component.html',
@@ -20,7 +21,8 @@ export class SearchComponent {
     private auth: AuthService,
     private router: Router,
     private detailsModalService: DetailsModalServiceService,
-    private plants: PlantDataService
+    private plants: PlantDataService,
+    private alert: AlertService
   ) {}
 
   //banner words
@@ -43,6 +45,7 @@ export class SearchComponent {
   indoor = false;
   hardinessZone = '';
   plant_name = '';
+  showAlert = false;
 
   isUserLoggedIn() {
     if (!this.auth.isUserLoggedIn()) {
@@ -165,6 +168,10 @@ export class SearchComponent {
     this.raiseZipCodeError = false;
   }
 
+  closeAlert(id: string) {
+    this.alert.closeAlert(id);
+  }
+
   getSearchData() {
     this.query += `&q=${this.plant_name}`;
     if (this.zipCodeResult) {
@@ -250,13 +257,43 @@ export class SearchComponent {
     })
   }
 
+  // let element = document.getElementById('login_error');
+  //       if (element) {
+  //         element.removeAttribute('hidden') ;
+  //         element.classList.add('error-alert');
+  //       } else {
+  //         console.log('Element not found.');
+  //       }
+
   createUserPlant(userId: any, plantId: any) {
     this.plants.createUserPlant(userId, plantId).subscribe({
       next: response => {
-        console.log("createUserPlant response: ", response);
+        this.alert.setMessage("Plant saved!");
+        this.alert.setTitle("Success!");
+        const plant = this.searchResults.find((plant: { id: any; }) => plant.id === plantId);
+        if (plant) {
+          let element = document.getElementById('add_plant_alert_'+plant.id);
+          element?.classList.add('success-alert');
+          plant.showAlert = true;
+        }
       }, error: error  => {
+        // let element = document.getElementById('add_plant_error');
+        // if (error.status === 409) {
+        //   element.removeAttribute('hidden') ;
+        //   element.classList.add('error-alert');
+        // } else {
+          
+        // }
         console.log("createUserPlant error: ", error);
       }
     })
   }
+
+  // getAlertVisiblity() {
+  //   return this.alert.alertVisibility();
+  // }
+
+  // showAlertMessage(plantId: number) {
+  //   this.plantId.showAlert = true;
+  // }
 }

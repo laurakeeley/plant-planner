@@ -6,9 +6,24 @@ import { AlertService } from '../services/alert.service';
   templateUrl: './alert.component.html',
   styleUrls: ['./alert.component.css']
 })
-export class AlertComponent {
+export class AlertComponent { 
+  alertMessage: string = '';
+  alertTitle: string = '';
 
-  constructor() { }
+  constructor(private alert: AlertService) {}
+
+  ngOnInit() {
+    this.alert.alertTitleChanged.subscribe((title) => {
+      this.alertTitle = title;
+    });
+    this.alert.alertMessageChanged.subscribe((message) => {
+      this.alertMessage = message;
+    });
+  }
+
+  closeAlert(id: string) {
+    this.alert.closeAlert(id);
+  }
 
 }
 

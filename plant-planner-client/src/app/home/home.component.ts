@@ -25,11 +25,13 @@ export class HomeComponent {
     
   ngOnInit() {
     this.getUser();
+    console.log(this.getUser())
   }
   
   getUser() {
     this.plants.getUser().subscribe({
       next: response => {
+        console.log(response)
         console.log("getUser response: ", response);
         if (!this.auth.isUserLoggedIn()) {
           this.router.navigate(['/login']);

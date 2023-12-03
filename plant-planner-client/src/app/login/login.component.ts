@@ -21,6 +21,7 @@ export class LoginComponent {
   login() {
     this.auth.login(this.email, this.password).subscribe({
       next: (response) => {
+        console.log("login Response", response);
         if ((response.status === 200)) {
           this.router.navigate(['/']);
         } else {
@@ -38,10 +39,6 @@ export class LoginComponent {
         }
       },
     });
-  }
-
-  closeAlert(id: string) {
-    this.alert.closeAlert(id);
   }
 
   passwordVisibility() {
