@@ -266,17 +266,24 @@ export class SearchComponent {
   //       }
 
   createUserPlant(userId: any, plantId: any) {
+    const plant = this.searchResults.find((plant: { id: any; }) => plant.id === plantId);
     this.plants.createUserPlant(userId, plantId).subscribe({
       next: response => {
-        this.alert.setMessage("Plant saved!");
         this.alert.setTitle("Success!");
-        const plant = this.searchResults.find((plant: { id: any; }) => plant.id === plantId);
+        this.alert.setMessage("Plant saved!");
         if (plant) {
           let element = document.getElementById('add_plant_alert_'+plant.id);
           element?.classList.add('success-alert');
           plant.showAlert = true;
         }
       }, error: error  => {
+        this.alert.setTitle("Oops!");
+        this.alert.setMessage("Plant already saved to profile!");
+        if (plant) {
+          let element = document.getElementById('add_plant_alert_'+plant.id);
+          element?.classList.add('error-alert');
+          plant.showAlert = true;
+        }
         // let element = document.getElementById('add_plant_error');
         // if (error.status === 409) {
         //   element.removeAttribute('hidden') ;
