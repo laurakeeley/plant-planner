@@ -93,24 +93,6 @@ export class SearchComponent {
       }
     }
     console.log(this.raiseZipCodeError);
-
-    // this.searchData.getHardinessZoneData(this.hardinessZone).subscribe(
-    //   (result: string) => {
-    //     console.log(result);
-    //   },
-    //   (error: any) => {
-    //     console.error(error);
-    //   })
-
-    // this.searchData.getHardinessZoneData(this.hardinessZone).subscribe({
-    //   next:response => {
-    //     console.log(response)
-
-    //   },
-    //   error: error =>{
-    //     console.log(error)
-    //   }
-    // })
   }
 
   //apply function
@@ -257,22 +239,14 @@ export class SearchComponent {
     })
   }
 
-  // let element = document.getElementById('login_error');
-  //       if (element) {
-  //         element.removeAttribute('hidden') ;
-  //         element.classList.add('error-alert');
-  //       } else {
-  //         console.log('Element not found.');
-  //       }
-
   createUserPlant(userId: any, plantId: any) {
     const plant = this.searchResults.find((plant: { id: any; }) => plant.id === plantId);
+    const element = document.getElementById('add_plant_alert_'+plant.id);
     this.plants.createUserPlant(userId, plantId).subscribe({
       next: response => {
         this.alert.setTitle("Success!");
         this.alert.setMessage("Plant saved!");
         if (plant) {
-          let element = document.getElementById('add_plant_alert_'+plant.id);
           element?.classList.add('success-alert');
           plant.showAlert = true;
         }
@@ -280,27 +254,10 @@ export class SearchComponent {
         this.alert.setTitle("Oops!");
         this.alert.setMessage("Plant already saved to profile!");
         if (plant) {
-          let element = document.getElementById('add_plant_alert_'+plant.id);
           element?.classList.add('error-alert');
           plant.showAlert = true;
         }
-        // let element = document.getElementById('add_plant_error');
-        // if (error.status === 409) {
-        //   element.removeAttribute('hidden') ;
-        //   element.classList.add('error-alert');
-        // } else {
-          
-        // }
-        console.log("createUserPlant error: ", error);
       }
     })
   }
-
-  // getAlertVisiblity() {
-  //   return this.alert.alertVisibility();
-  // }
-
-  // showAlertMessage(plantId: number) {
-  //   this.plantId.showAlert = true;
-  // }
 }

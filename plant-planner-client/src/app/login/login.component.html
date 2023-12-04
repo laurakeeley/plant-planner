@@ -201,60 +201,11 @@
                 <div
                     class="flex-1 hidden border-l-[1px] border-solid border-gray"
                 ></div>
-                <!-- <img
-                    class="flex-1 relative max-w-full overflow-hidden h-6 hidden"
-                    alt=""
-                    src="assets/icon--jamicons--outline--logos--arrowright2.svg"
-                /> -->
             </button>
             <div class="self-stretch relative leading-[140%] text-center" id="login_error" hidden>
-                <app-alert></app-alert>
+                <app-alert (click)="closeAlert('login_error')"></app-alert>
             </div>
         </div>
-    <!-- <div
-        class="self-stretch flex flex-row items-start justify-start gap-[16px] text-base sm:flex-row sm:gap-[16px] sm:items-start sm:justify-start"
-    >
-        <div
-        class="flex-1 flex flex-row py-4 px-3 items-center justify-between border-[2px] border-solid border-darkslategray"
-        >
-        <img
-            class="relative w-6 h-6 overflow-hidden shrink-0"
-            alt=""
-            src="assets/icon--jamicons--outline--logos--google.svg"
-        />
-
-        <div class="flex flex-row py-0 px-4 items-center justify-center">
-            <div class="relative tracking-[0.5px] leading-[100%] font-medium">
-            Log in with Google
-            </div>
-        </div>
-        <img
-            class="relative w-6 h-6 overflow-hidden shrink-0 hidden"
-            alt=""
-            src="assets/icon--jamicons--outline--logos--arrowright3.svg"
-        />
-        </div>
-        <div
-        class="flex-1 flex flex-row py-4 px-3 items-center justify-between border-[2px] border-solid border-darkslategray"
-        >
-        <img
-            class="relative w-6 h-6 overflow-hidden shrink-0"
-            alt=""
-            src="assets/icon--jamicons--outline--logos--apple.svg"
-        />
-
-        <div class="flex flex-row py-0 px-4 items-center justify-center">
-            <div class="relative tracking-[0.5px] leading-[100%] font-medium">
-            Log in with Apple
-            </div>
-        </div>
-        <img
-            class="relative w-6 h-6 overflow-hidden shrink-0 hidden"
-            alt=""
-            src="assets/icon--jamicons--outline--logos--arrowright4.svg"
-        />
-        </div>
-    </div> -->
     <div
         class="self-stretch relative box-border h-px border-t-[1px] border-solid border-coolgray-20"
     ></div>

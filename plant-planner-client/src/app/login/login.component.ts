@@ -34,6 +34,8 @@ export class LoginComponent {
         if (element) {
           element.removeAttribute('hidden') ;
           element.classList.add('error-alert');
+          this.alert.setTitle("Oops!");
+          this.alert.setMessage(error.error.error + '.');
         } else {
           console.log('Element not found.');
         }
@@ -53,5 +55,9 @@ export class LoginComponent {
     return this.isPasswordVisible
       ? 'assets/icon--jamicons--outline--logos--eye1.svg'
       : 'assets/icon--jamicons--outline--logos--eye_close.svg';
+  }
+
+  closeAlert(id: string) {
+    this.alert.closeAlert(id);
   }
 }
