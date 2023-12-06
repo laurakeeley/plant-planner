@@ -15,6 +15,7 @@ import { PlantDataService } from './services/plant-data.service';
 import { LogoutComponent } from './logout/logout.component';
 import { DetailsModalComponent } from './details-modal/details-modal.component';
 import { LoaderComponent } from './loader/loader.component';
+import { AlertComponent } from './alert/alert.component';
 
 
 @NgModule({
@@ -27,6 +28,7 @@ import { LoaderComponent } from './loader/loader.component';
     LogoutComponent,
     DetailsModalComponent,
     LoaderComponent,
+    AlertComponent,
   ],
   imports: [
     BrowserModule,

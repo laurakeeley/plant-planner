@@ -30,7 +30,7 @@ def sign_up():
         #*check to see if the email has been registered
         user = User.query.filter_by(email=email).first()
         if user:
-            response = {'message': 'Email has been registered', 'status': 404}
+            response = {'error': 'Email has been registered', 'status': 404}
         elif len(email) < 4:
             response = {'error': 'Email must be greater than 3 characters', 'status': 404}
         elif len(first_name) < 2:

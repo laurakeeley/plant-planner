@@ -1,6 +1,7 @@
 import { Component } from '@angular/core'; 
 import { AuthService } from '../services/auth.service';
 import { Router } from '@angular/router';
+import { AlertService } from '../services/alert.service';
 
 @Component({
   selector: 'app-signup',
@@ -14,12 +15,12 @@ export class SignupComponent { 
     email: "",
     password: ""
   };
-  error = '';
   isPasswordVisible = false;
 
   constructor(
     private auth:AuthService,
-    private router:Router
+    private router:Router,
+    private alert:AlertService
   ) {}
 
   signup() {
@@ -30,16 +31,19 @@ export class SignupComponent { 
       },
       error: error => {
         console.log(error);
-        this.error = error.error.error;
         let element = document.getElementById('signup_error');
-        element ? element.removeAttribute('hidden') : console.log("Element not found.");
+        if (element) {
+          element.removeAttribute('hidden') ;
+          element.classList.add('error-alert');
+          this.alert.setTitle("Oops!");
+          this.alert.setMessage(error.error.error + '.');
+        }
       }
     });
   }
 
-  close(id:string) {
-    let element = document.getElementById(id);
-    element ? element.setAttribute('hidden', 'true') : console.log('Element not found.');
+  closeAlert(id: string) {
+    this.alert.closeAlert(id);
   }
 
   passwordVisibility() {
