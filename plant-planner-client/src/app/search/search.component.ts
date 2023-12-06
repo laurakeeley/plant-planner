@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { SearchDataService } from '../services/search-data.service';
 import { AuthService } from '../services/auth.service';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
@@ -15,6 +15,7 @@ import { AlertService } from '../services/alert.service';
 export class SearchComponent {
   searchResults: any = [];
   userId = this.auth.getAuthenticatedUser();
+  randomPlants: any = [];
 
   constructor(
     private searchData: SearchDataService,
@@ -24,6 +25,26 @@ export class SearchComponent {
     private plants: PlantDataService,
     private alert: AlertService
   ) {}
+
+  ngOnInit() {
+    this.fetchRandomPlants();
+  }
+
+  fetchRandomPlants() {
+    console.log("Inside fetch Random Plants")
+    this.searchData.getRandomPlants().subscribe({
+      next: res => {
+        console.log("random plants res: ", res)
+        console.log("random plants res1: ", res.plants_record[0])
+        this.randomPlants = res.plants_record[0]
+        console.log((`randomPlants: ${this.randomPlants}`))
+        console.log((`randomPlants: ${this.randomPlants.plant_name}`))
+      },
+      error: error => {
+        console.log(error)
+      }
+    })
+  }
 
   //banner words
   words: string[] = [

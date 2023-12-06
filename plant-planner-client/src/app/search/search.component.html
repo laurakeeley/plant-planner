@@ -102,6 +102,7 @@
     <!-- Search result section -->
     <div class="bg-white">
       <div class="mx-auto max-w-fit px-4 py-16 sm:px-6 sm:py-24 lg:max-w-7xl lg:px-8">
+          <div *ngIf="searchResults.length >0; else displayRandomPlants">
         <!-- <h2 class="font-sans text-darkslategray">Products</h2> -->
     
         <div class="grid grid-cols-3 gap-x-8 gap-y-10 sm:grid-cols-1 md:grid-cols-1 mx-auto">
@@ -150,7 +151,35 @@
         </div>
       </div>
               
+    <!-- end of the search result -->
+    <ng-template #displayRandomPlants>
+      
+<div class="max-w-sm w-full lg:max-w-full lg:flex">
+  <!-- Image on the left -->
+  <img class="self-stretch max-w-full overflow-hidden h-[520px] w-[500px] object-cover rounded-lg lg:w-1/2 lg:order-1 lg:h-auto lg:max-h-[520px]" [src]="randomPlants.details.default_image.original_url" alt="Avatar of Jonathan Reinink">
+
+  <!-- Text content on the right -->
+  <div class="lg:w-1/2 lg:order-2 lg:border-r lg:border-b lg:border-l lg:border-gray-400 lg:bg-white lg:rounded-b lg:rounded-b-none lg:rounded-r p-4 lg:py-8 flex flex-col justify-between leading-normal">
+    <!-- Scientific Name, Plant Name, Description -->
+    <div class="mb-8">
+      <p class="text-sm text-gray-600 flex items-center">{{ randomPlants.details.scientific_name[0] }}</p>
+      <div class="text-gray-900 font-bold text-xl mb-2">{{ randomPlants.plant_name }}</div>
+      <p class="text-gray-700 text-base">{{ randomPlants.details.description }}</p>
+    </div>
+    
+    <!-- Author Information -->
+    <div class="flex items-center">
+      <img class="w-10 h-10 rounded-full mr-4" [src]="randomPlants.details.default_image.original_url" alt="Avatar of Jonathan Reinink">
+      <div class="text-sm">
+        <p class="text-gray-900 leading-none">Care Level: {{ randomPlants.details?.care_level ? randomPlants.details.care_level: 'Unknown'}}</p>
+        <p class="text-gray-600">Cycle: {{ randomPlants.details?.cycle ? randomPlants.details.cycle: "Unknown"}}</p>
+      </div>
     </div>
   </div>
 </div>
+    </ng-template>
+    </div>
+    </div>
+
+  </div>
 
